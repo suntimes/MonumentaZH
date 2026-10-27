@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "package": "monumentazh.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "ScreenTitleMixin",
+    "OverlayMessageMixin",
+    "BossBarNameMixin",
+    "AdvancementDisplayMixin",
+    "EntityLabelMixin",
+    "TextDisplayMixin",
+    "SignTextMixin",
+    "BookScreenMixin",
+    "IntroductionPopupMixin",
+    "CreativeSearchAccessor",
+    "RecipeBookSearchAccessor",
+    "ChatKeyboardMixin",
+    "TextRendererFontAccessor",
+    "BakedGlyphBoundsAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
