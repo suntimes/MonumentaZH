@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.time.Instant;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.regex.Pattern;
 
 /** Offline collection with bounded pages; full pages are archived instead of stopping collection. */
@@ -23,6 +24,18 @@ public final class EncounteredTextStore {
     private final Set<String> archiveFiles = new LinkedHashSet<>();
     private final Map<String, JsonObject> pendingArchives = new LinkedHashMap<>();
     private boolean dirty;
+    private long revision;
+    private Path requestedCheckpoint;
+    private SnapshotWork snapshotWork;
+    private Future<SaveResult> saving;
+    private ExecutorService writer;
+    private static final long SNAPSHOT_BUDGET_NANOS = 2_000_000L;
+    private static final int SNAPSHOT_RECORDS_PER_TICK = 32;
+    // Store records belong to the client thread. The writer receives only detached, cleaned copies.
+    @FunctionalInterface interface WriteSink { void write(Path path, String contents) throws IOException; }
+    private final WriteSink sink;
+    public EncounteredTextStore() { this(EncounteredTextStore::atomicWrite); }
+    EncounteredTextStore(WriteSink sink) { this.sink = Objects.requireNonNull(sink); }
     private final LinkedHashSet<String> sourceItems=new LinkedHashSet<>(),sourceTexts=new LinkedHashSet<>();
     private static boolean repeated(LinkedHashSet<String> set,String key){if(set.contains(key))return true;if(set.size()>=4096)set.remove(set.iterator().next());set.add(key);return false;}
 
@@ -35,6 +48,7 @@ public final class EncounteredTextStore {
         items.put(key, item.deepCopy());
         seenItems.add(key);
         dirty = true;
+        revision++;
     }
 
     public void addText(String kind, String raw, JsonElement component, String preview) {
@@ -60,6 +74,7 @@ public final class EncounteredTextStore {
         seenTexts.add(key);
         if(kind.equals("book_page"))seenBookComponents.add(component.toString());
         dirty = true;
+        revision++;
     }
 
     /** Loaded archives/current records can be recognized before building another translated preview. */
@@ -139,7 +154,9 @@ public final class EncounteredTextStore {
 
     private void archivePage() {
         String filename = "batch-" + Instant.now().toString().replace(':', '-') + "-" + UUID.randomUUID() + ".json";
-        pendingArchives.put(filename, snapshot());
+        // The private record objects never escape or change after insertion. Detach the page's
+        // containers now; copy/privacy work is budgeted below, rather than stalling rollover.
+        pendingArchives.put(filename, rawSnapshot());
         archiveFiles.add(filename);
         items.clear();
         texts.clear();
@@ -147,14 +164,18 @@ public final class EncounteredTextStore {
     }
 
     public JsonObject snapshot() {
+        return CapturePrivacy.cleanCapture(rawSnapshot());
+    }
+
+    private JsonObject rawSnapshot() {
         JsonObject root = new JsonObject();
         root.addProperty("format", "monumenta-zh-capture-v3");
         root.addProperty("identity_redacted",true);
         root.addProperty("exported_at", Instant.now().toString());
         JsonArray itemArray = new JsonArray();
-        items.values().forEach(value -> itemArray.add(value.deepCopy()));
+        items.values().forEach(itemArray::add);
         JsonArray textArray = new JsonArray();
-        texts.values().forEach(value -> textArray.add(value.deepCopy()));
+        texts.values().forEach(textArray::add);
         root.add("items", itemArray);
         root.add("texts", textArray);
         // Retain the v3 schema for existing translation tools; these limits now mean page boundaries.
@@ -165,22 +186,142 @@ public final class EncounteredTextStore {
         JsonArray archives = new JsonArray();
         archiveFiles.forEach(archives::add);
         root.add("archive_files", archives);
-        return CapturePrivacy.cleanCapture(root);
+        return root;
     }
 
     public void write(Path path) throws IOException {
+        // Explicit export/flush waits for an older writer before writing the latest generation.
+        // Otherwise its stale checkpoint could replace a newer manual export afterwards.
+        requestedCheckpoint = null;
+        snapshotWork = null;
+        if (saving != null) acceptSave(awaitSave());
         Path directory = path.toAbsolutePath().getParent().resolve("capture_archive");
         var iterator = pendingArchives.entrySet().iterator();
         while (iterator.hasNext()) {
             var entry = iterator.next();
-            atomicWrite(directory.resolve(entry.getKey()), GSON.toJson(CapturePrivacy.cleanCapture(entry.getValue())));
+            sink.write(directory.resolve(entry.getKey()), GSON.toJson(CapturePrivacy.cleanCapture(entry.getValue())));
             // Failed writes remain queued. Successful archives are never overwritten by a new page.
             iterator.remove();
         }
-        atomicWrite(path, GSON.toJson(snapshot()));
+        sink.write(path, GSON.toJson(snapshot()));
         dirty = false;
     }
     public void checkpoint(Path path) throws IOException { if (dirty) write(path); }
+
+    /** Coalesce autosave requests; this call performs no copying, JSON encoding or disk I/O. */
+    public void requestCheckpoint(Path path) { if (dirty) requestedCheckpoint = path; }
+
+    /** Client-thread pump: at most 32 records and a 2ms soft budget, then one background writer. */
+    public void tickCheckpoint() throws IOException {
+        long started = System.nanoTime();
+        if (saving != null && saving.isDone()) {
+            IOException failure = acceptSave(awaitSave());
+            if (failure != null) throw failure;
+        }
+        if (saving != null) return;
+        if (snapshotWork == null) {
+            if (requestedCheckpoint == null) return;
+            Path target = requestedCheckpoint; requestedCheckpoint = null;
+            if (!dirty) return;
+            snapshotWork = new SnapshotWork(target);
+        }
+        int records = 0;
+        while (records < SNAPSHOT_RECORDS_PER_TICK && System.nanoTime() - started < SNAPSHOT_BUDGET_NANOS) {
+            if (snapshotWork.step()) { records++; continue; }
+            SnapshotWork ready = snapshotWork; snapshotWork = null;
+            if (writer == null) writer = Executors.newSingleThreadExecutor(task -> {
+                Thread thread = new Thread(task, "MonumentaZH capture writer"); thread.setDaemon(true); return thread;
+            });
+            saving = writer.submit(ready::save);
+            return;
+        }
+    }
+
+    /** Shutdown is an explicit flush point; do not leave a daemon writer holding unsaved data. */
+    public void close(Path path) throws IOException {
+        boolean interrupted = Thread.interrupted();
+        try {
+            for (;;) {
+                try { write(path); break; }
+                catch (IOException ex) {
+                    if (!(ex.getCause() instanceof InterruptedException) && !(ex instanceof java.nio.channels.ClosedByInterruptException)) throw ex;
+                    interrupted = true; Thread.interrupted();
+                }
+            }
+        } finally {
+            if (writer != null) writer.shutdown();
+            if (interrupted) Thread.currentThread().interrupt();
+        }
+    }
+
+    private SaveResult awaitSave() throws IOException {
+        try {
+            SaveResult result = saving.get(); saving = null; return result;
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt(); throw new IOException("Interrupted while waiting for capture save", ex);
+        } catch (ExecutionException ex) {
+            saving = null; return new SaveResult(-1, List.of(), new IOException("Capture writer failed", ex.getCause()));
+        }
+    }
+
+    private IOException acceptSave(SaveResult result) {
+        result.archives.forEach(pendingArchives::remove);
+        if (result.failure == null && revision == result.revision) dirty = false;
+        return result.failure;
+    }
+
+    private record SaveResult(long revision, List<String> archives, IOException failure) {}
+
+    private final class SnapshotWork {
+        final CapturePrivacy.SnapshotContext privacy = CapturePrivacy.snapshotContext();
+        final long version = revision;
+        final Path target;
+        final List<String> archiveNames = new ArrayList<>(pendingArchives.keySet());
+        final List<JsonObject> sources = new ArrayList<>(pendingArchives.values());
+        final List<JsonObject> frozen = new ArrayList<>();
+        int page, group, record;
+        JsonObject current;
+        SnapshotWork(Path target) { this.target = target; sources.add(rawSnapshot()); }
+        // Only this method touches CapturePrivacy, on the client thread. Each output record is
+        // independently cleaned/copied; no mutable store or privacy state reaches the writer.
+        boolean step() {
+            while (page < sources.size()) {
+                JsonObject source = sources.get(page);
+                if (current == null) {
+                    current = new JsonObject();
+                    for (var e : source.entrySet()) if (!e.getKey().equals("items") && !e.getKey().equals("texts")) current.add(e.getKey(), e.getValue().deepCopy());
+                    current.add("items", new JsonArray()); current.add("texts", new JsonArray()); frozen.add(current);
+                }
+                String key = group == 0 ? "items" : "texts";
+                JsonArray entries = source.getAsJsonArray(key);
+                if (record < entries.size()) {
+                    JsonObject fragment = new JsonObject(); JsonArray one = new JsonArray(); one.add(entries.get(record++)); fragment.add(key, one);
+                    JsonArray cleaned = CapturePrivacy.cleanCapture(fragment, privacy).getAsJsonArray(key);
+                    for (var value : cleaned) current.getAsJsonArray(key).add(value);
+                    return true;
+                }
+                record = 0;
+                if (group == 0) group = 1;
+                else { page++; group = 0; current = null; }
+            }
+            return false;
+        }
+        // No shared map/record/privacy access here: frozen is owned exclusively by this task.
+        SaveResult save() {
+            List<String> completed = new ArrayList<>();
+            try {
+                Path directory = target.toAbsolutePath().getParent().resolve("capture_archive");
+                for (int i = 0; i < archiveNames.size(); i++) {
+                    sink.write(directory.resolve(archiveNames.get(i)), GSON.toJson(frozen.get(i)));
+                    completed.add(archiveNames.get(i));
+                }
+                sink.write(target, GSON.toJson(frozen.get(frozen.size() - 1)));
+                return new SaveResult(version, completed, null);
+            } catch (Exception ex) {
+                return new SaveResult(version, completed, ex instanceof IOException io ? io : new IOException("Capture serialization failed", ex));
+            }
+        }
+    }
     public int itemCount() { return items.size(); }
     public int textCount() { return texts.size(); }
     public int archivedBatchCount() { return archiveFiles.size(); }
@@ -190,6 +331,7 @@ public final class EncounteredTextStore {
     private static String normalizedKind(String kind, String raw, JsonElement component) {
         if (isChatKind(kind)) return null;
         if ("server_message".equals(kind) || "npc_dialogue".equals(kind) || "server_notice".equals(kind)) {
+            if(ChatMessageFilter.isLocalModMessage(raw))return null;
             return switch (ChatMessageFilter.classify(component, raw)) {
                 case PLAYER -> null;
                 case NPC -> "npc_dialogue";

@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "books": [
+    {
+      "source": "Ta'Ferna will be cleansed. My purpose... my right... my need...\n\ncorruption...\n\ncleanse... my purpose... C'Axtal's secret calls to me. Where Yellow used to be... cleanse...\n\npurpose...",
+      "guard_expected": "塔费尔纳将被净化。我的使命……我的权利……我的渴求……\n\n腐化……\n\n净化……我的使命……克阿克斯塔尔的秘密在召唤我。黄色羊毛曾在的地方……净化……\n\n使命……",
+      "exact": {
+        "corruption...": "腐化……",
+        "purpose...": "使命……"
+      }
+    },
+    {
+      "source": "I'm finally doing it! You've truly inspired me, and I'm going on my own adventure, exploring all there is to see. Ok, not just you, but especially\nyou! All those amazing stories of such Diversity, sometimes Rage, or just a spot for Krose to nest.",
+      "guard_expected": "我终于要出发了！你真正鼓舞了我，我要踏上自己的冒险，探索一切值得看的事物。好吧，不只是你，但尤其是\n你！那些奇妙的故事，有着如此丰富的Diversity，有时带着Rage，也有些只是让Krose筑巢的地方。",
+      "exact": {
+        "especially": "尤其是"
+      }
+    },
+    {
+      "source": "Kaladun, for his wit and logic, while still finding time to dance.\n\nheliceo, who proved that Rome can be built in a day.\n\nrockenroll4life, with his code that could not be broken.\n\n",
+      "guard_expected": "献给Kaladun，他机智而富有逻辑，同时还不忘抽空跳舞。\n\n献给heliceo，他证明了罗马可以在一天内建成。\n\n献给rockenroll4life，他的代码无人能够破解。\n\n",
+      "exact": {
+        "can": "可以"
+      }
+    }
+  ]
+}

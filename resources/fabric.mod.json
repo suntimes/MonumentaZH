@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "monumenta_zh_supplement",
-  "version": "0.2.46-book-capture",
+  "version": "0.2.70-player-introduction",
   "name": "Monumenta 中文补充",
   "description": "离线补充技能、物品与常用菜单，自动分批收集英文，支持在背包、交易面板及聊天框中使用自定义快捷键，玩家聊天与私聊保持原文。\n作者：suntime\n附魔与技能汉化引用：Moe_block\n译者：suntime、Armorer、vuken\n感谢 Armorer、Vuken 等玩家的翻译协助。\n\n使用声明与须知\n仅保证作者实际游玩部分的 80% 内容无误；其余区域以机翻为主。遇到疑义时可切换原文核对。",
   "environment": "client",

@@ -24,7 +24,7 @@ public abstract class SignTextMixin {
     // Vanilla keeps only the first wrapped row. Fit Chinese rows to the existing sign width instead.
     @Inject(method="method_45799",at=@At("HEAD"),cancellable=true,remap=false)
     private void monumentazh$wholeRow(int width,class_2561 line,CallbackInfoReturnable<class_5481> callback) {
-        if(MonumentaZh.signTranslationActive()&&line.getString().codePoints().anyMatch(c->Character.UnicodeScript.of(c)==Character.UnicodeScript.HAN))
+        if(MonumentaZh.signTranslationActive()&&(line.getString().codePoints().anyMatch(c->Character.UnicodeScript.of(c)==Character.UnicodeScript.HAN)||MonumentaZh.teleportSignLabel(line)))
             callback.setReturnValue(line.method_30937());
     }
     @ModifyArgs(method="method_45798",at=@At(value="INVOKE",target="Lnet/minecraft/class_327;method_22942(Lnet/minecraft/class_5481;FFIZLorg/joml/Matrix4f;Lnet/minecraft/class_4597;Lnet/minecraft/class_327$class_6415;II)I"),remap=false)
