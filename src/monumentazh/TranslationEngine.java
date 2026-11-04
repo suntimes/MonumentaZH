@@ -48,6 +48,11 @@ public final class TranslationEngine {
         return BULLET.matcher(WHITESPACE.matcher(value).replaceAll(" ").trim()).replaceFirst("");
     }
 
+    /** Exact full-line lookup only; callers retain their own component styles. */
+    String exactTranslation(String source) {
+        return exact.get(normalize(source));
+    }
+
     public String translate(String text, boolean partial) {
         return translatePreserving(text, partial, Set.of());
     }

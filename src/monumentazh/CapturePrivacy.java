@@ -30,26 +30,46 @@ public final class CapturePrivacy {
         Pattern.compile("^([A-Za-z0-9_]{1,16}) \\(#\\d+\\)$"),
         Pattern.compile("^\\[([A-Za-z0-9_]{1,16}) got mail\\]$")
     );
-    private static final LinkedHashSet<String> players=new LinkedHashSet<>();
-    private static final Set<String> npcNames=new HashSet<>(),guildLabels=new HashSet<>(),guildNames=new HashSet<>();
-    private static final Set<String> legacyLiterals=new HashSet<>(),legacyAccounts=new HashSet<>();
-    private static final Set<String> RESERVED=Set.of("you","your","i","he","she","they","we","the","a","an","to","from","guild","player","server","none","unknown","owner","it","their","has","have","with","this","that","not","quite","very","right","wrong","sure","welcome","friend","friends","adventurer","traveler","champion","traveller","ready","doing","all","still","only","so","going","here","now","in","out","back","safe","who","which","what");
+    private static final class IdentityContext {
+        final LinkedHashSet<String> players=new LinkedHashSet<>();
+        final Set<String> npcNames=new HashSet<>(),guildLabels=new HashSet<>(),guildNames=new HashSet<>();
+        final Set<String> legacyLiterals=new HashSet<>(),legacyAccounts=new HashSet<>();
+        IdentityContext() {}
+        IdentityContext(IdentityContext source) {
+            players.addAll(source.players);npcNames.addAll(source.npcNames);guildLabels.addAll(source.guildLabels);
+            guildNames.addAll(source.guildNames);legacyLiterals.addAll(source.legacyLiterals);legacyAccounts.addAll(source.legacyAccounts);
+        }
+    }
+    private static final IdentityContext live=new IdentityContext();
+    private static final ThreadLocal<IdentityContext> scoped=new ThreadLocal<>();
+    private static IdentityContext identities() { IdentityContext value=scoped.get();return value==null?live:value; }
+    /** One autosave uses the identities known at its start, even across ticks/disconnection. */
+    static final class SnapshotContext {
+        private final IdentityContext value=new IdentityContext(identities());
+    }
+    static SnapshotContext snapshotContext() { return new SnapshotContext(); }
+    static JsonObject cleanCapture(JsonObject root,SnapshotContext context) {
+        IdentityContext previous=scoped.get();scoped.set(context.value);
+        try { return cleanCapture(root); }
+        finally { if(previous==null)scoped.remove();else scoped.set(previous); }
+    }
+    private static final Set<String> RESERVED=Set.of("you","your","i","he","she","they","we","the","a","an","to","from","guild","player","server","none","unknown","owner","it","their","has","have","with","this","that","then","not","quite","very","right","wrong","sure","welcome","friend","friends","adventurer","traveler","champion","traveller","ready","doing","all","still","only","so","going","here","now","in","out","back","safe","who","which","what");
     private CapturePrivacy() {}
     public static void observePlayer(String value) {
         String name=TranslationEngine.normalize(value);
         if(!ACCOUNT.matcher(name).matches())return;
-        if(players.size()>=4096)players.remove(players.iterator().next());
-        players.add(name.toLowerCase(Locale.ROOT));
+        if(identities().players.size()>=4096)identities().players.remove(identities().players.iterator().next());
+        identities().players.add(name.toLowerCase(Locale.ROOT));
     }
-    public static void clearSession(){players.clear();}
-    public static boolean playerName(String raw){return players.contains(TranslationEngine.normalize(raw).toLowerCase(Locale.ROOT));}
+    public static void clearSession(){identities().players.clear();}
+    public static boolean playerName(String raw){return identities().players.contains(TranslationEngine.normalize(raw).toLowerCase(Locale.ROOT));}
     public static void catalog(JsonObject catalog) {
-        for(String group:List.of("npc_names","place_names"))if(catalog.has(group))for(var e:catalog.getAsJsonObject(group).entrySet())npcNames.add(e.getKey());
+        for(String group:List.of("npc_names","place_names"))if(catalog.has(group))for(var e:catalog.getAsJsonObject(group).entrySet())identities().npcNames.add(e.getKey());
         if(catalog.has("guild_labels"))for(var v:catalog.getAsJsonArray("guild_labels")) {
-            String label=v.getAsString();guildLabels.add(label);int end=label.indexOf("] ");if(end>=0)guildNames.add(label.substring(end+2).toLowerCase(Locale.ROOT));guildNames.add(label.substring(1,label.indexOf(']')).toLowerCase(Locale.ROOT));
+            String label=v.getAsString();identities().guildLabels.add(label);int end=label.indexOf("] ");if(end>=0)identities().guildNames.add(label.substring(end+2).toLowerCase(Locale.ROOT));identities().guildNames.add(label.substring(1,label.indexOf(']')).toLowerCase(Locale.ROOT));
         }
     }
-    private static boolean excluded(String name){return RESERVED.contains(name.toLowerCase(Locale.ROOT))&&!playerName(name)||npcNames.contains(name)||guildNames.contains(name.toLowerCase(Locale.ROOT))||Set.of("valley","plots","guildplots","labs-4").contains(name);}
+    private static boolean excluded(String name){return RESERVED.contains(name.toLowerCase(Locale.ROOT))&&!playerName(name)||identities().npcNames.contains(name)||identities().guildNames.contains(name.toLowerCase(Locale.ROOT))||Set.of("valley","plots","guildplots","labs-4").contains(name);}
     public static Set<String> roleNames(String raw) {
         Set<String> out=new LinkedHashSet<>();
         // A marketplace seller field is an account, even when it matches an NPC or a common word.
@@ -126,15 +146,15 @@ public final class CapturePrivacy {
         Matcher token=WORD.matcher(raw);
         while(token.find()) {
             String name=token.group();
-            if(legacyAccounts.contains(name.toLowerCase(Locale.ROOT))&&!excluded(name))out.add(name);
+            if(identities().legacyAccounts.contains(name.toLowerCase(Locale.ROOT))&&!excluded(name))out.add(name);
         }
         // Role evidence is local to this record; a colliding account must not disable the actual NPC's label.
-        for(String name:out)if(!npcNames.contains(name))observePlayer(name);
+        for(String name:out)if(!identities().npcNames.contains(name))observePlayer(name);
         return out;
     }
     private static String replace(String source,Set<String> names,String token) {
         if(names.isEmpty())return source;
-        // Tokenize once: costs do not grow with the number of online players.
+        // Tokenize once: costs do not grow with the number of online identities().players.
         Set<String> folded=new HashSet<>();for(String n:names)folded.add(n.toLowerCase(Locale.ROOT));
         Matcher m=WORD.matcher(source);StringBuffer out=new StringBuffer();
         while(m.find())if(folded.contains(m.group().toLowerCase(Locale.ROOT)))m.appendReplacement(out,Matcher.quoteReplacement(token));
@@ -162,19 +182,23 @@ public final class CapturePrivacy {
         return out;
     }
     public static JsonObject text(String kind,String raw,JsonElement component,String preview) {
+        if(Set.of("server_message","npc_dialogue","server_notice").contains(kind)&&ChatMessageFilter.isLocalModMessage(raw))return null;
         if((kind.equals("entity_label")||kind.equals("text_display"))&&(playerName(raw)&&!nonPlayerComponent(component)||playerComponent(component)))return null;
         // Generic item/enchantment words remain usable even when a player happens to share the word.
         Set<String> names=namesFor(raw,component);
         Set<String> explicit=new LinkedHashSet<>(roleNames(raw));evidence(component,explicit);
-        names.removeIf(n->!explicit.contains(n)&&legacyAccounts.contains(n.toLowerCase(Locale.ROOT))&&raw.equals(preview)&&!raw.matches(".*[\\u4e00-\\u9fff].*")&&!n.matches(".*[0-9_].*")&&!n.matches(".*[a-z][A-Z].*"));
+        names.removeIf(n->!explicit.contains(n)&&identities().legacyAccounts.contains(n.toLowerCase(Locale.ROOT))&&raw.equals(preview)&&!raw.matches(".*[\\u4e00-\\u9fff].*")&&!n.matches(".*[0-9_].*")&&!n.matches(".*[a-z][A-Z].*"));
         if(kind.equals("tooltip")||kind.equals("item_name")) {
             names=explicit;
         }
         JsonObject out=new JsonObject();out.addProperty("kind",kind);out.addProperty("text",replace(raw,names,"{player}"));
-        out.add("component",scrub(component,names));out.addProperty("translated_preview",replace(preview,names,"{player}"));return out;
+        out.add("component",scrub(component,names));out.addProperty("translated_preview",replace(preview,names,"{player}"));
+        // Match the exported identity after removing private insertion/UUID metadata.
+        if(CaptureExclusions.excluded(kind,out.get("text").getAsString(),out.get("component")))return null;
+        return out;
     }
     public static JsonObject item(JsonObject item) {
-        String name=item.get("name").getAsString();if(guildLabels.contains(name))return item.deepCopy();
+        String name=item.get("name").getAsString();if(identities().guildLabels.contains(name))return item.deepCopy();
         Set<String> names=new LinkedHashSet<>();evidence(item,names);for(String n:names)observePlayer(n);
         return scrub(item,names).getAsJsonObject();
     }
@@ -191,16 +215,16 @@ public final class CapturePrivacy {
     }
     public static JsonObject cleanNames(JsonObject names) {catalog(names);JsonObject out=names.deepCopy();out.remove("player_names");out.addProperty("identity_policy","runtime_only");return out;}
     public static void legacy(JsonObject names) {
-        catalog(names);if(names.has("player_names"))for(var n:names.getAsJsonArray("player_names")){legacyLiterals.add(n.getAsString());if(!excluded(n.getAsString())){observePlayer(n.getAsString());legacyAccounts.add(n.getAsString().toLowerCase(Locale.ROOT));}}
+        catalog(names);if(names.has("player_names"))for(var n:names.getAsJsonArray("player_names")){identities().legacyLiterals.add(n.getAsString());if(!excluded(n.getAsString())){observePlayer(n.getAsString());identities().legacyAccounts.add(n.getAsString().toLowerCase(Locale.ROOT));}}
     }
     /** Store generic %u templates, never a list of captured account names. */
     public static JsonObject cleanDictionary(JsonObject flat) {
         JsonObject out=new JsonObject();
         for(var e:flat.entrySet()) {
             String raw=e.getKey(),value=e.getValue().getAsString();
-            if(raw.equals(value)&&legacyLiterals.contains(raw))continue;
-            if(guildLabels.contains(raw)){out.addProperty(raw,value);continue;}
-            Set<String> names=new LinkedHashSet<>(roleNames(raw));Matcher account=WORD.matcher(raw);while(account.find())if(legacyAccounts.contains(account.group().toLowerCase(Locale.ROOT))&&!excluded(account.group()))names.add(account.group());
+            if(raw.equals(value)&&identities().legacyLiterals.contains(raw))continue;
+            if(identities().guildLabels.contains(raw)){out.addProperty(raw,value);continue;}
+            Set<String> names=new LinkedHashSet<>(roleNames(raw));Matcher account=WORD.matcher(raw);while(account.find())if(identities().legacyAccounts.contains(account.group().toLowerCase(Locale.ROOT))&&!excluded(account.group()))names.add(account.group());
             if(names.isEmpty()){out.addProperty(raw,value);continue;}
             List<String> ordered=new ArrayList<>();Matcher m=WORD.matcher(raw);boolean repeated=false;
             while(m.find())for(String name:names)if(name.equalsIgnoreCase(m.group())){if(ordered.contains(name))repeated=true;else ordered.add(name);}
@@ -222,7 +246,7 @@ public final class CapturePrivacy {
         JsonObject out=new JsonObject();out.add("exact",exact);out.add("templates",templates);return out;
     }
     public static void migrateConfig(Path folder)throws IOException {
-        try { migrate(folder); } finally {legacyLiterals.clear();legacyAccounts.clear();clearSession();}
+        try { migrate(folder); } finally {identities().legacyLiterals.clear();identities().legacyAccounts.clear();clearSession();}
     }
     private static void migrate(Path folder)throws IOException {
         JsonObject names=Files.isRegularFile(folder.resolve("names.json"))?JsonParser.parseString(Files.readString(folder.resolve("names.json"))).getAsJsonObject():new JsonObject();
@@ -240,6 +264,6 @@ public final class CapturePrivacy {
                 for(var e:changes.entrySet()){EncounteredTextStore.atomicWrite(e.getKey(),e.getValue());committed.add(e.getKey());}
             }catch(IOException error){for(Path p:committed)Files.copy(backup.resolve(folder.relativize(p)),p,StandardCopyOption.REPLACE_EXISTING);throw error;}
         }
-        legacyLiterals.clear();clearSession();
+        identities().legacyLiterals.clear();clearSession();
     }
 }
