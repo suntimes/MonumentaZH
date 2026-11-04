@@ -272,7 +272,15 @@ public final class MonumentaZh implements ClientModInitializer {
             lines.add(messagePart("控制 → 按键绑定 → Monumenta 中文补充\n","aqua",false));
             lines.add(messagePart("默认未设置，可自定义开启、关闭、切换与导出键。\n","white",false));
             lines.add(messagePart("背包、容器、交易面板和聊天框内均可使用。\n建议选择功能键或鼠标侧键，避免影响打字。\n搜索和重命名时不触发。\n","gray",false));
-        } else {appendCredits(lines);appendTranslationNotice(lines);lines.add(messagePart("\n","white",false));}
+        } else {
+            appendCredits(lines);
+            lines.add(messagePart("\n日常使用\n","gold",true));
+            lines.add(messagePart("/monumentazh 打开设置，可开关汉化。\n快捷键可在“控制 → 按键绑定”中自定义。\n普通玩家无需开启自动收集。\n","white",false));
+            lines.add(messagePart("词库文件更新后，点击“重载词库”；\n模组 JAR 更新后，需重启游戏。\n发现漏译，先核对词库和模组版本。\n","aqua",false));
+            lines.add(messagePart("\n译者提示\n","gold",true));
+            lines.add(messagePart("离开市场后，记得恢复自动收集；\n收集到所需文本后，再点击“导出文本”。\n","gray",false));
+            appendTranslationNotice(lines);lines.add(messagePart("\n","white",false));
+        }
         lines.add(menuButton("[返回设置]","","返回汉化设置面板",false));root.add("extra",lines);
         return class_2561.class_2562.method_10872(root);
     }
@@ -321,10 +329,24 @@ public final class MonumentaZh implements ClientModInitializer {
     }
 
     private static class_2561 introductionMessage() {
-        JsonObject root=messagePart("","white",false);root.addProperty("font","minecraft:default");JsonArray lines=new JsonArray();
+        JsonObject root=messageHeader();JsonArray lines=new JsonArray();
         appendCredits(lines);
-        appendCommonCommands(lines);
-        lines.add(messagePart("快捷键可在“控制 → 按键绑定”中自定义。\n","aqua",false));
+        int tip=Math.max(1,Math.min(3,introduction.shownCount()));
+        if(tip==1) {
+            lines.add(messagePart("\n使用提示 1/3 · 切换与快捷键\n","gold",true));
+            lines.add(messagePart("/monumentazh 打开设置，可开关汉化。\n","aqua",false));
+            lines.add(commandLine("toggle","切换汉化与原文","aqua"));
+            lines.add(messagePart("快捷键可在“控制 → 按键绑定”中自定义。\n","white",false));
+        } else if(tip==2) {
+            lines.add(messagePart("\n使用提示 2/3 · 更新后如何生效\n","gold",true));
+            lines.add(messagePart("词库文件更新后，点击设置中的“重载词库”。\n","white",false));
+            lines.add(commandLine("reload","重新加载词库","aqua"));
+            lines.add(messagePart("模组 JAR 更新后，需重启游戏。\n","white",false));
+        } else {
+            lines.add(messagePart("\n使用提示 3/3 · 发现漏译或错译\n","gold",true));
+            lines.add(messagePart("先核对词库和模组版本，再切换原文核对。\n反馈时请附原文截图与出现位置，便于校对。\n","white",false));
+            lines.add(commandLine("toggle","切换汉化与原文","aqua"));
+        }
         appendTranslationNotice(lines);
         root.add("extra",lines);return class_2561.class_2562.method_10872(root);
     }
@@ -358,7 +380,7 @@ public final class MonumentaZh implements ClientModInitializer {
     }
     private static void appendTranslationNotice(JsonArray lines) {
         lines.add(messagePart("\n使用声明与须知\n","gold",true));
-        lines.add(messagePart("仅保证作者实际游玩部分的80%内容无误；\n其余区域以机翻为主。遇到疑问可切换原文核对。","white",false));
+        lines.add(messagePart("作者实际游玩部分持续校对中；\n其余区域以机翻为主，发现疑问可切换原文核对。","white",false));
     }
 
     public static boolean signTranslationActive() { return signTranslationEnabled && active(); }
