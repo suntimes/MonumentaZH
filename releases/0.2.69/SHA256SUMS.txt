@@ -1,0 +1,2 @@
+6a6e41e2665bc75e638333568f9b2b4edfd77fbc23fd49b674d6309ed09d54e2  Monumenta-ZH-1.20.4-0.2.69-full.zip
+acfce6cdf646bf200d5ceb5729075fdeb8bce7f768e37a9014d359071da0120c  Monumenta-ZH-Supplement-1.20.4-0.2.69-quest-metadata.jar

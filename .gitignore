@@ -26,3 +26,7 @@ reference/
 updates/
 outputs/
 AGENTS.md
+
+# Published builds are intentionally versioned for direct download.
+!releases/**/*.jar
+

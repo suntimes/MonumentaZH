@@ -1,0 +1,252 @@
+[
+  {
+    "source_lines": [
+      "press if on",
+      "stage"
+    ],
+    "target_lines": [
+      "若在舞台上，",
+      "请按。"
+    ],
+    "guard_line_translations": [
+      "press if on",
+      "stage"
+    ],
+    "guard_exact_source": "press if on stage",
+    "guard_expected": "若在舞台上，请按。"
+  },
+  {
+    "source_lines": [
+      "welcome to the",
+      "church of",
+      "hanzo"
+    ],
+    "target_lines": [
+      "欢迎来到",
+      "hanzo",
+      "教堂"
+    ],
+    "guard_line_translations": [
+      "欢迎来到",
+      "教堂",
+      "hanzo"
+    ],
+    "guard_exact_source": "welcome to the church of hanzo",
+    "guard_expected": "欢迎来到hanzo教堂"
+  },
+  {
+    "source_lines": [
+      "Beyond this gate",
+      "the Halls give way",
+      "to the Cave of",
+      "Winds. The gate"
+    ],
+    "target_lines": [
+      "穿过此门，",
+      "殿堂便通向",
+      "风之洞穴。",
+      "要打开此门，"
+    ],
+    "guard_line_translations": [
+      "Beyond this gate",
+      "the Halls give way",
+      "to the Cave of",
+      "Winds. The gate"
+    ],
+    "guard_exact_source": "Beyond this gate the Halls give way to the Cave of Winds. The gate",
+    "guard_expected": "穿过此门，殿堂便通向风之洞穴。要打开此门，"
+  },
+  {
+    "source_lines": [
+      "may be opened",
+      "by finding three",
+      "levers strewn",
+      "through"
+    ],
+    "target_lines": [
+      "请找到",
+      "散落在殿堂的",
+      "三个拉杆，",
+      "然后"
+    ],
+    "guard_line_translations": [
+      "may be opened",
+      "by finding three",
+      "levers strewn",
+      "through"
+    ],
+    "guard_exact_source": "may be opened by finding three levers strewn through",
+    "guard_expected": "请找到散落在殿堂的三个拉杆，然后"
+  },
+  {
+    "source_lines": [
+      "the Halls and",
+      "flipping them",
+      "all on."
+    ],
+    "target_lines": [
+      "将它们",
+      "全部拨至",
+      "开启状态。"
+    ],
+    "guard_line_translations": [
+      "the Halls and",
+      "flipping them",
+      "all on."
+    ],
+    "guard_exact_source": "the Halls and flipping them all on.",
+    "guard_expected": "将它们全部拨至开启状态。"
+  },
+  {
+    "source_lines": [
+      "If you update",
+      "these, update",
+      "them at each",
+      "lever too!"
+    ],
+    "target_lines": [
+      "若更新这些，",
+      "也请同步更新",
+      "每个拉杆处的",
+      "对应内容！"
+    ],
+    "guard_line_translations": [
+      "If you update",
+      "these, update",
+      "them at each",
+      "lever too!"
+    ],
+    "guard_exact_source": "If you update these, update them at each lever too!",
+    "guard_expected": "若更新这些，也请同步更新每个拉杆处的对应内容！"
+  },
+  {
+    "source_lines": [
+      "This mech checks",
+      "nearby blocks",
+      "similar to the",
+      "door trigger."
+    ],
+    "target_lines": [
+      "此机关检测",
+      "周围方块，",
+      "方式类似",
+      "门的触发装置。"
+    ],
+    "guard_line_translations": [
+      "This mech checks",
+      "nearby blocks",
+      "similar to the",
+      "door trigger."
+    ],
+    "guard_exact_source": "This mech checks nearby blocks similar to the door trigger.",
+    "guard_expected": "此机关检测周围方块，方式类似门的触发装置。"
+  },
+  {
+    "source_lines": [
+      "especially from",
+      "relogging, which",
+      "can make them",
+      "appear wrong."
+    ],
+    "target_lines": [
+      "尤其是重登时，",
+      "它们可能会",
+      "显示出",
+      "错误状态。"
+    ],
+    "guard_line_translations": [
+      "especially from",
+      "relogging, which",
+      "can make them",
+      "appear wrong."
+    ],
+    "guard_exact_source": "especially from relogging, which can make them appear wrong.",
+    "guard_expected": "尤其是重登时，它们可能会显示出错误状态。"
+  },
+  {
+    "source_lines": [
+      "Levers are too",
+      "far for markers",
+      "to be reliably",
+      "loaded"
+    ],
+    "target_lines": [
+      "拉杆距离太远，",
+      "导致标记",
+      "无法稳定",
+      "加载。"
+    ],
+    "guard_line_translations": [
+      "Levers are too",
+      "far for markers",
+      "to be reliably",
+      "loaded"
+    ],
+    "guard_exact_source": "Levers are too far for markers to be reliably loaded",
+    "guard_expected": "拉杆距离太远，导致标记无法稳定加载。"
+  },
+  {
+    "source_lines": [
+      "FROZEN",
+      "CATACOMBS"
+    ],
+    "target_lines": [
+      "冰封",
+      "墓穴"
+    ],
+    "guard_line_translations": [
+      "FROZEN",
+      "CATACOMBS"
+    ],
+    "guard_exact_source": "FROZEN CATACOMBS",
+    "guard_expected": "冰封墓穴"
+  },
+  {
+    "source_lines": [
+      "Closed by ",
+      "Order of"
+    ],
+    "target_lines": [
+      "奉令封闭",
+      "下令者："
+    ],
+    "guard_line_translations": [
+      "Closed by ",
+      "Order of"
+    ],
+    "guard_exact_source": "Closed by  Order of",
+    "guard_expected": "奉令封闭下令者："
+  },
+  {
+    "source_lines": [
+      "Do Not",
+      "Enter"
+    ],
+    "target_lines": [
+      "禁止",
+      "入内"
+    ],
+    "guard_line_translations": [
+      "Do Not",
+      "Enter"
+    ],
+    "guard_exact_source": "Do Not Enter",
+    "guard_expected": "禁止入内"
+  },
+  {
+    "source_lines": [
+      "DANGER",
+      "CAVE IN"
+    ],
+    "target_lines": [
+      "危险",
+      "塌方"
+    ],
+    "guard_line_translations": [
+      "DANGER",
+      "CAVE IN"
+    ],
+    "guard_exact_source": "DANGER CAVE IN",
+    "guard_expected": "危险塌方"
+  }
+]

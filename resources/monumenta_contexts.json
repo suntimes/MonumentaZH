@@ -1,0 +1,418 @@
+{
+  "format_version": 1,
+  "tooltips": [
+    {
+      "id": "tooltip-1",
+      "source_lines": [
+        "Finding the starting NPC for Shurima's Big Day",
+        "Off."
+      ],
+      "target_lines": [
+        "寻找“舒瑞玛的大休假”",
+        "任务的起始NPC。"
+      ],
+      "guard_exact_source": "Finding the starting NPC for Shurima's Big Day Off.",
+      "guard_expected": "寻找“舒瑞玛的大休假”任务的起始NPC。",
+      "guard_line_translations": [
+        "Finding the starting NPC for Shurima's Big Day",
+        "Off."
+      ]
+    },
+    {
+      "id": "tooltip-2",
+      "source_lines": [
+        "...Then speak to T'Xoc to reopen the way once",
+        "more."
+      ],
+      "target_lines": [
+        "……然后和特索克交谈，",
+        "再次打开通道。"
+      ],
+      "guard_exact_source": "...Then speak to T'Xoc to reopen the way once more.",
+      "guard_expected": "……然后和特索克交谈，再次打开通道。",
+      "guard_line_translations": [
+        "...Then speak to T'Xoc to reopen the way once",
+        "more."
+      ]
+    },
+    {
+      "id": "tooltip-3",
+      "source_lines": [
+        "If you don't have a fishing rod, R'Tsiv can sell",
+        "you one."
+      ],
+      "target_lines": [
+        "如果没有钓竿，可以向尔齐夫",
+        "购买一根。"
+      ],
+      "guard_exact_source": "If you don't have a fishing rod, R'Tsiv can sell you one.",
+      "guard_expected": "如果没有钓竿，可以向尔齐夫购买一根。",
+      "guard_line_translations": [
+        "If you don't have a fishing rod, R'Tsiv can sell",
+        "you one."
+      ]
+    },
+    {
+      "id": "tooltip-4",
+      "source_lines": [
+        "Divine Watcher's",
+        "Sword"
+      ],
+      "target_lines": [
+        "神圣守望者之",
+        "剑"
+      ],
+      "guard_exact_source": "Divine Watcher's Sword",
+      "guard_expected": "神圣守望者之剑",
+      "guard_line_translations": [
+        "Divine Watcher's",
+        "Sword"
+      ]
+    },
+    {
+      "id": "tooltip-5",
+      "source_lines": [
+        "Divine Scalawag's",
+        "Hatchet"
+      ],
+      "target_lines": [
+        "神圣的无赖",
+        "短斧"
+      ],
+      "guard_exact_source": "Divine Scalawag's Hatchet",
+      "guard_expected": "神圣的无赖短斧",
+      "guard_line_translations": [
+        "Divine Scalawag's",
+        "短斧"
+      ]
+    },
+    {
+      "id": "tooltip-6",
+      "source_lines": [
+        "Divine Thaumaturge's",
+        "Greed"
+      ],
+      "target_lines": [
+        "神圣奇术师的",
+        "贪欲"
+      ],
+      "guard_exact_source": "Divine Thaumaturge's Greed",
+      "guard_expected": "神圣奇术师的贪欲",
+      "guard_line_translations": [
+        "Divine Thaumaturge's",
+        "Greed"
+      ]
+    },
+    {
+      "id": "tooltip-7",
+      "source_lines": [
+        "Divine Rosethorn",
+        "Blade"
+      ],
+      "target_lines": [
+        "神圣玫瑰荆棘之",
+        "刃"
+      ],
+      "guard_exact_source": "Divine Rosethorn Blade",
+      "guard_expected": "神圣玫瑰荆棘之刃",
+      "guard_line_translations": [
+        "Divine Rosethorn",
+        "Blade"
+      ]
+    },
+    {
+      "id": "tooltip-8",
+      "source_lines": [
+        "Jewel of the",
+        "Blackroot"
+      ],
+      "target_lines": [
+        "黑根",
+        "宝石"
+      ],
+      "guard_exact_source": "Jewel of the Blackroot",
+      "guard_expected": "黑根宝石",
+      "guard_line_translations": [
+        "Jewel of the",
+        "黑根"
+      ]
+    },
+    {
+      "id": "tooltip-9",
+      "source_lines": [
+        "Jewel of the",
+        "Blackroot (Instant)"
+      ],
+      "target_lines": [
+        "黑根",
+        "宝石（即时）"
+      ],
+      "guard_exact_source": "Jewel of the Blackroot (Instant)",
+      "guard_expected": "黑根宝石（即时）",
+      "guard_line_translations": [
+        "Jewel of the",
+        "Blackroot (Instant)"
+      ]
+    },
+    {
+      "id": "tooltip-delve-colossal",
+      "source_lines": [
+        "Colossal",
+        "Broken spawners unleash enemies."
+      ],
+      "target_lines": [
+        "巨魔",
+        "被破坏的刷怪笼会释放敌人。"
+      ],
+      "guard_exact_source": "Colossal Broken spawners unleash enemies.",
+      "guard_expected": "巨魔被破坏的刷怪笼会释放敌人。",
+      "guard_line_translations": [
+        "耐用性",
+        "被破坏的刷怪笼会释放敌人。"
+      ]
+    },
+    {
+      "id": "tooltip-white-delve-intro",
+      "source_lines": [
+        "Opens an instance of the White",
+        "Wool Dungeon, its difficulty now",
+        "enhanced using custom modifiers."
+      ],
+      "target_lines": [
+        "开启白色羊毛地牢副本，",
+        "可使用自定义词缀",
+        "提高难度。"
+      ],
+      "guard_exact_source": "Opens an instance of the White Wool Dungeon, its difficulty now enhanced using custom modifiers.",
+      "guard_expected": "开启白色羊毛地牢副本，可使用自定义词缀提高难度。",
+      "guard_line_translations": [
+        "开启白色羊毛地牢的",
+        "羊毛地牢，现可通过",
+        "难度修正词缀强化挑战。"
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "kind": "npc",
+      "guard_exact_source": "[Moneychanger Elgort] Here we go!",
+      "guard_expected": "[货币兑换商埃尔戈特] 开始了！",
+      "guard_part_translations": {
+        "[Moneychanger Elgort] ": "[货币兑换商埃尔戈特] ",
+        "Here we go!": "来了！"
+      },
+      "rewritten_visible": "[货币兑换商埃尔戈特] 开始了！",
+      "exact": {
+        "[Moneychanger Elgort] Here we go!": "[货币兑换商埃尔戈特] 开始了！",
+        "[Moneychanger Elgort] ": "[货币兑换商埃尔戈特] ",
+        "Here we go!": "开始了！"
+      }
+    },
+    {
+      "kind": "npc",
+      "guard_exact_source": "[Destro] You will then be allowed to pick a single chest out of the 3. Two of the chests will be losing chests, where you will receive a consolation prize. One chest, however, is the winning chest, where you will triple your initial investment!",
+      "guard_expected": "[德斯特罗] 接着，你可以从3个宝箱中选一个。其中两个是落选宝箱，只会给你安慰奖。不过，有一个是中奖宝箱，能让你拿到最初下注额的三倍！",
+      "guard_part_translations": {
+        "[Destro] ": "[德斯特罗]",
+        "You will then be allowed to pick a single chest out of the 3. Two of the chests will be losing chests, where you will receive a consolation prize. One chest, however, is the winning chest, where you will ": "You will then be allowed to pick a single chest out of the 3. Two of the chests will be losing chests, where you will receive a consolation prize. One chest, however, is the winning chest, where you will ",
+        "triple ": "triple ",
+        "your initial investment!": "your initial investment!"
+      },
+      "rewritten_visible": "[德斯特罗] 接着，你可以从3个宝箱中选一个。其中两个是落选宝箱，只会给你安慰奖。不过，有一个是中奖宝箱，能让你拿到最初下注额的三倍！",
+      "exact": {
+        "[Destro] You will then be allowed to pick a single chest out of the 3. Two of the chests will be losing chests, where you will receive a consolation prize. One chest, however, is the winning chest, where you will triple your initial investment!": "[德斯特罗] 接着，你可以从3个宝箱中选一个。其中两个是落选宝箱，只会给你安慰奖。不过，有一个是中奖宝箱，能让你拿到最初下注额的三倍！",
+        "[Destro] ": "[德斯特罗] ",
+        "You will then be allowed to pick a single chest out of the 3. Two of the chests will be losing chests, where you will receive a consolation prize. One chest, however, is the winning chest, where you will ": "接着，你可以从3个宝箱中选一个。其中两个是落选宝箱，只会给你安慰奖。不过，有一个是中奖宝箱，能让你拿到最初下注额的",
+        "triple ": "三倍",
+        "your initial investment!": "！"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "You can not complete the monument because you have not placed the White Wool correctly.",
+      "guard_expected": "你尚未正确放置白色羊毛，无法完成纪念碑。",
+      "guard_part_translations": {
+        "You can not complete the monument because you have not placed the ": "You can not complete the monument because you have not placed the ",
+        "White Wool": "白色羊毛",
+        " correctly.": " correctly."
+      },
+      "rewritten_visible": "你尚未正确放置白色羊毛，无法完成纪念碑。",
+      "exact": {
+        "You can not complete the monument because you have not placed the White Wool correctly.": "你尚未正确放置白色羊毛，无法完成纪念碑。",
+        "You can not complete the monument because you have not placed the ": "你尚未正确放置",
+        "White Wool": "白色羊毛",
+        " correctly.": "，无法完成纪念碑。"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "You can not complete the monument because you have not placed the Orange Wool correctly.",
+      "guard_expected": "你尚未正确放置橙色羊毛，无法完成纪念碑。",
+      "guard_part_translations": {
+        "You can not complete the monument because you have not placed the ": "You can not complete the monument because you have not placed the ",
+        "Orange Wool": "橙色羊毛",
+        " correctly.": " correctly."
+      },
+      "rewritten_visible": "你尚未正确放置橙色羊毛，无法完成纪念碑。",
+      "exact": {
+        "You can not complete the monument because you have not placed the Orange Wool correctly.": "你尚未正确放置橙色羊毛，无法完成纪念碑。",
+        "You can not complete the monument because you have not placed the ": "你尚未正确放置",
+        "Orange Wool": "橙色羊毛",
+        " correctly.": "，无法完成纪念碑。"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "You can not complete the monument because you have not placed the Magenta Wool correctly.",
+      "guard_expected": "你尚未正确放置品红色羊毛，无法完成纪念碑。",
+      "guard_part_translations": {
+        "You can not complete the monument because you have not placed the ": "You can not complete the monument because you have not placed the ",
+        "Magenta Wool": "品红色羊毛",
+        " correctly.": " correctly."
+      },
+      "rewritten_visible": "你尚未正确放置品红色羊毛，无法完成纪念碑。",
+      "exact": {
+        "You can not complete the monument because you have not placed the Magenta Wool correctly.": "你尚未正确放置品红色羊毛，无法完成纪念碑。",
+        "You can not complete the monument because you have not placed the ": "你尚未正确放置",
+        "Magenta Wool": "品红色羊毛",
+        " correctly.": "，无法完成纪念碑。"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "You can not complete the monument because you have not placed the Light Blue Wool correctly.",
+      "guard_expected": "你尚未正确放置淡蓝色羊毛，无法完成纪念碑。",
+      "guard_part_translations": {
+        "You can not complete the monument because you have not placed the ": "You can not complete the monument because you have not placed the ",
+        "Light Blue Wool": "淡蓝色羊毛",
+        " correctly.": " correctly."
+      },
+      "rewritten_visible": "你尚未正确放置淡蓝色羊毛，无法完成纪念碑。",
+      "exact": {
+        "You can not complete the monument because you have not placed the Light Blue Wool correctly.": "你尚未正确放置淡蓝色羊毛，无法完成纪念碑。",
+        "You can not complete the monument because you have not placed the ": "你尚未正确放置",
+        "Light Blue Wool": "淡蓝色羊毛",
+        " correctly.": "，无法完成纪念碑。"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "You can not complete the monument because you have not placed the Yellow Wool correctly.",
+      "guard_expected": "你尚未正确放置黄色羊毛，无法完成纪念碑。",
+      "guard_part_translations": {
+        "You can not complete the monument because you have not placed the ": "You can not complete the monument because you have not placed the ",
+        "Yellow Wool": "黄色羊毛",
+        " correctly.": " correctly."
+      },
+      "rewritten_visible": "你尚未正确放置黄色羊毛，无法完成纪念碑。",
+      "exact": {
+        "You can not complete the monument because you have not placed the Yellow Wool correctly.": "你尚未正确放置黄色羊毛，无法完成纪念碑。",
+        "You can not complete the monument because you have not placed the ": "你尚未正确放置",
+        "Yellow Wool": "黄色羊毛",
+        " correctly.": "，无法完成纪念碑。"
+      }
+    },
+    {
+      "kind": "npc",
+      "guard_exact_source": "[Herald] The seer emerged from a daze, rambling to The King about gales overwhelming the natural order of things. Could it be the Air Shrine? We must dispatch you there post-haste.",
+      "guard_expected": "[传令官] 先知从恍惚中回过神来，向国王絮叨着狂风扰乱自然秩序的异象。难道是风之神殿？必须立刻派你前去。",
+      "guard_part_translations": {
+        "The seer emerged from a daze, rambling to The King about gales overwhelming the natural order of things. Could it be the ": "先知从恍惚中回过神来，向国王絮叨着狂风扰乱自然秩序的异象。难道是",
+        " Shrine? We must dispatch you there post-haste.": "之神殿？必须立刻派你前去。",
+        "Air": "空气"
+      },
+      "rewritten_visible": "[Herald] 先知从恍惚中回过神来，向国王絮叨着狂风扰乱自然秩序的异象。难道是风之神殿？必须立刻派你前去。",
+      "exact": {
+        "The seer emerged from a daze, rambling to The King about gales overwhelming the natural order of things. Could it be the ": "先知从恍惚中回过神来，向国王絮叨着狂风扰乱自然秩序的异象。难道是",
+        " Shrine? We must dispatch you there post-haste.": "之神殿？必须立刻派你前去。",
+        "Air": "风"
+      }
+    },
+    {
+      "kind": "npc",
+      "guard_exact_source": "[Seer] I see death and water within the cards. Seek an island, an ancient refuge of pirates, with a massive stone Skull watching over the harbor with its empty eyes...",
+      "guard_expected": "[占卜师] 牌中浮现死亡与水的景象。去寻找一座岛屿，那是海盗古老的避难所，一颗巨大的石骷髅正用空洞的双眼凝视着港湾……",
+      "guard_part_translations": {
+        "I see death and water within the cards. Seek an island, an ancient refuge of pirates, with a massive stone ": "牌中浮现死亡与水的景象。去寻找一座岛屿，那是海盗古老的避难所，一颗巨大的石",
+        " watching over the harbor with its empty eyes...": "正用空洞的双眼凝视着港湾……",
+        "Skull": "Skull"
+      },
+      "rewritten_visible": "[Seer] 牌中浮现死亡与水的景象。去寻找一座岛屿，那是海盗古老的避难所，一颗巨大的石骷髅正用空洞的双眼凝视着港湾……",
+      "exact": {
+        "I see death and water within the cards. Seek an island, an ancient refuge of pirates, with a massive stone ": "牌中浮现死亡与水的景象。去寻找一座岛屿，那是海盗古老的避难所，一颗巨大的石",
+        " watching over the harbor with its empty eyes...": "正用空洞的双眼凝视着港湾……",
+        "Skull": "骷髅"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "2 Totems remain.",
+      "guard_expected": "还剩2座图腾。",
+      "guard_part_translations": {
+        " Totems remain.": " Totems remain."
+      },
+      "rewritten_visible": "2座图腾尚存。",
+      "exact": {
+        " Totems remain.": "座图腾尚存。"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "You collected 1 item from the grave",
+      "guard_expected": "你从坟墓中取回了1件物品。",
+      "guard_part_translations": {
+        "You collected ": "You collected ",
+        "1 item from the grave": "1 item from the grave"
+      },
+      "rewritten_visible": "你从坟墓中取回了1件物品。",
+      "exact": {
+        "You collected ": "你从坟墓中取回了",
+        "1 item from the grave": "1件物品。"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "Aww, look at the cute dioramas of the seasons surrounding the WHAT IS THAT?!",
+      "guard_expected": "啊，看看那些围绕着四季的可爱立体模型——那是什么东西？！",
+      "guard_part_translations": {
+        "Aww, look at the cute dioramas of the seasons surrounding the ": "Aww, look at the cute dioramas of the seasons surrounding the ",
+        "WHAT IS THAT?!": "WHAT IS THAT?!"
+      },
+      "rewritten_visible": "啊，看看那些环绕着四季的可爱立体模型——那是什么东西？！",
+      "exact": {
+        "Aww, look at the cute dioramas of the seasons surrounding the ": "啊，看看那些环绕着四季的可爱立体模型——",
+        "WHAT IS THAT?!": "那是什么东西？！"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "A collection of pillars and arches sit in a sand pit...with a lava moat? Is this a toy for blazes? Surely kitten would find this too warm.",
+      "guard_expected": "沙坑里摆着一组柱子与拱门……旁边还有熔岩护城河？这是给烈焰人的玩具吗？小猫肯定会嫌这里太热。",
+      "guard_part_translations": {
+        "A collection of pillars and arches sit in a sand pit...with a lava moat? Is this a toy for blazes? Surely kitten would find this ": "A collection of pillars and arches sit in a sand pit...with a lava moat? Is this a toy for blazes? Surely kitten would find this ",
+        "too": "too",
+        " warm.": " warm."
+      },
+      "rewritten_visible": "沙坑里摆着一组柱子与拱门……旁边还有熔岩护城河？这是给烈焰人的玩具吗？小猫肯定会嫌这里太热。",
+      "exact": {
+        "A collection of pillars and arches sit in a sand pit...with a lava moat? Is this a toy for blazes? Surely kitten would find this ": "沙坑里摆着一组柱子与拱门……旁边还有熔岩护城河？这是给烈焰人的玩具吗？小猫肯定会嫌这里",
+        "too": "太",
+        " warm.": "热。"
+      }
+    },
+    {
+      "kind": "server_notice",
+      "guard_exact_source": "- Post non-critical bugs in the #bug-report-bot-feed Discord channel with relevant screenshots / information - https://discord.gg/eep9qcu",
+      "guard_expected": "- 非严重错误请附上相关截图和信息，发布到Discord的 #bug-report-bot-feed 频道：https://discord.gg/eep9qcu",
+      "guard_part_translations": {
+        "- Post non-critical bugs in the ": "- Post non-critical bugs in the ",
+        " Discord channel with relevant screenshots / information - ": " Discord channel with relevant screenshots / information - "
+      },
+      "rewritten_visible": "- 请在Discord的 #bug-report-bot-feed 频道提交非严重问题，并附相关截图或信息 - https://discord.gg/eep9qcu",
+      "exact": {
+        "- Post non-critical bugs in the ": "- 请在Discord的 ",
+        " Discord channel with relevant screenshots / information - ": " 频道提交非严重问题，并附相关截图或信息 - "
+      }
+    }
+  ]
+}

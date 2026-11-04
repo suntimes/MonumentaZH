@@ -4,9 +4,11 @@ import com.google.gson.*;
 import java.util.*;
 import java.util.regex.*;
 
-/** Translates only recognized ability status displays, preserving their live counters and styles. */
+/** Translates recognized ability and encounter status displays, preserving live counters and styles. */
 public final class HudTranslator {
     private static final Pattern BRACKETS = Pattern.compile("\\[([^]\\r\\n]+)]");
+    private static final Pattern KAUL_WAKES = Pattern.compile("^Kaul Wakes: ([0-9]+)s$");
+    private static final Pattern CORRUPTION = Pattern.compile("^Time Until Corruption : ([0-9]+)s$");
     private final TranslationEngine engine;
     private final Map<String, List<Alias>> aliases = new LinkedHashMap<>();
     private final Pattern aliasPattern;
@@ -30,6 +32,7 @@ public final class HudTranslator {
     }
 
     public boolean recognizes(String visible) {
+        if (KAUL_WAKES.matcher(visible).matches() || CORRUPTION.matcher(visible).matches()) return true;
         Matcher labels = BRACKETS.matcher(visible);
         while (labels.find()) if (aliases.containsKey(labels.group(1))) return true;
         if (visible.contains("cooldown") || visible.contains("Cooldown") || visible.contains("Charges:")
@@ -39,7 +42,28 @@ public final class HudTranslator {
     }
 
     public boolean rewrite(JsonElement component, String visible) {
+        // Only this complete server countdown uses this scoped rewrite. Never teach the
+        // general dictionary a short "Wakes"/"s" fragment or relax identity filtering.
+        if (KAUL_WAKES.matcher(visible).matches()) return rewriteKaulCountdown(component, visible);
+        if (CORRUPTION.matcher(visible).matches()) return rewriteCorruptionCountdown(component, visible);
         if (!recognizes(visible)) return false;
+        // Complete single-leaf messages take precedence over skill aliases.
+        // Do not flatten multi-colour/translated components or embedded section formatting.
+        if (visible.indexOf('§') < 0 && component.isJsonObject()) {
+            JsonObject object = component.getAsJsonObject();
+            if (object.has("text") && object.get("text").isJsonPrimitive()
+                && object.get("text").getAsJsonPrimitive().isString()
+                && object.get("text").getAsString().equals(visible)
+                && !object.has("extra") && !object.has("translate") && !object.has("with")
+                && !object.has("keybind") && !object.has("selector") && !object.has("score") && !object.has("nbt")) {
+                String exact = engine.exactTranslation(visible);
+                if (exact != null && !exact.equals(visible)) {
+                    TranslationEngine.replaceTranslatedText(object, exact);
+                    return true;
+                }
+            }
+        }
+
         Set<String> groups = new HashSet<>();
         Matcher labels = BRACKETS.matcher(visible);
         while (labels.find()) {
@@ -49,6 +73,88 @@ public final class HudTranslator {
         }
         boolean changed = rewriteAliases(component, "", groups);
         return engine.rewriteVisible(component, true) || changed;
+    }
+
+    private boolean rewriteKaulCountdown(JsonElement component, String visible) {
+        return rewriteCountdown(component,visible,KAUL_WAKES.matcher(visible),engine.translate(visible,false));
+    }
+
+    private boolean rewriteCorruptionCountdown(JsonElement component,String visible) {
+        Matcher match=CORRUPTION.matcher(visible);
+        if(!match.matches())return false;
+        String translated=engine.translate(visible,false);
+        if(translated.equals(visible)) {
+            // Respect a user-changed complete countdown sample instead of overriding it.
+            if(!"距离腐化：5秒".equals(engine.exactTranslation("Time Until Corruption : 5s")))return false;
+            translated="距离腐化："+match.group(1)+"秒";
+        }
+        return rewriteCountdown(component,visible,match,translated);
+    }
+
+    private boolean rewriteCountdown(JsonElement component,String visible,Matcher match,String translated) {
+        if (CapturePrivacy.playerComponent(component) || translated.equals(visible) || !match.matches()) return false;
+        Matcher translatedTime = Pattern.compile("(?<![0-9])" + Pattern.quote(match.group(1)) + "(?![0-9])").matcher(translated);
+        if (!translatedTime.find()) return false;
+        int numberStart = translatedTime.start(), numberEnd = translatedTime.end();
+        if (translatedTime.find()) return false;
+        List<CountdownRun> runs = new ArrayList<>();
+        if (!countdownRuns(component, runs)) return false;
+        StringBuilder source = new StringBuilder();
+        for (CountdownRun run : runs) source.append(run.text());
+        if (!source.toString().equals(visible)) return false;
+        String prefix = translated.substring(0, numberStart), suffix = translated.substring(numberEnd);
+        List<String> replacements = new ArrayList<>();
+        int position = 0;
+        for (CountdownRun run : runs) {
+            int start = position, end = position + run.text().length();
+            StringBuilder replacement = new StringBuilder();
+            // Insert the prose at its original label/unit locations. The digits are copied
+            // from their own source runs, including counters split across multiple styles.
+            if (start == 0 && end > 0) replacement.append(prefix);
+            for (int i = start; i < end; i++) {
+                if (i == match.end(1)) replacement.append(suffix);
+                if (i >= match.start(1) && i < match.end(1)) replacement.append(visible.charAt(i));
+            }
+            replacements.add(replacement.toString());
+            position = end;
+        }
+        // Children first: a translated parent creates a fresh extra array for font runs.
+        for (int i = runs.size() - 1; i >= 0; i--)
+            if (!replacements.get(i).equals(runs.get(i).text())) runs.get(i).replace(replacements.get(i));
+        return true;
+    }
+
+    private static boolean countdownRuns(JsonElement value, List<CountdownRun> runs) {
+        if (value.isJsonArray()) {
+            JsonArray array = value.getAsJsonArray();
+            for (int i = 0; i < array.size(); i++) {
+                JsonElement child = array.get(i);
+                if (child.isJsonPrimitive() && child.getAsJsonPrimitive().isString())
+                    runs.add(new CountdownRun(null, array, i, child.getAsString()));
+                else if (!countdownRuns(child, runs)) return false;
+            }
+            return true;
+        }
+        if (!value.isJsonObject()) return false;
+        JsonObject object = value.getAsJsonObject();
+        if (object.has("translate") || object.has("keybind") || object.has("selector") || object.has("score") || object.has("nbt")) return false;
+        if (object.has("text")) {
+            if (!object.get("text").isJsonPrimitive() || !object.getAsJsonPrimitive("text").isString()) return false;
+            runs.add(new CountdownRun(object, null, -1, object.get("text").getAsString()));
+        }
+        return !object.has("extra") || countdownRuns(object.get("extra"), runs);
+    }
+
+    private record CountdownRun(JsonObject object, JsonArray array, int index, String text) {
+        void replace(String translated) {
+            if (object != null) TranslationEngine.replaceTranslatedText(object, translated);
+            else {
+                JsonObject replacement = new JsonObject();
+                replacement.addProperty("text", text);
+                TranslationEngine.replaceTranslatedText(replacement, translated);
+                array.set(index, replacement);
+            }
+        }
     }
 
     private boolean rewriteAliases(JsonElement value, String inheritedColor, Set<String> groups) {

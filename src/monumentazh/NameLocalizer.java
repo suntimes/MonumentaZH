@@ -7,6 +7,7 @@ import java.util.regex.*;
 /** Contextual display labels. Commands, hover metadata, book authors and player arguments stay original. */
 public final class NameLocalizer {
     public record Name(String english, String chinese, boolean npc) {}
+    private static final Name KIM_ANNOTATION=new Name("Kim","金中士",true);
     private final List<Name> names=new ArrayList<>();
     private final Map<String,Name> npcByName=new HashMap<>();
     
@@ -35,6 +36,13 @@ public final class NameLocalizer {
     public boolean guildIdentity(String value){return guildLabels.contains(TranslationEngine.normalize(value));}
     public boolean playerIdentity(String value){return CapturePrivacy.playerName(value);}
     public Name npc(String raw){return npcByName.get(TranslationEngine.normalize(raw));}
+    /** Discovery subtitles are complete labels, not the animated prefixes used by town arrivals. */
+    public Name exactPlace(String raw) {
+        String source=TranslationEngine.normalize(raw);
+        for(Name n:names)if(!n.npc()&&(source.equals(n.english())||source.equals(n.chinese())
+            ||source.equals(n.chinese()+"（"+n.english()+"）")))return n;
+        return null;
+    }
     /** Arrival animations may send an unambiguous prefix; only catalogued places qualify. */
     public Name arrivalPlace(String raw) {
         String source=TranslationEngine.normalize(raw);List<Name> prefixes=new ArrayList<>();
@@ -79,8 +87,10 @@ public final class NameLocalizer {
     }
     public boolean rewrite(JsonElement translated,String original,boolean npcNames,boolean places,Set<String> protectedNames) {
         String normalized=TranslationEngine.normalize(original);
-        List<Name> referenced=names.stream().filter(n->(n.npc()?npcNames:places)&&!protectedNames.contains(n.english())
-            &&(containsEnglish(original,n.english())||original.contains(n.chinese())))
+        List<Name> referenced=names.stream().filter(n->(n.npc()?npcNames:places)&&!annotationProtected(n,protectedNames)
+            &&!(n.npc()&&n.english().equals("White")&&whiteColorReference(original))
+            &&(containsEnglish(original,n.english())||original.contains(annotationName(n).chinese())))
+            .map(NameLocalizer::annotationName).distinct()
             .sorted(Comparator.comparingInt((Name n)->n.chinese().length()).reversed()
                 .thenComparingInt(n->normalized.equals(n.english())?0:1)
                 .thenComparing(Comparator.comparingInt((Name n)->n.english().length()).reversed())).toList();
@@ -90,12 +100,31 @@ public final class NameLocalizer {
         List<String> chunks=new ArrayList<>();List<Integer> starts=new ArrayList<>();StringBuilder joined=new StringBuilder();
         for(JsonElement leaf:leaves){String raw=leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString();starts.add(joined.length());chunks.add(raw);joined.append(raw);}
         Map<Integer,TreeMap<Integer,String>> insertions=new HashMap<>();String full=joined.toString();
+        // Wrapped POIs identify a complete registered source place. A legacy Chinese alias
+        // can differ from the catalogue, so annotate the wrapper rather than guessing a name.
+        if(places&&normalized.startsWith("[[")&&normalized.endsWith("]]")) {
+            Name place=exactPlace(normalized.substring(2,normalized.length()-2).strip());
+            String label=TranslationEngine.normalize(full);
+            if(place!=null&&!annotationProtected(place,protectedNames)&&label.startsWith("[[")&&label.endsWith("]]")) {
+                if(full.contains("（"+place.english()+"）")||full.contains("("+place.english()+")"))return false;
+                int end=full.lastIndexOf("]]");
+                while(end>0&&Character.isWhitespace(full.charAt(end-1)))end--;
+                if(full.substring(0,end).codePoints().anyMatch(c->Character.UnicodeScript.of(c)==Character.UnicodeScript.HAN)) {
+                    for(int i=0;i<leaves.size();i++)if(starts.get(i)<end&&starts.get(i)+chunks.get(i).length()>=end) {
+                        if(protectedNames.contains(TranslationEngine.normalize(chunks.get(i))))return false;
+                        StringBuilder value=new StringBuilder(chunks.get(i));value.insert(end-starts.get(i),"（"+place.english()+"）");
+                        replacements.put(leaves.get(i),value.toString());
+                        return rewriteNode(translated,replacements);
+                    }
+                }
+            }
+        }
         for(int at=0;at<full.length();) {
-            Name match=null;for(Name n:referenced)if(full.startsWith(n.chinese(),at)){match=n;break;}
+            Name match=null;for(Name n:referenced)if(annotationAt(n,full,at)){match=n;break;}
             if(match==null){at++;continue;}
-            int end=at+match.chinese().length();String suffix="（"+match.english()+"）",ascii="("+match.english()+")";
-            if(full.startsWith(suffix,end)){at=end+suffix.length();continue;}
-            if(full.startsWith(ascii,end)){at=end+ascii.length();continue;}
+            int end=at+match.chinese().length();String suffix="（"+match.english()+"）";
+            // An exact reference to this same name may precede its Chinese label across color runs.
+            if(alreadyAnnotated(match,full,at,end)){at=end;continue;}
             int target=-1;boolean protectedRun=false;
             for(int i=0;i<leaves.size();i++) {
                 int start=starts.get(i),stop=start+chunks.get(i).length();
@@ -111,6 +140,48 @@ public final class NameLocalizer {
             replacements.put(leaves.get(entry.getKey()),value.toString());
         }
         return rewriteNode(translated,replacements);
+    }
+    private static boolean whiteColorReference(String source) {
+        String plain=source.replaceAll("§[0-9A-FK-ORa-fk-or]","");
+        return Pattern.compile("(?i)(?<![A-Za-z0-9_])White[ -]+(?:Wool|Fragment|Concrete|Terracotta|Glass|Stained|Carpet|Banner|Dye|Tulip|Shulker|Candle|Bed|Dungeon)\\b").matcher(plain).find()
+            ||Pattern.compile("白色(?:羊毛|碎片|混凝土|陶瓦|玻璃|地毯|旗帜|染料|郁金香|潜影盒|蜡烛|床|地牢)").matcher(plain).find();
+    }
+    /** A single 金 is a common noun fragment; only the complete sergeant label identifies this NPC. */
+    private static Name annotationName(Name name) {
+        return name.npc()&&(name.english().equals("Kim")||name.english().equals("Sergeant Kim"))
+            &&(name.chinese().equals("金")||name.chinese().equals("金中士"))?KIM_ANNOTATION:name;
+    }
+    private static boolean annotationProtected(Name name,Set<String> protectedNames) {
+        return protectedNames.contains(name.english())||annotationName(name)==KIM_ANNOTATION
+            &&(protectedNames.contains("Kim")||protectedNames.contains("Sergeant Kim"));
+    }
+    private static boolean annotationAt(Name name,String text,int at) {
+        if(!text.startsWith(name.chinese(),at))return false;
+        // These are bounty/place nouns, rather than a reference to the NPC called The King.
+        return !(name.npc()&&name.chinese().equals("国王")&&(text.startsWith("国王悬赏",at)
+            ||text.startsWith("国王谷",at)||text.startsWith("国王峡谷",at)));
+    }
+    private static boolean alreadyAnnotated(Name name,String text,int start,int end) {
+        int before=start,after=end;
+        while(before>0&&Character.isWhitespace(text.charAt(before-1)))before--;
+        while(after<text.length()&&Character.isWhitespace(text.charAt(after)))after++;
+        return hasAnnotation(text,before,after,name.english())
+            ||name==KIM_ANNOTATION&&hasAnnotation(text,before,after,"Sergeant Kim");
+    }
+    private static boolean hasAnnotation(String text,int before,int after,String english) {
+        String label="（"+english+"）",ascii="("+english+")";
+        return text.startsWith(label,before-label.length())||text.startsWith(label,after)
+            ||text.startsWith(ascii,before-ascii.length())||text.startsWith(ascii,after);
+    }
+    /** Keep an existing reference intact when font/color splitting leaves its English in a separate node. */
+    public static boolean hasKimAnnotation(String source) {
+        if(source==null||!source.contains("Kim"))return false;
+        String text=TranslationEngine.normalize(source);
+        for(int at=text.indexOf("金中士");at>=0;at=text.indexOf("金中士",at+3))
+            if(alreadyAnnotated(KIM_ANNOTATION,text,at,at+3))return true;
+        for(String english:List.of("Kim","Sergeant Kim"))
+            if(text.contains("金（"+english+"）中士")||text.contains("金("+english+")中士"))return true;
+        return false;
     }
     private boolean containsEnglish(String source,String name){return englishPatterns.get(name).matcher(source).find();}
     private static String annotate(String raw,String following,List<Name> referenced,Set<String> protectedNames) {
