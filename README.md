@@ -2,7 +2,9 @@
 
 Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。离线读取词库，补充 Monumenta 的物品、任务、NPC 对话、菜单、聊天悬浮、书籍及告示牌译文。
 
-本仓库首次公开版本为 **0.2.46-book-capture**，附 **57,693 条**补充词库。这个版本已完成本地程序检查，仍待实服性能与视觉反馈。
+当前版本为 **0.2.69-quest-metadata**，附 **64,818 条**补充词库。职业专精任务与新导出内容已校对；本地原生回放检查通过，仍需实服视觉反馈。
+
+直接下载：[最新 JAR](releases/0.2.69/Monumenta-ZH-Supplement-1.20.4-0.2.69-quest-metadata.jar?raw=true) · [完整安装包](releases/0.2.69/Monumenta-ZH-1.20.4-0.2.69-full.zip?raw=true) · [校验值](releases/0.2.69/SHA256SUMS.txt)
 
 ## 功能
 
@@ -26,12 +28,12 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。离线读取词库，�
 ./build.ps1 -GameDirectory 'X:/Minecraft/versions/1.20.4' -LibrariesDirectory 'X:/Minecraft/libraries'
 ```
 
-1. 退出 Minecraft，将 `dist/Monumenta-ZH-Supplement-1.20.4-0.2.46-book-capture.jar` 放入该实例的 `mods` 文件夹。
+1. 退出 Minecraft，将 `dist/Monumenta-ZH-Supplement-1.20.4-0.2.69-quest-metadata.jar` 放入该实例的 `mods` 文件夹。
 2. 同时移出旧版同名 MOD，避免重复加载。
 3. 将本仓库 `config/monumenta_zh/` 中的 **overrides.json、names.json** 放入游戏实例相应配置目录。
 4. 启动游戏，用 `/monumentazh on` 开启汉化；快捷键可在游戏控制设置中自行绑定。
 
-**57,693 条精简词库需要配套 0.2.46 或兼容这些数量规则的更新版本。请勿将它单独替换到 0.2.38 等旧版程序。**
+**建议使用本次配套 JAR 与词库。词库文件更新后可执行 `/monumentazh reload`；JAR 更新必须退出并重启游戏，重载词库不会更新程序。**
 
 构建直接使用本机合法安装的 Minecraft/Fabric 依赖，不下载、附带或重新分发 Minecraft 客户端。源码使用 1.20.4 的 intermediary 名称，当前构建脚本面向 Windows PowerShell。
 
@@ -73,3 +75,4 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。离线读取词库，�
 仅保证作者实际游玩部分的 80% 内容无误；其余区域以机翻为主。这里不代表全服务器覆盖率或整份词库准确率，遇到疑问请切换原文核对。
 
 这是非官方个人中文补充，与 Monumenta 官方没有隶属关系。程序代码采用 [MIT](LICENSE)；游戏原文和引用译文的来源及适用范围见 [NOTICE](NOTICE.md)。
+

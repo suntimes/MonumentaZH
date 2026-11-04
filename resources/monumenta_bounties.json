@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "guard_exact_source": "[Herald] 一个被俘获的矿工侥幸从土匪手里逃了出来，他向守卫报告了土匪位于Sierheaven东北部的营地。找到这个营地并伸张正义以完成悬赏。",
+      "guard_exact_body": "一个被俘获的矿工侥幸从土匪手里逃了出来，他向守卫报告了土匪位于Sierheaven东北部的营地。找到这个营地并伸张正义以完成悬赏。",
+      "target_body": "一名被俘的矿工从土匪手中逃脱，向守卫报告了希尔海文城东北方的一处土匪营地。找到营地，将土匪绳之以法，便能完成今天的悬赏。",
+      "exact": {
+        "一个被俘获的矿工侥幸从土匪手里逃了出来，他向守卫报告了土匪位于Sierheaven东北部的营地。找到这个营地并伸张正义以完成悬赏。": "一名被俘的矿工从土匪手中逃脱，向守卫报告了希尔海文城东北方的一处土匪营地。找到营地，将土匪绳之以法，便能完成今天的悬赏。",
+        "一个被俘获的矿工侥幸从土匪手里逃了出来，他向守卫报告了土匪位于Sierheaven东北部的": "一名被俘的矿工从土匪手中逃脱，向守卫报告了希尔海文城东北方的一处土匪",
+        "营地": "营地",
+        "。找到这个营地并伸张正义以完成悬赏。": "。找到营地，将土匪绳之以法，便能完成今天的悬赏。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Just outside the capital are the collapsed Docks, overrun by creatures. Go explore it for us!",
+      "guard_exact_body": "Just outside the capital are the collapsed Docks, overrun by creatures. Go explore it for us!",
+      "target_body": "首都城外坍塌的码头已被怪物占据。替我们前去调查吧！",
+      "exact": {
+        "Just outside the capital are the collapsed Docks, overrun by creatures. Go explore it for us!": "首都城外坍塌的码头已被怪物占据。替我们前去调查吧！",
+        "Just outside the capital are the collapsed ": "首都城外坍塌的",
+        "Docks": "码头",
+        ", overrun by creatures. Go explore it for us!": "已被怪物占据。替我们前去调查吧！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Down the river within the Cursed Forest lies a dangerous Hedge maze, which I've been told houses a dangerous beast. The Crown wants the threat eliminated. Can you do it?",
+      "guard_exact_body": "Down the river within the Cursed Forest lies a dangerous Hedge maze, which I've been told houses a dangerous beast. The Crown wants the threat eliminated. Can you do it?",
+      "target_body": "沿诅咒之森中的河流往下游走，有一座危机四伏的树篱迷宫。据说里面藏着一头凶兽。王室希望消除这一威胁，你能办到吗？",
+      "exact": {
+        "Down the river within the Cursed Forest lies a dangerous Hedge maze, which I've been told houses a dangerous beast. The Crown wants the threat eliminated. Can you do it?": "沿诅咒之森中的河流往下游走，有一座危机四伏的树篱迷宫。据说里面藏着一头凶兽。王室希望消除这一威胁，你能办到吗？",
+        "Down the river within the Cursed Forest lies a dangerous ": "沿诅咒之森中的河流往下游走，有一座危机四伏的",
+        "Hedge": "树篱",
+        " maze, which I've been told houses a dangerous beast. The Crown wants the threat eliminated. Can you do it?": "迷宫。据说里面藏着一头凶兽。王室希望消除这一威胁，你能办到吗？"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] A message appeared in the capital today. It bears the threat of an attack from the followers of the long-dead Ezariah. You must go to their Tower and stop them before the capital itself falls.",
+      "guard_exact_body": "A message appeared in the capital today. It bears the threat of an attack from the followers of the long-dead Ezariah. You must go to their Tower and stop them before the capital itself falls.",
+      "target_body": "今天，首都收到了一则威胁：早已死去的埃扎里亚的追随者正准备发动袭击。你必须赶往他们的高塔，在首都陷落前阻止他们。",
+      "exact": {
+        "A message appeared in the capital today. It bears the threat of an attack from the followers of the long-dead Ezariah. You must go to their Tower and stop them before the capital itself falls.": "今天，首都收到了一则威胁：早已死去的埃扎里亚的追随者正准备发动袭击。你必须赶往他们的高塔，在首都陷落前阻止他们。",
+        "A message appeared in the capital today. It bears the threat of an attack from the followers of the long-dead Ezariah. You must go to their ": "今天，首都收到了一则威胁：早已死去的埃扎里亚的追随者正准备发动袭击。你必须赶往他们的",
+        "Tower": "高塔",
+        " and stop them before the capital itself falls.": "，在首都陷落前阻止他们。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The guards have heard talk of a sunken Cavern close to Nyr whose waters are said to give untold strength. Investigate these rumors and the Bounty is yours.",
+      "guard_exact_body": "The guards have heard talk of a sunken Cavern close to Nyr whose waters are said to give untold strength. Investigate these rumors and the Bounty is yours.",
+      "target_body": "守卫听说，尼尔镇附近有一座被淹没的洞穴，据说其中的水能赋予人难以想象的力量。查清这个传闻，赏金就归你了。",
+      "exact": {
+        "The guards have heard talk of a sunken Cavern close to Nyr whose waters are said to give untold strength. Investigate these rumors and the Bounty is yours.": "守卫听说，尼尔镇附近有一座被淹没的洞穴，据说其中的水能赋予人难以想象的力量。查清这个传闻，赏金就归你了。",
+        "The guards have heard talk of a sunken ": "守卫听说，尼尔镇附近有一座被淹没的",
+        "Cavern": "洞穴",
+        " close to Nyr whose waters are said to give untold strength. Investigate these rumors and the Bounty is yours.": "，据说其中的水能赋予人难以想象的力量。查清这个传闻，赏金就归你了。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] An Old abandoned structure in the swamps has been overrun by bandits! The king requests that you clear it out!",
+      "guard_exact_body": "An Old abandoned structure in the swamps has been overrun by bandits! The king requests that you clear it out!",
+      "target_body": "沼泽中一座古老的废弃建筑已被强盗占据！国王命你前去清剿！",
+      "exact": {
+        "An Old abandoned structure in the swamps has been overrun by bandits! The king requests that you clear it out!": "沼泽中一座古老的废弃建筑已被强盗占据！国王命你前去清剿！",
+        "An ": "沼泽中一座",
+        "Old": "古老的",
+        " abandoned structure in the swamps has been overrun by bandits! The king requests that you clear it out!": "废弃建筑已被强盗占据！国王命你前去清剿！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Spiders and rogue miners have claimed the Northern Mineshaft as their own. Head north and teach them the error of their ways for the Bounty.",
+      "guard_exact_body": "Spiders and rogue miners have claimed the Northern Mineshaft as their own. Head north and teach them the error of their ways for the Bounty.",
+      "target_body": "蜘蛛和叛逃的矿工占据了北方矿洞。前往北方，给他们一个教训，便能完成悬赏。",
+      "exact": {
+        "Spiders and rogue miners have claimed the Northern Mineshaft as their own. Head north and teach them the error of their ways for the Bounty.": "蜘蛛和叛逃的矿工占据了北方矿洞。前往北方，给他们一个教训，便能完成悬赏。",
+        "Spiders and rogue miners have claimed the ": "蜘蛛和叛逃的矿工占据了",
+        "Northern": "北方",
+        " Mineshaft as their own. Head north and teach them the error of their ways for the Bounty.": "矿洞。前往北方，给他们一个教训，便能完成悬赏。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] In the northeastern Mountains, scouts report that a small contingent of bandits have taken over a mine. Investigate it to gain the Bounty.",
+      "guard_exact_body": "In the northeastern Mountains, scouts report that a small contingent of bandits have taken over a mine. Investigate it to gain the Bounty.",
+      "target_body": "据侦察兵报告，东北方的群山中有一小股土匪占据了一座矿坑。前去调查，便能领取悬赏奖励。",
+      "exact": {
+        "In the northeastern Mountains, scouts report that a small contingent of bandits have taken over a mine. Investigate it to gain the Bounty.": "据侦察兵报告，东北方的群山中有一小股土匪占据了一座矿坑。前去调查，便能领取悬赏奖励。",
+        "In the northeastern ": "据侦察兵报告，东北方的",
+        "Mountain": "群山",
+        "s, scouts report that a small contingent of bandits have taken over a mine. Investigate it to gain the Bounty.": "中有一小股土匪占据了一座矿坑。前去调查，便能领取悬赏奖励。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] 在一个名叫树林的地方，我得知有个神圣 的Axtan哨塔。(consecrated Axtan Outpost)哪里的僧侣，已经很久没有消息了。你能帮我去调查一下吗？",
+      "guard_exact_body": "在一个名叫树林的地方，我得知有个神圣 的Axtan哨塔。(consecrated Axtan Outpost)哪里的僧侣，已经很久没有消息了。你能帮我去调查一下吗？",
+      "target_body": "听说林丛中有一座祝圣阿克斯坦哨站，那里的僧侣已经许久杳无音讯。你能前去调查吗？",
+      "exact": {
+        "在一个名叫树林的地方，我得知有个神圣 的Axtan哨塔。(consecrated Axtan Outpost)哪里的僧侣，已经很久没有消息了。你能帮我去调查一下吗？": "听说林丛中有一座祝圣阿克斯坦哨站，那里的僧侣已经许久杳无音讯。你能前去调查吗？",
+        "在一个名叫树林的地方，我得知有个": "听说林丛中有一座",
+        "神圣": "祝圣",
+        " 的Axtan哨塔。(consecrated Axtan Outpost)哪里的僧侣，已经很久没有消息了。你能帮我去调查一下吗？": "阿克斯坦哨站，那里的僧侣已经许久杳无音讯。你能前去调查吗？"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The grand tree looming above Farr is a stronghold for the vicious Hawk tribe. Today, we task you to lead an assault on that place to earn the Bounty.",
+      "guard_exact_body": "The grand tree looming above Farr is a stronghold for the vicious Hawk tribe. Today, we task you to lead an assault on that place to earn the Bounty.",
+      "target_body": "远郊城上方的巨树是凶恶鹰族的据点。今天，我们委托你带队突袭那里，完成悬赏。",
+      "exact": {
+        "The grand tree looming above Farr is a stronghold for the vicious Hawk tribe. Today, we task you to lead an assault on that place to earn the Bounty.": "远郊城上方的巨树是凶恶鹰族的据点。今天，我们委托你带队突袭那里，完成悬赏。",
+        "The grand tree looming above Farr is a stronghold for the vicious ": "远郊城上方的巨树是凶恶",
+        "Hawk": "鹰",
+        " tribe. Today, we task you to lead an assault on that place to earn the Bounty.": "族的据点。今天，我们委托你带队突袭那里，完成悬赏。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The King's trusted seer muttered cryptic words about a Cenote, the Jungle, and something about a magical stick. I'm not sure what he means, but if you can work it out, I'll give you the Bounty.",
+      "guard_exact_body": "The King's trusted seer muttered cryptic words about a Cenote, the Jungle, and something about a magical stick. I'm not sure what he means, but if you can work it out, I'll give you the Bounty.",
+      "target_body": "国王信赖的先知说了些晦涩的话，提到了天坑、丛林，还有一根魔法棍。我不明白他的意思，但只要你能解开谜团，就能领取悬赏奖励。",
+      "exact": {
+        "The King's trusted seer muttered cryptic words about a Cenote, the Jungle, and something about a magical stick. I'm not sure what he means, but if you can work it out, I'll give you the Bounty.": "国王信赖的先知说了些晦涩的话，提到了天坑、丛林，还有一根魔法棍。我不明白他的意思，但只要你能解开谜团，就能领取悬赏奖励。",
+        "The King's trusted seer muttered cryptic words about a ": "国王信赖的先知说了些晦涩的话，提到了",
+        "Cenote": "天坑",
+        ", the Jungle, and something about a magical stick. I'm not sure what he means, but if you can work it out, I'll give you the Bounty.": "、丛林，还有一根魔法棍。我不明白他的意思，但只要你能解开谜团，就能领取悬赏奖励。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The southeastern Pass to the Highlands has been overwhelmed with creatures. For now, can you help make the pass safe again?",
+      "guard_exact_body": "The southeastern Pass to the Highlands has been overwhelmed with creatures. For now, can you help make the pass safe again?",
+      "target_body": "东南方通往高地的隘口已被怪物占据。你能帮忙恢复这条道路的安全吗？",
+      "exact": {
+        "The southeastern Pass to the Highlands has been overwhelmed with creatures. For now, can you help make the pass safe again?": "东南方通往高地的隘口已被怪物占据。你能帮忙恢复这条道路的安全吗？",
+        "The southeastern ": "东南方通往高地的",
+        "Pass": "隘口",
+        " to the Highlands has been overwhelmed with creatures. For now, can you help make the pass safe again?": "已被怪物占据。你能帮忙恢复这条道路的安全吗？"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] According to Nyr, the Hawk tribe near them grows bolder by the day. They have a village that is hidden amongst the thicket atop a hill. Go forth and strike them down!",
+      "guard_exact_body": "According to Nyr, the Hawk tribe near them grows bolder by the day. They have a village that is hidden amongst the thicket atop a hill. Go forth and strike them down!",
+      "target_body": "据尼尔镇报告，附近的鹰族日渐猖狂。他们的村落藏在山顶的密林里。出发吧，去击溃他们！",
+      "exact": {
+        "According to Nyr, the Hawk tribe near them grows bolder by the day. They have a village that is hidden amongst the thicket atop a hill. Go forth and strike them down!": "据尼尔镇报告，附近的鹰族日渐猖狂。他们的村落藏在山顶的密林里。出发吧，去击溃他们！",
+        "According to Nyr, the ": "据尼尔镇报告，附近的",
+        "Hawk": "鹰",
+        " tribe near them grows bolder by the day. They have a village that is hidden amongst the thicket atop a hill. Go forth and strike them down!": "族日渐猖狂。他们的村落藏在山顶的密林里。出发吧，去击溃他们！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] 这个地方，读…读起来有些困难。国王想要你前往Grove里面的一个实验室。你是否领命？",
+      "guard_exact_body": "这个地方，读…读起来有些困难。国王想要你前往Grove里面的一个实验室。你是否领命？",
+      "target_body": "这、这个地名有点绕口。国王想请你前往林丛中的一座实验室。你愿意替我们跑一趟吗？",
+      "exact": {
+        "这个地方，读…读起来有些困难。国王想要你前往Grove里面的一个实验室。你是否领命？": "这、这个地名有点绕口。国王想请你前往林丛中的一座实验室。你愿意替我们跑一趟吗？",
+        "这个地方，读…读起来有些困难。国王想要你前往Grove里面的一个": "这、这个地名有点绕口。国王想请你前往林丛中的一座",
+        "实验室": "实验室",
+        "。你是否领命？": "。你愿意替我们跑一趟吗？"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The guards of Nyr have been complaining of increased undead attacks, and have heard rumors of a Maze beneath the river. Locate a chapel on the edge of the river below Nyr and secure this secret passage.",
+      "guard_exact_body": "The guards of Nyr have been complaining of increased undead attacks, and have heard rumors of a Maze beneath the river. Locate a chapel on the edge of the river below Nyr and secure this secret passage.",
+      "target_body": "尼尔镇的卫兵抱怨亡灵袭击日益频繁，还听说河底有一座迷宫。前往尼尔镇下方的河岸寻找一座礼拜堂，肃清这条秘密通道。",
+      "exact": {
+        "The guards of Nyr have been complaining of increased undead attacks, and have heard rumors of a Maze beneath the river. Locate a chapel on the edge of the river below Nyr and secure this secret passage.": "尼尔镇的卫兵抱怨亡灵袭击日益频繁，还听说河底有一座迷宫。前往尼尔镇下方的河岸寻找一座礼拜堂，肃清这条秘密通道。",
+        "The guards of Nyr have been complaining of increased undead attacks, and have heard rumors of a ": "尼尔镇的卫兵抱怨亡灵袭击日益频繁，还听说河底有一座",
+        "Maze": "迷宫",
+        " beneath the river. Locate a chapel on the edge of the river below Nyr and secure this secret passage.": "。前往尼尔镇下方的河岸寻找一座礼拜堂，肃清这条秘密通道。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The King has heard rumors that the Fountain of Miracles has been discovered buried deep in some Caves. Can you find truth to these whispers?",
+      "guard_exact_body": "The King has heard rumors that the Fountain of Miracles has been discovered buried deep in some Caves. Can you find truth to these whispers?",
+      "target_body": "国王听说，有人在某处洞窟深处发现了奇迹之泉。你能查明这个传闻是否属实吗？",
+      "exact": {
+        "The King has heard rumors that the Fountain of Miracles has been discovered buried deep in some Caves. Can you find truth to these whispers?": "国王听说，有人在某处洞窟深处发现了奇迹之泉。你能查明这个传闻是否属实吗？",
+        "The King has heard rumors that the Fountain of Miracles has been discovered buried deep in some ": "国王听说，有人在某处",
+        "Caves": "洞窟",
+        ". Can you find truth to these whispers?": "深处发现了奇迹之泉。你能查明这个传闻是否属实吗？"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The vine-filled Cave between Nyr and Farr, close to the western bridge, is infested with creatures. Clear them out for the Bounty!",
+      "guard_exact_body": "The vine-filled Cave between Nyr and Farr, close to the western bridge, is infested with creatures. Clear them out for the Bounty!",
+      "target_body": "尼尔镇与远郊城之间、西侧桥梁附近有一座藤蔓遍布的洞穴，如今已被怪物占据。清除它们，便能完成悬赏！",
+      "exact": {
+        "The vine-filled Cave between Nyr and Farr, close to the western bridge, is infested with creatures. Clear them out for the Bounty!": "尼尔镇与远郊城之间、西侧桥梁附近有一座藤蔓遍布的洞穴，如今已被怪物占据。清除它们，便能完成悬赏！",
+        "The vine-filled ": "尼尔镇与远郊城之间、西侧桥梁附近有一座藤蔓遍布的",
+        "Cave": "洞穴",
+        " between Nyr and Farr, close to the western bridge, is infested with creatures. Clear them out for the Bounty!": "，如今已被怪物占据。清除它们，便能完成悬赏！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] 一封染血的信件送达了Nyr，是一名Axtan和尚的求救信。难道是修道院出了事？请你前去调查吧。",
+      "guard_exact_body": "一封染血的信件送达了Nyr，是一名Axtan和尚的求救信。难道是修道院出了事？请你前去调查吧。",
+      "target_body": "尼尔镇收到了一封染血的信，那是一位阿克斯坦僧侣发来的求救信。难道修道院出了什么事？请前去调查。",
+      "exact": {
+        "一封染血的信件送达了Nyr，是一名Axtan和尚的求救信。难道是修道院出了事？请你前去调查吧。": "尼尔镇收到了一封染血的信，那是一位阿克斯坦僧侣发来的求救信。难道修道院出了什么事？请前去调查。",
+        "一封染血的信件送达了Nyr，是一名Axtan和尚的求救信。难道是": "尼尔镇收到了一封染血的信，那是一位阿克斯坦僧侣发来的求救信。难道",
+        "修道院": "修道院",
+        "出了事？请你前去调查吧。": "出了什么事？请前去调查。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The once sinister Isle was shattered under the rage of the sky. Please, save these poor souls.",
+      "guard_exact_body": "The once sinister Isle was shattered under the rage of the sky. Please, save these poor souls.",
+      "target_body": "那座曾经险恶的岛屿被天穹的怒火击碎了。请拯救那些可怜的灵魂。",
+      "exact": {
+        "The once sinister Isle was shattered under the rage of the sky. Please, save these poor souls.": "那座曾经险恶的岛屿被天穹的怒火击碎了。请拯救那些可怜的灵魂。",
+        "The once sinister ": "那座曾经险恶的",
+        "Isle": "岛屿",
+        " was shattered under the rage of the sky. Please, save these poor souls.": "被天穹的怒火击碎了。请拯救那些可怜的灵魂。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] The esteemed Carbocius has sent word that his samples indicate an imminent Volcano eruption. If you can withstand the heat, see if you can find a way to stop the threat!",
+      "guard_exact_body": "The esteemed Carbocius has sent word that his samples indicate an imminent Volcano eruption. If you can withstand the heat, see if you can find a way to stop the threat!",
+      "target_body": "尊敬的卡博修斯传来消息，他的样本表明火山即将喷发。如果你能承受高温，就去看看有没有办法阻止这场灾难！",
+      "exact": {
+        "The esteemed Carbocius has sent word that his samples indicate an imminent Volcano eruption. If you can withstand the heat, see if you can find a way to stop the threat!": "尊敬的卡博修斯传来消息，他的样本表明火山即将喷发。如果你能承受高温，就去看看有没有办法阻止这场灾难！",
+        "The esteemed Carbocius has sent word that his samples indicate an imminent ": "尊敬的卡博修斯传来消息，他的样本表明",
+        "Volcano": "火山",
+        " eruption. If you can withstand the heat, see if you can find a way to stop the threat!": "即将喷发。如果你能承受高温，就去看看有没有办法阻止这场灾难！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Dank, watery Ruins have been discovered northeast of Farr, in the foothills of the mountains. The King requests your aid in exploring them.",
+      "guard_exact_body": "Dank, watery Ruins have been discovered northeast of Farr, in the foothills of the mountains. The King requests your aid in exploring them.",
+      "target_body": "远郊城东北方的山麓发现了一片阴湿积水的废墟。国王请求你协助探索。",
+      "exact": {
+        "Dank, watery Ruins have been discovered northeast of Farr, in the foothills of the mountains. The King requests your aid in exploring them.": "远郊城东北方的山麓发现了一片阴湿积水的废墟。国王请求你协助探索。",
+        "Dank, watery ": "远郊城东北方的山麓发现了一片阴湿积水的",
+        "Ruins": "废墟",
+        " have been discovered northeast of Farr, in the foothills of the mountains. The King requests your aid in exploring them.": "。国王请求你协助探索。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Near Highwatch, the dead are rising from their Graves inside the Cemetery. Go help the soldiers clean it up!",
+      "guard_exact_body": "Near Highwatch, the dead are rising from their Graves inside the Cemetery. Go help the soldiers clean it up!",
+      "target_body": "高望堡附近的墓地里，死者正从坟墓中爬出来。快去帮助士兵们清理墓地！",
+      "exact": {
+        "Near Highwatch, the dead are rising from their Graves inside the Cemetery. Go help the soldiers clean it up!": "高望堡附近的墓地里，死者正从坟墓中爬出来。快去帮助士兵们清理墓地！",
+        "Near Highwatch, the dead are rising from their ": "高望堡附近的墓地里，死者正从",
+        "Graves": "坟墓",
+        " inside the Cemetery. Go help the soldiers clean it up!": "中爬出来。快去帮助士兵们清理墓地！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Past Farr, there is a vicious scar in the earth, filled with Molten lava. Carbocius, a trusted associate, has asked the King to send someone to investigate it.",
+      "guard_exact_body": "Past Farr, there is a vicious scar in the earth, filled with Molten lava. Carbocius, a trusted associate, has asked the King to send someone to investigate it.",
+      "target_body": "远郊城另一边的大地上，有一道熔岩翻涌的巨大裂口。值得信赖的伙伴卡博修斯已请求国王派人前去调查。",
+      "exact": {
+        "Past Farr, there is a vicious scar in the earth, filled with Molten lava. Carbocius, a trusted associate, has asked the King to send someone to investigate it.": "远郊城另一边的大地上，有一道熔岩翻涌的巨大裂口。值得信赖的伙伴卡博修斯已请求国王派人前去调查。",
+        "Past Farr, there is a vicious scar in the earth, filled with ": "远郊城另一边的大地上，有一道",
+        "Molten": "熔岩",
+        " lava. Carbocius, a trusted associate, has asked the King to send someone to investigate it.": "翻涌的巨大裂口。值得信赖的伙伴卡博修斯已请求国王派人前去调查。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Sources from Farr claim an abandoned Temple at the base of the great tree has been a hotbed of activity recently. Go investigate, please!",
+      "guard_exact_body": "Sources from Farr claim an abandoned Temple at the base of the great tree has been a hotbed of activity recently. Go investigate, please!",
+      "target_body": "远郊城传来消息，巨树根部的废弃神庙近来动静频繁。请前去调查！",
+      "exact": {
+        "Sources from Farr claim an abandoned Temple at the base of the great tree has been a hotbed of activity recently. Go investigate, please!": "远郊城传来消息，巨树根部的废弃神庙近来动静频繁。请前去调查！",
+        "Sources from Farr claim an abandoned ": "远郊城传来消息，巨树根部的废弃",
+        "Temple": "神庙",
+        " at the base of the great tree has been a hotbed of activity recently. Go investigate, please!": "近来动静频繁。请前去调查！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] A man is trapped in a large Cenote south of Farr and rescuers have been unable to reach him. See if you can lend him a hand.",
+      "guard_exact_body": "A man is trapped in a large Cenote south of Farr and rescuers have been unable to reach him. See if you can lend him a hand.",
+      "target_body": "远郊城南方的一处大天坑困住了一名男子，救援人员始终无法抵达他身边。去看看你能否助他脱困。",
+      "exact": {
+        "A man is trapped in a large Cenote south of Farr and rescuers have been unable to reach him. See if you can lend him a hand.": "远郊城南方的一处大天坑困住了一名男子，救援人员始终无法抵达他身边。去看看你能否助他脱困。",
+        "A man is trapped in a large ": "远郊城南方的一处大",
+        "Cenote": "天坑",
+        " south of Farr and rescuers have been unable to reach him. See if you can lend him a hand.": "困住了一名男子，救援人员始终无法抵达他身边。去看看你能否助他脱困。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Head down to the Crossroads North of Farr and investigate reports of activity in the ruined structure there.",
+      "guard_exact_body": "Head down to the Crossroads North of Farr and investigate reports of activity in the ruined structure there.",
+      "target_body": "据说远郊城北部十字路口的废弃建筑里出现了异常动静。前往那里调查。",
+      "exact": {
+        "Head down to the Crossroads North of Farr and investigate reports of activity in the ruined structure there.": "据说远郊城北部十字路口的废弃建筑里出现了异常动静。前往那里调查。",
+        "Head down to the ": "据说远郊城北部",
+        "Crossroads": "十字路口",
+        " North of Farr and investigate reports of activity in the ruined structure there.": "的废弃建筑里出现了异常动静。前往那里调查。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Carbocius, a trusted associate, believes a Fire cavern west of the Monastery may be under the effects of powerful magic. Gear up and investigate.",
+      "guard_exact_body": "Carbocius, a trusted associate, believes a Fire cavern west of the Monastery may be under the effects of powerful magic. Gear up and investigate.",
+      "target_body": "值得信赖的伙伴卡博修斯认为，修道院西边的一处火焰洞穴可能受到了强大魔法的影响。准备好装备，前去调查。",
+      "exact": {
+        "Carbocius, a trusted associate, believes a Fire cavern west of the Monastery may be under the effects of powerful magic. Gear up and investigate.": "值得信赖的伙伴卡博修斯认为，修道院西边的一处火焰洞穴可能受到了强大魔法的影响。准备好装备，前去调查。",
+        "Carbocius, a trusted associate, believes a ": "值得信赖的伙伴卡博修斯认为，修道院西边的一处",
+        "Fire": "火焰",
+        " cavern west of the Monastery may be under the effects of powerful magic. Gear up and investigate.": "洞穴可能受到了强大魔法的影响。准备好装备，前去调查。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] In the shadow of the great tree, the Jaguars are preparing for war, according to spies from Nyr. The King dispatches you into battle to disrupt their plans!",
+      "guard_exact_body": "In the shadow of the great tree, the Jaguars are preparing for war, according to spies from Nyr. The King dispatches you into battle to disrupt their plans!",
+      "target_body": "据尼尔镇的探子报告，豹人正在巨树的掩护下筹备战争。国王派你出击，打乱他们的计划！",
+      "exact": {
+        "In the shadow of the great tree, the Jaguars are preparing for war, according to spies from Nyr. The King dispatches you into battle to disrupt their plans!": "据尼尔镇的探子报告，豹人正在巨树的掩护下筹备战争。国王派你出击，打乱他们的计划！",
+        "In the shadow of the great tree, the ": "据尼尔镇的探子报告，",
+        "Jaguar": "豹人",
+        "s are preparing for war, according to spies from Nyr. The King dispatches you into battle to disrupt their plans!": "正在巨树的掩护下筹备战争。国王派你出击，打乱他们的计划！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] 在河流尽头，大（Grand）树根部已被邪恶的魔法所腐化。在今天，国王要求你去调查潜藏在那里的源头。",
+      "guard_exact_body": "在河流尽头，大（Grand）树根部已被邪恶的魔法所腐化。在今天，国王要求你去调查潜藏在那里的源头。",
+      "target_body": "河流尽头的巨树根须已被邪恶魔法腐化。国王今天委托你前去调查，找出潜藏其中的祸源。",
+      "exact": {
+        "在河流尽头，大（Grand）树根部已被邪恶的魔法所腐化。在今天，国王要求你去调查潜藏在那里的源头。": "河流尽头的巨树根须已被邪恶魔法腐化。国王今天委托你前去调查，找出潜藏其中的祸源。",
+        "在河流尽头，": "河流尽头的",
+        "大（Grand）": "巨",
+        "树根部已被邪恶的魔法所腐化。在今天，国王要求你去调查潜藏在那里的源头。": "树根须已被邪恶魔法腐化。国王今天委托你前去调查，找出潜藏其中的祸源。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Farr reports strange sightings of an oversized Anthill. Are you up for playing exterminator?",
+      "guard_exact_body": "Farr reports strange sightings of an oversized Anthill. Are you up for playing exterminator?",
+      "target_body": "远郊城传来消息，有人发现了一座异常巨大的蚁丘。你愿意去当一回灭虫专家吗？",
+      "exact": {
+        "Farr reports strange sightings of an oversized Anthill. Are you up for playing exterminator?": "远郊城传来消息，有人发现了一座异常巨大的蚁丘。你愿意去当一回灭虫专家吗？",
+        "Farr reports strange sightings of an oversized ": "远郊城传来消息，有人发现了一座异常巨大的",
+        "Anthill": "蚁丘",
+        ". Are you up for playing exterminator?": "。你愿意去当一回灭虫专家吗？"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] All I was handed was a tattered and singed flyer for this one. It reads, \"COME ON DOWN TO THE AXTAN CREEPER RANCH TODAY. TWO EXPLOSIONS FOR THE PRICE OF ONE!\". I assume you need to head there.",
+      "guard_exact_body": "All I was handed was a tattered and singed flyer for this one. It reads, \"COME ON DOWN TO THE AXTAN CREEPER RANCH TODAY. TWO EXPLOSIONS FOR THE PRICE OF ONE!\". I assume you need to head there.",
+      "target_body": "这次我只收到一张破烂、烧焦的传单，上面写着：“今天就来阿克斯坦苦力怕牧场！只花一次的钱，享受两次爆炸！”看来你得去那里看看。",
+      "exact": {
+        "All I was handed was a tattered and singed flyer for this one. It reads, \"COME ON DOWN TO THE AXTAN CREEPER RANCH TODAY. TWO EXPLOSIONS FOR THE PRICE OF ONE!\". I assume you need to head there.": "这次我只收到一张破烂、烧焦的传单，上面写着：“今天就来阿克斯坦苦力怕牧场！只花一次的钱，享受两次爆炸！”看来你得去那里看看。",
+        "All I was handed was a tattered and singed flyer for this one. It reads, \"COME ON DOWN TO THE AXTAN ": "这次我只收到一张破烂、烧焦的传单，上面写着：“今天就来阿克斯坦",
+        "CREEPER": "苦力怕",
+        " RANCH TODAY. TWO EXPLOSIONS FOR THE PRICE OF ONE!\". I assume you need to head there.": "牧场！只花一次的钱，享受两次爆炸！”看来你得去那里看看。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Scouts have reported smoke rising from an abandoned structure near the Earth Shrine. The King orders it investigated, and to make sure that anything that lies there is dead at the Altar!",
+      "guard_exact_body": "Scouts have reported smoke rising from an abandoned structure near the Earth Shrine. The King orders it investigated, and to make sure that anything that lies there is dead at the Altar!",
+      "target_body": "侦察兵报告，大地神龛附近一处废弃建筑正在冒烟。国王命你前去调查，肃清祭坛上盘踞的敌人！",
+      "exact": {
+        "Scouts have reported smoke rising from an abandoned structure near the Earth Shrine. The King orders it investigated, and to make sure that anything that lies there is dead at the Altar!": "侦察兵报告，大地神龛附近一处废弃建筑正在冒烟。国王命你前去调查，肃清祭坛上盘踞的敌人！",
+        "Scouts have reported smoke rising from an abandoned structure near the Earth Shrine. The King orders it investigated, and to make sure that anything that lies there is dead at the ": "侦察兵报告，大地神龛附近一处废弃建筑正在冒烟。国王命你前去调查，肃清",
+        "Altar": "祭坛",
+        "!": "上盘踞的敌人！"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] A miner stumbled into town from the south yesterday, claiming the mine he tried to enter was Haunted! Can you go investigate these claims?",
+      "guard_exact_body": "A miner stumbled into town from the south yesterday, claiming the mine he tried to enter was Haunted! Can you go investigate these claims?",
+      "target_body": "昨天，一名矿工从南方跌跌撞撞地进了镇子，声称自己想进入的矿井闹鬼了！你能前去查证吗？",
+      "exact": {
+        "A miner stumbled into town from the south yesterday, claiming the mine he tried to enter was Haunted! Can you go investigate these claims?": "昨天，一名矿工从南方跌跌撞撞地进了镇子，声称自己想进入的矿井闹鬼了！你能前去查证吗？",
+        "A miner stumbled into town from the south yesterday, claiming the mine he tried to enter was ": "昨天，一名矿工从南方跌跌撞撞地进了镇子，声称自己想进入的矿井",
+        "Haunted": "闹鬼",
+        "! Can you go investigate these claims?": "了！你能前去查证吗？"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Behind the Blackroot Jungle's tiered farm is a strange network of Tunnels, filled with broken cages and infested only with odd beasts. Today, I ask that you go check it out and see what those creatures have been guarding.",
+      "guard_exact_body": "Behind the Blackroot Jungle's tiered farm is a strange network of Tunnels, filled with broken cages and infested only with odd beasts. Today, I ask that you go check it out and see what those creatures have been guarding.",
+      "target_body": "黑根丛林的梯田后方，有一片古怪的隧道网络，里面尽是破损的笼子，只有怪异的野兽出没。今天，请你前去调查，看看这些生物究竟在守护什么。",
+      "exact": {
+        "Behind the Blackroot Jungle's tiered farm is a strange network of Tunnels, filled with broken cages and infested only with odd beasts. Today, I ask that you go check it out and see what those creatures have been guarding.": "黑根丛林的梯田后方，有一片古怪的隧道网络，里面尽是破损的笼子，只有怪异的野兽出没。今天，请你前去调查，看看这些生物究竟在守护什么。",
+        "Behind the Blackroot Jungle's tiered farm is a strange network of ": "黑根丛林的梯田后方，有一片古怪的",
+        "Tunnels": "隧道",
+        ", filled with broken cages and infested only with odd beasts. Today, I ask that you go check it out and see what those creatures have been guarding.": "网络，里面尽是破损的笼子，只有怪异的野兽出没。今天，请你前去调查，看看这些生物究竟在守护什么。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] 今天的工作不太一样。皇室想要你去诅咒森林深处的一个奇怪的无名废墟里面一探究竟。这废墟就在河下流。你能去看看里面有什么潜在的威胁吗？",
+      "guard_exact_body": "今天的工作不太一样。皇室想要你去诅咒森林深处的一个奇怪的无名废墟里面一探究竟。这废墟就在河下流。你能去看看里面有什么潜在的威胁吗？",
+      "target_body": "今天的任务有些特别。王室想请你沿诅咒之森中的河流前往下游，探索一处奇怪的无名废墟，查明那里潜藏着什么威胁。",
+      "exact": {
+        "今天的工作不太一样。皇室想要你去诅咒森林深处的一个奇怪的无名废墟里面一探究竟。这废墟就在河下流。你能去看看里面有什么潜在的威胁吗？": "今天的任务有些特别。王室想请你沿诅咒之森中的河流前往下游，探索一处奇怪的无名废墟，查明那里潜藏着什么威胁。",
+        "今天的工作不太一样。皇室想要你去诅咒森林深处的一个奇怪的": "今天的任务有些特别。王室想请你沿诅咒之森中的河流前往下游，探索一处奇怪的",
+        "无名": "无名",
+        "废墟里面一探究竟。这废墟就在河下流。你能去看看里面有什么潜在的威胁吗？": "废墟，查明那里潜藏着什么威胁。"
+      }
+    },
+    {
+      "guard_exact_source": "[Herald] Nyr has sent a missive claiming to have seen strange activity in the ruined Mansion near the Blackroot Jungle's battlefield. Please go investigate, and the Bounty will be yours.",
+      "guard_exact_body": "Nyr has sent a missive claiming to have seen strange activity in the ruined Mansion near the Blackroot Jungle's battlefield. Please go investigate, and the Bounty will be yours.",
+      "target_body": "尼尔镇来信报告称，黑根丛林战场附近的破败宅邸出现了异常动静。请前去调查，完成后便可领取赏金。",
+      "exact": {
+        "Nyr has sent a missive claiming to have seen strange activity in the ruined Mansion near the Blackroot Jungle's battlefield. Please go investigate, and the Bounty will be yours.": "尼尔镇来信报告称，黑根丛林战场附近的破败宅邸出现了异常动静。请前去调查，完成后便可领取赏金。",
+        "Nyr has sent a missive claiming to have seen strange activity in the ruined ": "尼尔镇来信报告称，黑根丛林战场附近的破败",
+        "Mansion": "宅邸",
+        " near the Blackroot Jungle's battlefield. Please go investigate, and the Bounty will be yours.": "出现了异常动静。请前去调查，完成后便可领取赏金。"
+      }
+    },
+    {
+      "guard_exact_source": "国王峡谷悬赏任务:Nyr方面发来信件，声称在黑根丛林的战场中的废弃庄园目击到了奇怪的活动。前去调查一下，赏金就是你的了。",
+      "guard_exact_body": "国王峡谷悬赏任务:Nyr方面发来信件，声称在黑根丛林的战场中的废弃庄园目击到了奇怪的活动。前去调查一下，赏金就是你的了。",
+      "target_body": "国王悬赏：尼尔镇来信报告称，黑根丛林战场附近的破败宅邸出现了异常动静。请前去调查，完成后便可领取赏金。",
+      "exact": {
+        "国王峡谷悬赏任务:Nyr方面发来信件，声称在黑根丛林的战场中的废弃庄园目击到了奇怪的活动。前去调查一下，赏金就是你的了。": "国王悬赏：尼尔镇来信报告称，黑根丛林战场附近的破败宅邸出现了异常动静。请前去调查，完成后便可领取赏金。",
+        "国王峡谷悬赏任务": "国王悬赏",
+        ":Nyr方面发来信件，声称在黑根丛林的战场中的废弃": "：尼尔镇来信报告称，黑根丛林战场附近的破败",
+        "庄园": "宅邸",
+        "目击到了奇怪的活动。前去调查一下，赏金就是你的了。": "出现了异常动静。请前去调查，完成后便可领取赏金。"
+      }
+    }
+  ]
+}

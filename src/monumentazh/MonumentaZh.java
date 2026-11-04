@@ -79,12 +79,16 @@ public final class MonumentaZh implements ClientModInitializer {
         }
         ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
             if (!eligible()) return;
+            List<class_2561> originalLines=enabled&&ContextTranslations.hasTooltipCandidate(lines)?List.copyOf(lines):null;
             if (captureEnabled) capture(stack, "物品悬浮说明");
             List<class_2561> paddedInfo=ClassMenuTooltip.matches(stack,lines)?List.copyOf(lines):null;
             boolean alchemist=ClassMenuTooltip.alchemist(lines);
+            boolean shaman=ShamanTooltip.matches(lines);
+            boolean bountyPlace=bountyPlaceTitle(lines);
             for (int i = 0; i < lines.size(); i++) {
-                lines.set(i, display(lines.get(i), alchemist ? i==0?"alchemist_title":"alchemist_tooltip" : i==0?"item_name":"tooltip"));
+                lines.set(i, display(lines.get(i), alchemist ? i==0?"alchemist_title":"alchemist_tooltip" : shaman ? i==0?"shaman_title":"shaman_tooltip" : i==0?(bountyPlace?"bounty_place_title":"item_name"):"tooltip"));
             }
+            if(originalLines!=null)ContextTranslations.tooltip(originalLines,lines,engine);
             if(paddedInfo!=null) {
                 if(enabled&&ExtraInformationTooltip.matches(paddedInfo))ExtraInformationTooltip.compact(paddedInfo,lines);
                 ClassMenuTooltip.compact(lines);
@@ -99,7 +103,6 @@ public final class MonumentaZh implements ClientModInitializer {
             else if(identityPlayer!=client.field_1724){identityPlayer=client.field_1724;if(identityPlayer.method_7334()!=null)CapturePrivacy.observePlayer(identityPlayer.method_7334().getName());}
             tickIntroduction(client);
             if(introductionPopup==null&&introduction.statusTick(client.field_1724!=null?client.method_1562():null)) {
-                client.field_1724.method_7353(statusMessage(),false);
                 showStatusToast(client);
             }
             ++ticks;
@@ -110,9 +113,15 @@ public final class MonumentaZh implements ClientModInitializer {
                 for (var slot : screen.method_17577().field_7761) capture(slot.method_7677(), screen.method_25440().getString());
             }
             if(eligible()&&captureEnabled)captureWork.tick(MonumentaZh::captureNow,MonumentaZh::captureBookPage);
-            if (ticks % 600 == 0) checkpoint();
+            if (ticks % 600 == 0) captured.requestCheckpoint(configDir.resolve("encountered_text.json"));
+            try { captured.tickCheckpoint(); }
+            catch (IOException ex) { System.err.println("[MonumentaZH] Capture save failed; records retained for retry: " + ex.getMessage()); }
         });
-        ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {captureWork.drain(MonumentaZh::captureNow,MonumentaZh::captureBookPage);checkpoint();});
+        ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
+            captureWork.drain(MonumentaZh::captureNow,MonumentaZh::captureBookPage);
+            try { captured.close(configDir.resolve("encountered_text.json")); }
+            catch (IOException ex) { System.err.println("[MonumentaZH] Capture shutdown save failed: " + ex.getMessage()); }
+        });
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, access) -> {
             var root=ClientCommandManager.literal("monumentazh")
                 .executes(ctx -> { ctx.getSource().sendFeedback(helpMessage()); return 1; })
@@ -302,8 +311,13 @@ public final class MonumentaZh implements ClientModInitializer {
     private static void showStatusToast(class_310 client) {
         JsonObject title=messagePart("Monumenta汉化","gold",true);title.addProperty("font","minecraft:default");
         JsonObject state=messagePart(enabled?"已启用":"已关闭",enabled?"green":"red",true);state.addProperty("font","minecraft:default");
-        net.minecraft.class_370.method_1990(client.method_1566(),statusToastType,
-            class_2561.class_2562.method_10872(title),class_2561.class_2562.method_10872(state));
+        JsonArray extra=new JsonArray();
+        extra.add(messagePart("\n译者进出市场后记得打开提取文本","gray",false));state.add("extra",extra);
+        // Use the native wrapped toast so the reminder fits without expanding a single line.
+        var manager=client.method_1566();
+        net.minecraft.class_370.method_55507(manager,statusToastType);
+        manager.method_1999(net.minecraft.class_370.method_29047(client,statusToastType,
+            class_2561.class_2562.method_10872(title),class_2561.class_2562.method_10872(state)));
     }
 
     private static class_2561 introductionMessage() {
@@ -370,11 +384,36 @@ public final class MonumentaZh implements ClientModInitializer {
     }
 
     /** Called only at specific server-text display surfaces, never on player chat or player names. */
+    /** Bounty menu icons have only a place title and a numeric tier, plus vanilla debug rows. */
+    private static boolean bountyPlaceTitle(List<class_2561> lines) {
+        if(lines==null||lines.size()<2||nameLocalizer==null||bountyPlaceName(lines.get(0).getString())==null)return false;
+        if(!TranslationEngine.normalize(lines.get(1).getString()).matches("Tier\\s+[1-9][0-9]*"))return false;
+        for(int i=2;i<lines.size();i++) {
+            String row=TranslationEngine.normalize(lines.get(i).getString());
+            if(!row.isEmpty()&&!row.matches("minecraft:[a-z0-9_./-]+")&&!row.startsWith("NBT:"))return false;
+        }
+        return true;
+    }
+
+    private static NameLocalizer.Name bountyPlaceName(String raw) {
+        NameLocalizer.Name direct=nameLocalizer.exactPlace(raw);
+        if(direct!=null)return direct;
+        String text=TranslationEngine.normalize(raw);
+        int start=text.lastIndexOf('（');
+        if(start>0&&text.endsWith("）")&&text.substring(0,start).codePoints().anyMatch(c->Character.UnicodeScript.of(c)==Character.UnicodeScript.HAN)) {
+            String english=text.substring(start+1,text.length()-1);
+            NameLocalizer.Name name=nameLocalizer.exactPlace(english);
+            if(name!=null&&name.english().equals(english))return name;
+        }
+        return null;
+    }
+
     public static synchronized class_2561 display(class_2561 original, String kind) {
         if (original == null || !enabled && !captureEnabled || EncounteredTextStore.isChatKind(kind) || !eligible()) return original;
         if ((kind.equals("entity_label") || kind.equals("hologram_label") || kind.equals("text_display")) && playerLabel(original)) return original;
         boolean serverMessage = kind.equals("server_message") || kind.equals("npc_dialogue") || kind.equals("server_notice");
         if (serverMessage) {
+            if(ChatMessageFilter.isLocalModMessage(original.getString()))return original;
             ChatMessageFilter.Kind classification = ChatMessageFilter.classify(class_2561.class_2562.method_10868(original), original.getString());
             if (classification == ChatMessageFilter.Kind.PLAYER) return original;
             kind = classification == ChatMessageFilter.Kind.NPC ? "npc_dialogue" : "server_notice";
@@ -385,8 +424,10 @@ public final class MonumentaZh implements ClientModInitializer {
             DisplayKey lookup=new DisplayKey(kind,hash,original);
             cached=contentCache.get(lookup);
             if(cached==null) {
-            class_2561 translated = serverMessage ? translateServerComponent(original)
+            boolean centralPrefix=kind.equals("subtitle")&&incompleteCentralSubtitle(original.getString());
+            class_2561 translated = centralPrefix?original:serverMessage ? translateServerComponent(original)
                 : kind.equals("alchemist_tooltip") || kind.equals("alchemist_title") ? translateAlchemistComponent(original)
+                : kind.equals("shaman_title") || kind.equals("shaman_tooltip") ? translateShamanComponent(original)
                 : kind.equals("book_page") ? translateBookComponent(original)
                 : kind.equals("bossbar") || kind.equals("actionbar") ? translateHudComponent(original) : translateTooltipLine(original);
             if (kind.equals("bossbar") || kind.equals("actionbar")) translated = translateTooltipLine(translated);
@@ -398,13 +439,16 @@ public final class MonumentaZh implements ClientModInitializer {
                     if(clean!=null)translated=clean;
                 }
             }
+            NameLocalizer.Name bountyName=kind.equals("bounty_place_title")?bountyPlaceName(original.getString()):null;
+            boolean bountyAlreadyBilingual=bilingualPlaces&&bountyName!=null&&TranslationEngine.normalize(original.getString()).endsWith("（"+bountyName.english()+"）");
+            if(bountyAlreadyBilingual)translated=original;
             boolean instanceLabel=(kind.equals("entity_label")||kind.equals("hologram_label")||kind.equals("text_display"))&&HologramLayout.chineseOnly(original.getString());
-            if (!serverMessage && !kind.equals("sign") && !kind.equals("item_name") && !kind.equals("alchemist_tooltip") && !kind.equals("alchemist_title") && !instanceLabel && !nameLocalizer.guildIdentity(original.getString())) {
+            if (!bountyAlreadyBilingual && !centralPrefix && !serverMessage && !kind.equals("sign") && !kind.equals("item_name") && !kind.equals("alchemist_tooltip") && !kind.equals("alchemist_title") && !kind.equals("shaman_title") && !kind.equals("shaman_tooltip") && !instanceLabel && !nameLocalizer.guildIdentity(original.getString())) {
                 // Only a standalone ordinary NPC gets its English on a separate row.
                 // Fixed holograms and phrases such as "Cinevra's Office" retain English inline.
-                translated = formatNames(original,translated,!kind.equals("entity_label")||nameLocalizer.npc(original.getString())==null);
+                translated = formatNames(original,translated,!kind.equals("bounty_place_title")&&(!kind.equals("entity_label")||nameLocalizer.npc(original.getString())==null),kind.equals("tooltip")?Set.of("White"):Set.of());
             }
-            if (captureEnabled && (!kind.equals("sign") || signCaptureEnabled)) captured.addText(kind.equals("hologram_label")?"entity_label":kind.equals("alchemist_tooltip")?"tooltip":kind.equals("alchemist_title")?"item_name":kind, original.getString(), class_2561.class_2562.method_10868(original), translated.getString());
+            if (captureEnabled && (!kind.equals("sign") || signCaptureEnabled)) captured.addText(kind.equals("hologram_label")?"entity_label":(kind.equals("alchemist_tooltip")||kind.equals("shaman_tooltip"))?"tooltip":(kind.equals("alchemist_title")||kind.equals("shaman_title")||kind.equals("bounty_place_title"))?"item_name":kind, original.getString(), class_2561.class_2562.method_10868(original), translated.getString());
             class_2561 upper=kind.equals("entity_label")&&bilingualNames?createNpcUpper(original):null;
             cached = new DisplayCache(kind,hash,translated,translated!=original,upper);
             class_2561 snapshot=class_2561.class_2562.method_10872(class_2561.class_2562.method_10868(original));
@@ -427,7 +471,16 @@ public final class MonumentaZh implements ClientModInitializer {
             JsonObject wrapper = new JsonObject(); wrapper.add("text", json); json = wrapper;
         }
         Set<String> protectedNames=new TreeSet<>(String.CASE_INSENSITIVE_ORDER);protectedNames.addAll(ChatMessageFilter.protectedNames(original.getString()));protectedNames.addAll(CapturePrivacy.roleNames(original.getString()));
-        boolean changed=ChatMessageFilter.rewriteVisible(json,engine,protectedNames);
+        boolean changed=rewriteUndergrowthBounty(json,original.getString());
+        changed|=BountyDialogue.rewrite(json,original.getString(),engine);
+        JsonElement contextual=ContextTranslations.serverCopy(json,original.getString(),engine);
+        if(contextual!=null){json=contextual;changed=true;}
+        Set<String> translationProtected=protectedNames;
+        if(NameLocalizer.hasKimAnnotation(original.getString())) {
+            translationProtected=new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+            translationProtected.addAll(protectedNames);translationProtected.add("Kim");translationProtected.add("Sergeant Kim");
+        }
+        changed|=ChatMessageFilter.rewriteVisible(json,engine,translationProtected);
         changed|=nameLocalizer.rewrite(json,original.getString(),bilingualNames,bilingualPlaces,protectedNames);
         if (!changed) return original;
         class_2561 translated = class_2561.class_2562.method_10872(json);
@@ -435,20 +488,114 @@ public final class MonumentaZh implements ClientModInitializer {
     }
 
     public static long displayRevision() { return revision; }
+    /** Record original server title updates even when no HUD frame renders that value. */
+    public static synchronized void captureCentralTitle(class_2561 original,String kind) {
+        if(original==null||!captureEnabled||!eligible()||!(kind.equals("title")||kind.equals("subtitle")))return;
+        captured.addText(kind,original.getString(),class_2561.class_2562.method_10868(original),original.getString());
+    }
+    /** This one server bounty splits its proper name into differently styled Chinese runs. */
+    private static boolean rewriteUndergrowthBounty(JsonElement json,String source) {
+        if(!source.equals("国王峡谷悬赏任务:我们从一些Axtan僧侣的口中得知，一个位于被称为“林地”的地区内的潮湿地林有着皇室寻求已久的远古苦艾来源。你能找到那片树林吗？"))return false;
+        String name=engine.translate("Undergrowth",false);
+        if(!name.equals("地下林地"))return false;
+        // Never add a global rule for this short fragment: only this complete bounty qualifies.
+        JsonObject exact=new JsonObject();exact.addProperty("地林",name.substring(2));
+        JsonObject local=new JsonObject();local.add("exact",exact);
+        return new TranslationEngine(local).rewriteVisible(json,false);
+    }
+    /** Four display copies for the approved area-discovery layout; no dictionary or source edits. */
+    public static DiscoveryTitle.Content discoveryTitle(class_2561 title,class_2561 subtitle) {
+        if(title==null||subtitle==null||!active()||!bilingualPlaces)return null;
+        String announcement=TranslationEngine.normalize(title.getString());
+        if(!Set.of("Area Discovered","☼ Area Discovered ☼","发现新区域","☼ 发现新区域 ☼","☼发现新区域☼").contains(announcement))return null;
+        NameLocalizer.Name place=nameLocalizer.exactPlace(subtitle.getString());
+        if(place==null)return null;
+        // Keep normal capture bookkeeping; these display copies never replace the packet components.
+        display(title,"title");display(subtitle,"subtitle");
+        return new DiscoveryTitle.Content(discoveryLine(title,"Area Discovered","gray"),
+            discoveryLine(title,"☼ 发现新区域 ☼","white"),
+            discoveryLine(subtitle,place.english(),"gold"),discoveryLine(subtitle,place.chinese(),"gold"));
+    }
+    private static class_2561 discoveryLine(class_2561 original,String label,String color) {
+        JsonElement serialized=class_2561.class_2562.method_10868(translatedLine(original,label));
+        JsonObject json;
+        if(serialized.isJsonObject())json=serialized.getAsJsonObject();
+        else {json=new JsonObject();json.add("text",serialized);}
+        json.addProperty("color",color);json.addProperty("bold",false);json.addProperty("italic",false);
+        json.addProperty("underlined",false);json.addProperty("strikethrough",false);json.addProperty("obfuscated",false);
+        return class_2561.class_2562.method_10872(json);
+    }
     public static ArrivalTitle.Content arrivalTitle(class_2561 title,class_2561 subtitle) {
         if(title==null||!active()||!bilingualPlaces)return null;
+        if(subtitle!=null&&CinematicTitle.valleyChapter(title.getString(),subtitle.getString()))return null;
+        String heading=TranslationEngine.normalize(title.getString());
         NameLocalizer.Name place=nameLocalizer.arrivalPlace(title.getString());
-        if(place==null)return null;
-        display(title,"title");
-        class_2561 description=null;
-        if(subtitle!=null) {
-            display(subtitle,"subtitle");
-            String raw=TranslationEngine.normalize(subtitle.getString());
-            String translated=nameLocalizer.withoutKnownReferences(translateTooltipLine(subtitle).getString());
-            if(raw.length()>1&&"Capital of the Narsen Empire".startsWith(raw))translated="纳尔森帝国首都";
-            description=translatedLine(subtitle,translated);
+        if(place==null) {
+            // An ambiguous early prefix is still English, never a guessed Chinese city.
+            if(!ArrivalAnimation.isArrivalPrefix(heading))return null;
+            display(title,"title");
+            return new ArrivalTitle.Content(title,null,null,null);
         }
-        return new ArrivalTitle.Content(translatedLine(title,place.english()),translatedLine(title,place.chinese()),description);
+        display(title,"title");
+        if(subtitle!=null)display(subtitle,"subtitle");
+        String raw=subtitle==null?"":TranslationEngine.normalize(subtitle.getString());
+        boolean stale=ArrivalAnimation.isStaleSubtitle(place.english(),raw);
+        if(stale)raw="";
+        String full=ArrivalAnimation.completeSubtitle(place.english(),raw);
+        class_2561 description=null,englishDescription=null;
+        int descriptionVisible=0;
+        if(full!=null&&!full.isBlank()) {
+            class_2561 styled=subtitle==null||stale?class_2561.class_2562.method_10872(messagePart(full,"gray",false)):subtitle;
+            String translated=nameLocalizer.withoutKnownReferences(translateTooltipLine(translatedLine(styled,full)).getString());
+            if(translated.equals(full)&&!full.equals(raw)) {full=raw;translated=raw;}
+            description=titleWeight(translatedLine(styled,translated));
+            if(!full.isBlank()&&!full.equals(translated))englishDescription=discoveryLine(styled,full,"gray");
+            descriptionVisible=ArrivalAnimation.visible(full,raw);
+        }
+        return new ArrivalTitle.Content(translatedLine(title,place.english()),titleWeight(translatedLine(title,place.chinese())),
+            description,englishDescription,ArrivalAnimation.visible(place.english(),heading),descriptionVisible);
+    }
+    /** Complete boss/chapter pairs use four rows; unknown or animated fragments keep the native path. */
+    public static CinematicTitle.Content cinematicTitle(class_2561 title,class_2561 subtitle) {
+        if(title==null||subtitle==null||!active()||!bilingualNames||!bilingualPlaces)return null;
+        String heading=TranslationEngine.normalize(title.getString()),detail=TranslationEngine.normalize(subtitle.getString());
+        if(incompleteCentralSubtitle(detail))return null;
+        boolean chapter=heading.matches("Tale [0-9]+ Complete")||heading.equals("The Celsian Isles")||CinematicTitle.valleyChapter(heading,detail);
+        boolean event=Set.of("VICTORY","Victory!","DEFEAT","Defeat!","XENOTOPSIS").contains(heading);
+        if(!chapter&&!event&&nameLocalizer.npc(heading)==null)return null;
+        if(detail.isBlank()||!heading.matches(".*[A-Za-z].*")||!detail.matches(".*[A-Za-z].*"))return null;
+        class_2561 translatedTitle=translateTooltipLine(title),translatedSubtitle=translateTooltipLine(subtitle);
+        String chinese=nameLocalizer.withoutKnownReferences(translatedTitle.getString());
+        String description=nameLocalizer.withoutKnownReferences(translatedSubtitle.getString());
+        if(!completeChinese(chinese)||!completeChinese(description))return null;
+        display(title,"title");display(subtitle,"subtitle");
+        return new CinematicTitle.Content(title,titleWeight(chinese.equals(translatedTitle.getString())?translatedTitle:translatedLine(translatedTitle,chinese)),
+            titleWeight(description.equals(translatedSubtitle.getString())?translatedSubtitle:translatedLine(translatedSubtitle,description)),discoveryLine(subtitle,detail,"gray"));
+    }
+    /** Only known typewriter subtitles: short menu words must not translate unfinished sentences. */
+    private static boolean incompleteCentralSubtitle(String text) {
+        String raw=TranslationEngine.normalize(text);
+        if(raw.isEmpty())return false;
+        for(String full:List.of("Captain of Death","Good.","Now. A more active task.","Shard Bearer","Keeper of the Pass"))
+            if(full.length()>raw.length()&&full.startsWith(raw))return true;
+        return false;
+    }
+    /** Weight applies to rendered title copies only, preserving packet text and every original style. */
+    private static class_2561 titleWeight(class_2561 source) {
+        JsonElement copy=class_2561.class_2562.method_10868(source).deepCopy();
+        if(copy.isJsonPrimitive()){JsonObject root=new JsonObject();root.add("text",copy);copy=root;}
+        titleWeightJson(copy);
+        return class_2561.class_2562.method_10872(copy);
+    }
+    private static void titleWeightJson(JsonElement value) {
+        if(value.isJsonArray()){for(JsonElement child:value.getAsJsonArray())titleWeightJson(child);return;}
+        if(!value.isJsonObject())return;
+        JsonObject object=value.getAsJsonObject();object.addProperty("bold",true);
+        if(object.has("extra"))titleWeightJson(object.get("extra"));
+    }
+    private static boolean completeChinese(String value) {
+        return value.codePoints().anyMatch(c->Character.UnicodeScript.of(c)==Character.UnicodeScript.HAN)
+            &&!value.matches(".*[A-Za-z].*");
     }
     private static synchronized void invalidateDisplays() { displayCache.clear(); displayOrder.clear(); contentCache.clear(); signCache.clear(); ++revision; }
 
@@ -485,13 +632,16 @@ public final class MonumentaZh implements ClientModInitializer {
         captured.addText("book_page",original.getString(),class_2561.class_2562.method_10868(original),translated.getString());
     }
 
-    private static class_2561 formatNames(class_2561 original,class_2561 translated,boolean includeNpcs) {
+    static class_2561 formatNames(class_2561 original,class_2561 translated,boolean includeNpcs) {
+        return formatNames(original,translated,includeNpcs,Set.of());
+    }
+    private static class_2561 formatNames(class_2561 original,class_2561 translated,boolean includeNpcs,Set<String> protectedNames) {
         String source = TranslationEngine.normalize(original.getString());
         // A complete bilingual title already identifies its names; keep one full original annotation.
         if (!source.isBlank() && translated.getString().endsWith("（" + source + "）")) return translated;
         JsonElement json=class_2561.class_2562.method_10868(translated);
         if(json.isJsonPrimitive()){JsonObject wrapper=new JsonObject();wrapper.add("text",json);json=wrapper;}
-        if(!nameLocalizer.rewrite(json,original.getString(),includeNpcs&&bilingualNames,bilingualPlaces,Set.of()))return translated;
+        if(!nameLocalizer.rewrite(json,original.getString(),includeNpcs&&bilingualNames,bilingualPlaces,protectedNames))return translated;
         class_2561 result=class_2561.class_2562.method_10872(json);
         return result==null?translated:result;
     }
@@ -556,6 +706,7 @@ public final class MonumentaZh implements ClientModInitializer {
                 if(translated!=normal||translatedFiltered!=filtered)result=result.method_49858(i,translated,translatedFiltered);
             }
             result=lobbyReturnSign(original,result);
+            if(enabled&&signTranslationEnabled)result=SignPhraseContext.apply(original,result,maxWidth,engine,class_310.method_1551().field_1772);
             result=compactSign(original,result,maxWidth);
             // A weak key must not be retained by its unchanged cached value.
             cached=new SignLayout(maxWidth,font,result==original?null:result);signCache.put(original,cached);
@@ -576,6 +727,8 @@ public final class MonumentaZh implements ClientModInitializer {
         var font=class_310.method_1551().field_1772;
         int margin=font.method_1727("中"),comfortableWidth=maxWidth-2*margin;
         for(boolean filtered:List.of(false,true)) {
+            net.minecraft.class_8242 teleport=singleTeleportSign(original,translated,filtered);
+            if(teleport!=null){translated=teleport;continue;}
             String header=TranslationEngine.normalize(original.method_49859(0,filtered).getString()).toLowerCase(Locale.ROOT);
             boolean portal=Set.of("related quest:","required quest:","teleport to:","accessed by:").contains(header);
             boolean separator=original.method_49859(1,filtered).getString().strip().matches("[-=]{3,}");
@@ -618,6 +771,50 @@ public final class MonumentaZh implements ClientModInitializer {
             }
         }
         return translated;
+    }
+    /** Single destination/prefix boards share the same two row slots, irrespective of text length. */
+    public static boolean teleportSignLabel(class_2561 line) {
+        if(line==null||nameLocalizer==null)return false;
+        String raw=TranslationEngine.normalize(line.getString());
+        if(!raw.matches(".*[A-Za-z].*")||raw.codePoints().anyMatch(c->Character.UnicodeScript.of(c)==Character.UnicodeScript.HAN))return false;
+        if(raw.equals("Teleport:")||raw.equals("Teleport :"))return true;
+        if(raw.startsWith("Teleport:"))raw=raw.substring(9).strip();
+        else if(raw.startsWith("Teleport :"))raw=raw.substring(10).strip();
+        else if(raw.startsWith("To "))raw=raw.substring(3).strip();
+        return nameLocalizer.arrivalPlace(raw)!=null;
+    }
+    private static net.minecraft.class_8242 singleTeleportSign(net.minecraft.class_8242 original,net.minecraft.class_8242 translated,boolean filtered) {
+        if(!enabled||!signTranslationEnabled)return null;
+        List<Integer> occupiedRows=new ArrayList<>();
+        for(int i=0;i<4;i++)if(!original.method_49859(i,filtered).getString().isBlank())occupiedRows.add(i);
+        if(occupiedRows.isEmpty()||occupiedRows.size()>2)return null;
+        int occupied=occupiedRows.get(0);
+        class_2561 first=original.method_49859(occupied,filtered),raw=first;
+        class_2561 chinese=ClassMenuTooltip.trim(translated.method_49859(occupied,filtered));
+        if(occupiedRows.size()==2) {
+            if(!TranslationEngine.normalize(first.getString()).startsWith("To "))return null;
+            var combined=class_2561.method_43473();combined.method_10852(ClassMenuTooltip.trim(first));combined.method_27693(" ");
+            combined.method_10852(ClassMenuTooltip.trim(original.method_49859(occupiedRows.get(1),filtered)));raw=combined;
+        }
+        String joined=TranslationEngine.normalize(raw.getString());
+        if(joined.startsWith("To ")) {
+            var destination=nameLocalizer.arrivalPlace(joined.substring(3).strip());
+            if(destination==null)return null;
+            // 'To' is directional only in this known-place sign context. Mail rules stay intact.
+            String whole=nameLocalizer.withoutKnownReferences(engine.translate(joined,false));
+            if(whole.equals(joined)||whole.startsWith("收件人"))whole="前往"+destination.chinese();
+            chinese=translatedLine(first,whole);
+        }
+        if(!teleportSignLabel(raw)||CapturePrivacy.playerComponent(class_2561.class_2562.method_10868(raw))
+            ||chinese.getString().codePoints().noneMatch(c->Character.UnicodeScript.of(c)==Character.UnicodeScript.HAN))return null;
+        net.minecraft.class_8242 result=translated;
+        for(int i=0;i<4;i++) {
+            class_2561 value=translatedLine(original.method_49859(i,filtered),"");
+            if(bilingualPlaces) {if(i==1)value=chinese;else if(i==2)value=ClassMenuTooltip.trim(raw);}
+            else if(i==occupied)value=chinese;
+            result=result.method_49858(i,filtered?result.method_49859(i,false):value,filtered?value:result.method_49859(i,true));
+        }
+        return result;
     }
     private static class_2561 chineseSignLine(class_2561 original,class_2561 translated) {
         String plain=nameLocalizer.withoutKnownReferences(translated.getString());
@@ -697,15 +894,26 @@ public final class MonumentaZh implements ClientModInitializer {
         return class_2561.class_2562.method_10872(json);
     }
 
+    private static class_2561 translateShamanComponent(class_2561 original) {
+        class_2561 result=ShamanTooltip.translate(original,engine);
+        return result==null?translateTooltipLine(original):result;
+    }
+
     private static class_2561 translateBookComponent(class_2561 original) {
         JsonElement json=class_2561.class_2562.method_10868(original);
         if(json.isJsonPrimitive()){JsonObject wrapper=new JsonObject();wrapper.add("text",json);json=wrapper;}
-        if(!engine.rewriteBookVisible(json))return original;
+        boolean scoped=ContextTranslations.bookRewrite(json,original.getString(),engine);
+        boolean global=engine.rewriteBookVisible(json);
+        if(!scoped&&!global)return original;
         class_2561 result=class_2561.class_2562.method_10872(json);
         return result==null?original:result;
     }
 
     private static class_2561 translateTooltipLine(class_2561 original) {
+        class_2561 styledExact=StyledEquipmentTranslations.apply(original,engine);
+        if(styledExact!=null)return styledExact;
+        class_2561 questTitle=ContextTranslations.questTitle(original,engine);
+        if(questTitle!=null)return questTitle;
         // A tagged guild label is one identity; its colored leaves can collide with skills or enchantments.
         if (nameLocalizer.guildIdentity(original.getString())||original.getString().startsWith("by ")&&(nameLocalizer.npc(original.getString().substring(3))!=null||CapturePrivacy.playerName(original.getString().substring(3)))) return original;
         Set<String> protectedNames=CapturePrivacy.roleNames(original.getString());
@@ -732,7 +940,7 @@ public final class MonumentaZh implements ClientModInitializer {
     private static final java.util.regex.Pattern COUNTED_NAME=java.util.regex.Pattern.compile("^(\\d+\\s+)(.+?)(\\s+\\(\\d+ (?:total|in wallet)\\))?$");
     private static final java.util.regex.Pattern COUNTED_PREFIX=java.util.regex.Pattern.compile("^\\d+\\s*");
     /** Whole-sentence corrections keep the original styles of numbers and native damage icons. */
-    private static class_2561 translatedTooltipLine(class_2561 original,String result) {
+    static class_2561 translatedTooltipLine(class_2561 original,String result) {
         List<net.minecraft.class_2583> styles=new ArrayList<>();
         original.method_27658((style,value)->{for(int i=0;i<value.length();i++)styles.add(style);return Optional.empty();},net.minecraft.class_2583.field_24360);
         String raw=original.getString();

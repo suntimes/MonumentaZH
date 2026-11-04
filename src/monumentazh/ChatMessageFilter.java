@@ -17,16 +17,93 @@ public final class ChatMessageFilter {
     private static final List<Pattern> ANNOUNCEMENT_NAMES = List.of(
         Pattern.compile("^CONGRATULATIONS!\\s+([A-Za-z0-9_]{1,16})\\b"),
         Pattern.compile("^Welcome\\s+([A-Za-z0-9_]{1,16})\\s+to the server!"),
-        Pattern.compile("^([A-Za-z0-9_]{1,16})\\s+(?:has\\s+(?:bought|freed|succumbed|defeated|completed)\\b|defeated\\s|completed\\s|joined\\s|left\\s)"),
+        Pattern.compile("^([A-Za-z0-9_]{1,16})\\s+(?:has\\s+(?:bought|freed|succumbed|defeated|completed|conquered)\\b|defeated\\s|completed\\s|joined\\s|left\\s)"),
         Pattern.compile("\\bThanks\\s+([A-Za-z0-9_]{1,16})\\s+for supporting the server!")
     );
 
     private ChatMessageFilter() {}
+    /** VF messages originate from the local finder mod, not an NPC or server translation. */
+    public static boolean isLocalModMessage(String plain) {
+        if(plain==null||plain.indexOf('[')<0)return false;
+        String value=plain.replaceAll("§[0-9A-FK-ORa-fk-or]", "").stripLeading();
+        return value.startsWith("[VF]")&&(value.length()==4||Character.isWhitespace(value.charAt(4)));
+    }
     public static Kind classify(JsonElement component, String plain) {
         String value = plain == null ? "" : plain.replaceAll("§[0-9A-FK-ORa-fk-or]", "");
-        if (CHANNEL.matcher(value).find() || SENDER.matcher(value).find() || PRIVATE.matcher(value).find() || hasPlayerMarker(component))
+        if (CHANNEL.matcher(value).find() || PRIVATE.matcher(value).find() || hasPlayerMarker(component))
             return Kind.PLAYER;
+        if (SENDER.matcher(value).find() && !questMetadata(component, value)) return Kind.PLAYER;
         return NPC.matcher(value).find() ? Kind.NPC : Kind.SYSTEM;
+    }
+
+    // Only the server's aqua quest-card fields bypass the ambiguous "name: message" heuristic.
+    // Explicit player metadata, channels and whispers always take precedence in classify().
+    private static boolean questMetadata(JsonElement component, String plain) {
+        String value = plain.replaceAll("§[0-9A-FK-ORa-fk-or]", "").replace('\u00a0', ' ');
+        if (!value.matches("(?:Length *: *(?:Short|Medium|Long|Very Short|Very Long)|Difficulty *: *(?:Easy|Medium|Hard|Very Easy|Very Hard)|Description *: *\\S[^\\r\\n]*)")) return false;
+        return aquaVisible(component, false);
+    }
+
+    private static boolean aquaVisible(JsonElement value, boolean inherited) {
+        if (value == null || value.isJsonNull()) return true;
+        if (value.isJsonArray()) {
+            for (JsonElement child : value.getAsJsonArray()) if (!aquaVisible(child, inherited)) return false;
+            return true;
+        }
+        if (value.isJsonPrimitive()) return aquaText(value.getAsString(), inherited, inherited);
+        if (!value.isJsonObject()) return false;
+        JsonObject object = value.getAsJsonObject();
+        if (object.has("translate") || object.has("keybind") || object.has("selector") || object.has("score")) return false;
+        boolean color = inherited;
+        if (object.has("color")) {
+            String name = object.get("color").getAsString();
+            color = name.equalsIgnoreCase("aqua") || name.equalsIgnoreCase("#55ffff");
+        }
+        if (object.has("text") && !aquaText(object.get("text").getAsString(), color, color)) return false;
+        return !object.has("extra") || aquaVisible(object.get("extra"), color);
+    }
+
+    private static boolean aquaText(String text, boolean aqua, boolean reset) {
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (c == '§' && i + 1 < text.length()) {
+                char code = Character.toLowerCase(text.charAt(++i));
+                if ("0123456789abcdef".indexOf(code) >= 0) aqua = code == 'b';
+                else if (code == 'r') aqua = reset;
+            } else if (!Character.isWhitespace(c) && c != '\u00a0' && !aqua) return false;
+        }
+        return true;
+    }
+
+    private static String visibleText(JsonElement value) {
+        if (value == null || value.isJsonNull()) return "";
+        if (value.isJsonPrimitive()) return value.getAsString();
+        if (value.isJsonArray()) {
+            StringBuilder text = new StringBuilder();
+            for (JsonElement child : value.getAsJsonArray()) text.append(visibleText(child));
+            return text.toString();
+        }
+        JsonObject object = value.getAsJsonObject();
+        return (object.has("text") ? object.get("text").getAsString() : "") + (object.has("extra") ? visibleText(object.get("extra")) : "");
+    }
+
+    private static boolean rewriteQuestMetadata(JsonElement value, TranslationEngine engine, Set<String> protectedNames) {
+        String plain = visibleText(value);
+        if (!questMetadata(value, plain) || hasPlayerMarker(value)) return false;
+        String clean = plain.replaceAll("§[0-9A-FK-ORa-fk-or]", "").replace('\u00a0', ' ');
+        String translated = engine.translatePreserving(clean, false, protectedNames);
+        int colon = clean.indexOf(':'), targetColon = translated.indexOf('：');
+        if (clean.equals(translated) || targetColon < 0) return false;
+        JsonObject exact = new JsonObject();
+        exact.addProperty(clean, translated);
+        exact.addProperty(plain, translated);
+        exact.addProperty(plain.substring(0, plain.indexOf(':') + 1), translated.substring(0, targetColon + 1));
+        exact.addProperty(clean.substring(0, colon + 1), translated.substring(0, targetColon + 1));
+        exact.addProperty(clean.substring(0, colon).trim(), translated.substring(0, targetColon));
+        exact.addProperty(":", "：");
+        exact.addProperty(clean.substring(colon + 1).trim(), translated.substring(targetColon + 1));
+        JsonObject dictionary = new JsonObject(); dictionary.add("exact", exact);
+        return new TranslationEngine(dictionary).rewriteVisible(value, false);
     }
 
     private static boolean hasPlayerMarker(JsonElement value) {
@@ -66,8 +143,8 @@ public final class ChatMessageFilter {
     /** Exact phrases/templates only: an unknown sentence is captured intact, without scattered word replacement. */
     public static boolean rewriteVisible(JsonElement value, TranslationEngine engine, Set<String> protectedNames) {
         if (value == null || value.isJsonNull()) return false;
-        boolean changed = false;
-        if (value.isJsonObject()) changed = rewriteServerHover(value.getAsJsonObject(), engine, protectedNames);
+        boolean changed = rewriteQuestMetadata(value, engine, protectedNames);
+        if (value.isJsonObject()) changed |= rewriteServerHover(value.getAsJsonObject(), engine, protectedNames);
         if (value.isJsonArray()) {
             JsonArray array = value.getAsJsonArray();
             for (int i = 0; i < array.size(); i++) {
@@ -75,7 +152,7 @@ public final class ChatMessageFilter {
                 if (child.isJsonPrimitive() && child.getAsJsonPrimitive().isString()) {
                     String raw = child.getAsString(), translated = engine.translatePreserving(raw, false, protectedNames);
                     if (!raw.equals(translated)) {
-                        JsonObject replacement = new JsonObject(); TranslationEngine.replaceTranslatedText(replacement, translated);
+                        JsonObject replacement = new JsonObject(); replacement.addProperty("text", raw); TranslationEngine.replaceTranslatedText(replacement, translated);
                         array.set(i, replacement); changed = true;
                     }
                 } else changed |= rewriteVisible(child, engine, protectedNames);
@@ -144,7 +221,7 @@ public final class ChatMessageFilter {
             if (child.isJsonPrimitive() && child.getAsJsonPrimitive().isString()) {
                 String raw = child.getAsString(), translated = engine.translatePreserving(raw, false, protectedNames);
                 if (!raw.equals(translated)) {
-                    JsonObject replacement = new JsonObject(); TranslationEngine.replaceTranslatedText(replacement, translated);
+                    JsonObject replacement = new JsonObject(); replacement.addProperty("text", raw); TranslationEngine.replaceTranslatedText(replacement, translated);
                     arguments.set(i, replacement); changed = true;
                 }
             } else changed |= rewriteVisible(child, engine, protectedNames);
