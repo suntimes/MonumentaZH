@@ -27,6 +27,9 @@ public final class CinematicTitle {
     public static Layout layout(Content content,int width,int height,ToIntFunction<class_2561> measure) {
         // Complete boss introductions use the compact reference layout. Chapters and
         // result screens retain their own approved hierarchy and native timing.
+        // Absent English rows mark a Chinese-only result at vanilla title/subtitle sizes.
+        if(content.english()==null&&content.chinese()!=null&&content.chineseSubtitle()!=null&&content.englishSubtitle()==null)
+            return layout(content,width,height,measure,4f,false);
         String heading=content.english()==null?"":TranslationEngine.normalize(content.english().getString());
         boolean compact=!valleyChapter(heading,content.englishSubtitle()==null?"":content.englishSubtitle().getString())&&!heading.isBlank()&&!heading.equals("The Celsian Isles")
             &&!heading.matches("Tale [0-9]+ Complete")
@@ -41,6 +44,11 @@ public final class CinematicTitle {
 
     private static Layout layout(Content content,int width,int height,ToIntFunction<class_2561> measure,float primaryChineseScale,boolean compact) {
         float[] scales=SCALES.clone();scales[1]=primaryChineseScale;
+        if(content.english()==null&&content.englishSubtitle()==null)scales[2]=2f;
+        String heading=content.english()==null?"":TranslationEngine.normalize(content.english().getString());
+        String detail=content.englishSubtitle()==null?"":content.englishSubtitle().getString();
+        boolean chapter=valleyChapter(heading,detail)||heading.equals("The Celsian Isles");
+        if(chapter){scales[0]=1.65f;scales[1]=3.0f;}
         if(compact)scales[0]=1.35f;
         float viewport=Math.min(Math.max(1,width)/640f,Math.max(1,height)/360f);
         float gain=compact?Math.max(0.75f,Math.min(1.6f,(float)Math.sqrt(viewport))):1f;
@@ -109,7 +117,7 @@ public final class CinematicTitle {
 
     private static List<Row> rows(class_2561[] texts,int[] widths,float[] fitted,float[] scales,float gain,float density,float gap,boolean compact) {
         List<Row> rows=new ArrayList<>(texts.length);
-        float[] tops=TOPS;
+        float[] tops=texts[0]==null&&texts[3]==null?new float[]{-56f,-40f,10f,28f}:TOPS;
         if(compact) {
             float[] heights=new float[texts.length];
             for(int i=0;i<heights.length;i++)heights[i]=FONT_HEIGHT*fitted[i]*density;
@@ -120,7 +128,7 @@ public final class CinematicTitle {
             tops[1]=-groupGap/2f-heights[1];
             tops[0]=(texts[1]==null?-groupGap/2f:tops[1]-primaryGap)-heights[0];
             tops[2]=groupGap/2f;
-            tops[3]=texts[2]==null?tops[2]:tops[2]+heights[2]+secondaryGap;
+            tops[3]=tops[2]+heights[2]+secondaryGap;
         }
         float previousBottom=-Float.MAX_VALUE;
         for(int i=0;i<texts.length;i++) {

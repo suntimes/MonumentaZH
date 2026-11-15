@@ -16,6 +16,7 @@ public final class ArrivalTitle {
     private static List<String> lastContentKey;
     private static Content lastVisibleContent;
     private static int lastVisibleHash;
+    private static int lastChineseVisible = -1;
     private static List<String> visibleContentKey;
     private static List<class_2561> lastVisibleRows;
     private static class_327 lastFont;
@@ -43,9 +44,12 @@ public final class ArrivalTitle {
         return key;
     }
     static List<class_2561> visibleRows(Content content) {
+        return visibleRows(content, content.headingVisible());
+    }
+    static List<class_2561> visibleRows(Content content, int chineseVisible) {
         class_2561[] full={content.english(),content.chinese(),content.description(),content.englishDescription()};
         int heading=length(content.english()),description=length(content.englishDescription());
-        int[] counts={content.headingVisible(),proportional(content.headingVisible(),heading,length(content.chinese())),
+        int[] counts={content.headingVisible(),proportional(chineseVisible,heading,length(content.chinese())),
             content.englishDescription()==null?length(content.description()):proportional(content.descriptionVisible(),description,length(content.description())),content.descriptionVisible()};
         List<class_2561> rows=new ArrayList<>();
         for(int i=0;i<full.length;i++)if(full[i]!=null&&!full[i].getString().isBlank())rows.add(prefix(full[i],counts[i]));
@@ -70,12 +74,20 @@ public final class ArrivalTitle {
         return 255;
     }
     public static void draw(class_332 context,class_327 font,Content content,int alpha) {
+        draw(context, font, content, alpha, content.headingVisible());
+    }
+    public static void draw(class_332 context,class_327 font,Content content,int alpha,int chineseVisible) {
+        draw(context,font,content,alpha,(double)chineseVisible);
+    }
+    public static void draw(class_332 context,class_327 font,Content content,int alpha,double chineseProgress) {
+        int chineseVisible=(int)Math.ceil(chineseProgress);
         if(alpha<=8)return;
         int width=context.method_51421(),height=context.method_51443();
         int contentHash=content.hashCode();
-        if(lastVisibleContent==null||contentHash!=lastVisibleHash
+        if(lastVisibleContent==null||chineseVisible!=lastChineseVisible||contentHash!=lastVisibleHash
             ||content!=lastVisibleContent&&!content.equals(lastVisibleContent)) {
-            visibleContentKey=layoutKey(content);lastVisibleRows=visibleRows(content);
+            visibleContentKey=layoutKey(content);lastVisibleRows=visibleRows(content,chineseVisible);
+            lastChineseVisible=chineseVisible;
             lastVisibleHash=contentHash;
         }
         lastVisibleContent=content;
@@ -91,6 +103,12 @@ public final class ArrivalTitle {
             matrices.method_46416(context.method_51421()/2f,layout.centerY(),0);
             for(Row row:layout.rows()) {
                 class_2561 shown=visible.get(index++);
+                if(content.chinese()!=null&&index==(content.english()!=null&&!content.english().getString().isBlank()?2:1)) {
+                    double progress=length(content.english())==0?length(content.chinese()):
+                        Math.max(0,Math.min(length(content.chinese()),chineseProgress*length(content.chinese())/length(content.english())));
+                    drawSmoothHeading(context,font,row,alpha,progress);
+                    continue;
+                }
                 if(shown.getString().isEmpty())continue;
                 int shownWidth=font.method_27525(shown);
                 matrices.method_22903();
@@ -101,4 +119,44 @@ public final class ArrivalTitle {
             }
         } finally {matrices.method_22909();com.mojang.blaze3d.systems.RenderSystem.disableBlend();}
     }
+    // Preserve each glyph's server style; reveal the entering glyph through a moving pixel edge.
+    // Fractional centering removes the whole-character sideways jumps.
+    private static void drawSmoothHeading(class_332 context,class_327 font,Row row,int alpha,double progress) {
+        int count=(int)Math.floor(progress);
+        float part=(float)(progress-count);
+        class_2561 complete=prefix(row.text(),count);
+        int before=font.method_27525(complete),after=font.method_27525(prefix(row.text(),count+1));
+        float eased=part*part*(3f-2f*part);
+        float width=before+(after-before)*eased;
+        class_4587 matrices=context.method_51448();matrices.method_22903();
+        try {
+            matrices.method_46416(0,row.top(),0);matrices.method_22905(row.scale(),row.scale(),1);
+            matrices.method_46416(-width/2f,0,0);
+            if(count>0)context.method_27535(font,complete,0,0,(alpha<<24)|0xffffff);
+            if(part>0f&&count<length(row.text())) {
+                // DrawContext scissors use absolute GUI coordinates, independent of the text matrix.
+                // Only this entering glyph is clipped; the completed prefix and all other rows are untouched.
+                float edge=context.method_51421()/2f+(before+(after-before)*eased-width/2f)*row.scale();
+                int right=Math.max(0,Math.min(context.method_51421(),(int)Math.ceil(edge)));
+                context.method_44379(0,0,right,context.method_51443());
+                try {
+                    context.method_27535(font,glyph(row.text(),count),before,0,(alpha<<24)|0xffffff);
+                } finally {context.method_44380();}
+            }
+        } finally {matrices.method_22909();}
+    }
+    static class_2561 glyph(class_2561 full,int index) {
+        class_5250 result=class_2561.method_43473();int[] skip={index};
+        full.method_27658((style,value)->{
+            int size=value.codePointCount(0,value.length());
+            if(skip[0]>=0&&skip[0]<size) {
+                int start=value.offsetByCodePoints(0,skip[0]);
+                result.method_10852(class_2561.method_43470(value.substring(start,value.offsetByCodePoints(start,1))).method_10862(style));
+                skip[0]=-1;
+            } else if(skip[0]>=0)skip[0]-=size;
+            return Optional.empty();
+        },class_2583.field_24360);
+        return result;
+    }
+
 }

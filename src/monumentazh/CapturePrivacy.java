@@ -22,7 +22,7 @@ public final class CapturePrivacy {
         Pattern.compile("^(?:(?:Mailbox|Mail) )?(?:From|To|For) ([A-Za-z0-9_]{1,16})(?:$| To )"),
         Pattern.compile("^Mailbox From [A-Za-z0-9_]{1,16} To ([A-Za-z0-9_]{1,16})$"),
         Pattern.compile("(?:friend request to|now friends with|People with no instance:) ([A-Za-z0-9_]{1,16})(?=[\\s.!]|$)"),
-        Pattern.compile("(?:The player name '|Hey there |good luck )([A-Za-z0-9_]{1,16})(?=[\\s'.,!?]|$)"),
+        Pattern.compile("(?:The player name ')([A-Za-z0-9_]{1,16})(?=[\\s'.,!?]|$)"),
         Pattern.compile("You're ([A-Za-z0-9_]{1,16}), right\\?"),
         Pattern.compile("Friend request from (?:\\[[^]]+\\] )?([A-Za-z0-9_]{1,16})"),
         Pattern.compile("^View ([A-Za-z0-9_]{1,16})'s (?:gear|class|inventory)"),
@@ -89,6 +89,16 @@ public final class CapturePrivacy {
             if(record.matches()){out.add(record.group(1));return out;}
         }
         if(!(raw.contains(" has ")||raw.contains("Social >")||raw.contains("Soulbound to")||raw.contains("Reinforced by")||raw.contains("Tracked by")||raw.contains("Hoped by")||raw.contains("From ")||raw.contains("To ")||raw.contains("For ")||raw.contains("friend")||raw.contains("got mail")||raw.contains("People with")||raw.contains("CONGRATULATIONS!")||raw.startsWith("Welcome ")||raw.contains("Thanks ")||raw.contains(" joined.")||raw.contains(" quit.")||raw.contains(" died")||raw.contains(" was ")||raw.contains(" fell")||raw.contains(" burned ")||raw.contains(" drowned")||raw.contains(" defeated ")||raw.contains(" completed ")||raw.contains("player name")||raw.contains("You're ")||raw.contains("Hey there ")||raw.contains("good luck ")||raw.contains("Friend request from")||raw.startsWith("View ")||raw.contains("'s Inventory")||raw.contains("'s Details")||raw.contains(" (#")))return out;
+        // Greetings alone are weak evidence: require a vocative boundary and either
+        // an already observed identity or a name-shaped token. Never infer an
+        // ordinary lower-case continuation ("good luck getting ...") as an account.
+        Matcher greeting=Pattern.compile("(?:Hey there |good luck )([A-Za-z0-9_]{1,16})(?=$|['.,!?])").matcher(raw);
+        while(greeting.find()) {
+            String name=greeting.group(1);
+            boolean known=playerName(name);
+            boolean nameShape=Character.isUpperCase(name.charAt(0))||name.matches(".*[0-9_].*")||name.matches(".*[a-z][A-Z].*");
+            if((known||nameShape)&&!excluded(name))out.add(name);
+        }
         for(Pattern role:ROLES){Matcher m=role.matcher(raw);while(m.find())if(!excluded(m.group(1)))out.add(m.group(1));}
         return out;
     }

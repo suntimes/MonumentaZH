@@ -2,17 +2,17 @@
 
 Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。离线读取词库，补充 Monumenta 的物品、任务、NPC 对话、菜单、聊天悬浮、书籍及告示牌译文。
 
-当前版本为 **0.2.70-player-introduction**，附 **64,818 条**补充词库。职业专精任务与新导出内容已校对；本地原生回放检查通过，仍需实服视觉反馈。
+当前版本为 **0.2.146-help-cleanup**，附 71,066 条配套补充词库。职业专精任务与新导出内容已校对；本地原生回放检查通过，仍需实服视觉反馈。
 
-直接下载：[最新 JAR](releases/0.2.70/Monumenta-ZH-Supplement-1.20.4-0.2.70-player-introduction.jar?raw=true) · [完整安装包](releases/0.2.70/Monumenta-ZH-1.20.4-0.2.70-full.zip?raw=true) · [校验值](releases/0.2.70/SHA256SUMS.txt)
+下载：[最新 Release](https://github.com/suntimes/MonumentaZH/releases/latest)。普通玩家建议下载完整安装包，包含 JAR 与配套词库；也提供独立 JAR 和 SHA256 校验文件。
 
-首次三次提示分别介绍切换与快捷键、词库/JAR更新生效方式、漏译反馈；以普通玩家为对象。已看过的次数保留。译者采集说明在使用帮助中。
+首次使用提示仅自动显示一次，可用 `/monumentazh welcome` 手动查看。设置与提示页采用普通文字标题。
 
 ## 功能
 
 - 已收录内容显示中文，未收录文字保留原文；不调用在线翻译服务。
 - NPC 和地点可保留英文名称；NPC 对话正文采用中文。
-- 任务悬浮保留英文任务名，并显示中英难度、条件和起点。
+- 任务与钥匙提示按场景整理中文显示，地点英文保留范围依对应规则处理。
 - 玩家聊天、私聊与玩家 ID 保护；书籍作者和明确的创作者署名保留原文。
 - 告示牌显示和告示牌采集使用独立开关。
 - 自动收集可选开启；书籍按页分批处理，相同内容共用缓存。
@@ -30,7 +30,7 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。离线读取词库，�
 ./build.ps1 -GameDirectory 'X:/Minecraft/versions/1.20.4' -LibrariesDirectory 'X:/Minecraft/libraries'
 ```
 
-1. 退出 Minecraft，将 `dist/Monumenta-ZH-Supplement-1.20.4-0.2.70-player-introduction.jar` 放入该实例的 `mods` 文件夹。
+1. 退出 Minecraft，将 `dist/Monumenta-ZH-Supplement-1.20.4-0.2.146-help-cleanup.jar` 放入该实例的 `mods` 文件夹。
 2. 同时移出旧版同名 MOD，避免重复加载。
 3. 将本仓库 `config/monumenta_zh/` 中的 **overrides.json、names.json** 放入游戏实例相应配置目录。
 4. 启动游戏，用 `/monumentazh on` 开启汉化；快捷键可在游戏控制设置中自行绑定。
@@ -45,6 +45,8 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。离线读取词库，�
 | --- | --- |
 | `/monumentazh` | 设置面板 |
 | `/monumentazh on` / `off` | 中文显示 / 服务器原文 |
+| `/monumentazh toggle` | 切换中/英文 |
+| `/monumentazh welcome` | 查看首次使用提示 |
 | `/monumentazh reload` | 重载词库 |
 | `/monumentazh capture on` / `off` | 开启 / 暂停文本收集 |
 | `/monumentazh signs on` / `off` | 告示牌汉化显示 |
@@ -71,10 +73,10 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。离线读取词库，�
 
 作者：**suntime**  
 附魔与技能汉化引用：**Moe_block**  
-译者：**suntime、Armorer、vuken**  
+译者：**suntime、Armorer、vk**
 感谢 **XM、HF、QL** 等玩家的翻译协助。
 
-仅保证作者实际游玩部分的 80% 内容无误；其余区域以机翻为主。这里不代表全服务器覆盖率或整份词库准确率，遇到疑问请切换原文核对。
+非官方模组，与Monumenta制作组无关。有机翻内容。
 
-这是非官方个人中文补充，与 Monumenta 官方没有隶属关系。程序代码采用 [MIT](LICENSE)；游戏原文和引用译文的来源及适用范围见 [NOTICE](NOTICE.md)。
+程序代码采用 [MIT](LICENSE)；游戏原文和引用译文的来源及适用范围见 [NOTICE](NOTICE.md)。
 

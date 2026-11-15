@@ -5,7 +5,7 @@
 - `src/monumentazh/`：客户端入口、组件翻译、身份保护、采集队列和固定格式规则。
 - `src/monumentazh/mixin/`：Minecraft 1.20.4 显示入口钩子。
 - `resources/`：Fabric 元信息、Mixin 声明、内置基础词库和按键语言文件。
-- `config/monumenta_zh/`：0.2.46 配套补充词库与 NPC/地点名称数据。
+- `config/monumenta_zh/`：当前版本配套补充词库与 NPC/地点名称数据。
 - `tests/`：不启动游戏窗口的队列和数量规则测试。
 
 构建只使用开发者自己安装的 Minecraft/Fabric 依赖。当前没有 Gradle/Loom 工程，也没有将 Minecraft、Fabric、Gson 或 Mixin JAR 放入仓库。

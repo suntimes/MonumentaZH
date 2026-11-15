@@ -30,17 +30,98 @@ public final class ChatMessageFilter {
     }
     public static Kind classify(JsonElement component, String plain) {
         String value = plain == null ? "" : plain.replaceAll("§[0-9A-FK-ORa-fk-or]", "");
-        if (CHANNEL.matcher(value).find() || PRIVATE.matcher(value).find() || hasPlayerMarker(component))
+        if (CHANNEL.matcher(value).find() || PRIVATE.matcher(value).find())
             return Kind.PLAYER;
-        if (SENDER.matcher(value).find() && !questMetadata(component, value)) return Kind.PLAYER;
+        if (instanceNotice(component, value)) return strongPlayerSource(component, true) ? Kind.PLAYER : Kind.SYSTEM;
+        if (hasPlayerMarker(component)) return Kind.PLAYER;
+        if (SENDER.matcher(value).find() && !questMetadata(component, value) && !deathHelpHeading(component, value) && !islesQuestWarning(component, value) && !repairAchievement(component, value)) return Kind.PLAYER;
         return NPC.matcher(value).find() ? Kind.NPC : Kind.SYSTEM;
+    }
+
+    // Screenshot-confirmed achievement header: dark aqua label, white repair objective.
+    private static boolean repairAchievement(JsonElement component,String plain) {
+        if(!plain.matches("Description: Repair (?:20|50|100|200|500) items[.]")
+            || TranslationEngine.hasHiddenText(component) || strongPlayerSource(component,true))return false;
+        List<String> leaves=new ArrayList<>();
+        if(!achievementLeaves(component,"",leaves))return false;
+        return String.join("",leaves).equals(plain);
+    }
+    private static boolean achievementLeaves(JsonElement value,String inherited,List<String> leaves) {
+        if(value==null||value.isJsonNull())return true;
+        if(value.isJsonArray()){for(JsonElement v:value.getAsJsonArray())if(!achievementLeaves(v,inherited,leaves))return false;return true;}
+        if(value.isJsonPrimitive())return achievementLeaf(value.getAsString(),inherited,leaves);
+        if(!value.isJsonObject())return false;
+        JsonObject o=value.getAsJsonObject();
+        if(o.has("translate")||o.has("keybind")||o.has("selector")||o.has("score")||o.has("clickEvent")||o.has("hoverEvent"))return false;
+        String color=o.has("color")?o.get("color").getAsString().toLowerCase(Locale.ROOT):inherited;
+        return (!o.has("text")||achievementLeaf(o.get("text").getAsString(),color,leaves))
+            &&(!o.has("extra")||achievementLeaves(o.get("extra"),color,leaves));
+    }
+    private static boolean achievementLeaf(String text,String color,List<String> leaves) {
+        if(text.isEmpty())return true;
+        boolean header=leaves.isEmpty();
+        if(header) {if(!text.equals("Description: ")||!(color.equals("dark_aqua")||color.equals("#00aaaa")))return false;}
+        else if(!(color.equals("white")||color.equals("#ffffff")))return false;
+        leaves.add(text);return true;
+    }
+
+    // Exact screenshot-confirmed quest warning, never arbitrary "WARNING:" chat.
+    private static boolean islesQuestWarning(JsonElement component,String plain) {
+        return plain.replaceAll("\\s+"," ").strip().equals(WARNING_TEXT)
+            && !TranslationEngine.hasHiddenText(component) && !strongPlayerSource(component,true)
+            && redWarningText(component,false);
+    }
+    private static final String WARNING_TEXT="WARNING: This quest will unlock access to the Celsian Isles, Monumenta's second region. It is HEAVILY advised to have completed the King's Valley Monument prior to beginning this quest.";
+    private static boolean redWarningText(JsonElement value,boolean red) {
+        if(value==null||value.isJsonNull())return true;
+        if(value.isJsonArray()){for(JsonElement child:value.getAsJsonArray())if(!redWarningText(child,red))return false;return true;}
+        if(value.isJsonPrimitive())return value.getAsString().isBlank()||red;
+        if(!value.isJsonObject())return false;
+        JsonObject o=value.getAsJsonObject();
+        if(o.has("translate")||o.has("keybind")||o.has("selector")||o.has("score"))return false;
+        if(o.has("color")){String c=o.get("color").getAsString();red=c.equalsIgnoreCase("red")||c.equalsIgnoreCase("#ff5555");}
+        return (!o.has("text")||o.get("text").getAsString().isBlank()||red)&&(!o.has("extra")||redWarningText(o.get("extra"),red));
+    }
+
+    // A server status line embeds entity hovers for its listed players. Keep those nodes untouched.
+    private static boolean instanceNotice(JsonElement component, String plain) {
+        if (TranslationEngine.hasHiddenText(component)) return false;
+        return plain.matches("^\\[-_-\\] People with no instance: [A-Za-z0-9_]{1,16}(?:(?:, | and |, and )[A-Za-z0-9_]{1,16})*$");
+    }
+    private static boolean strongPlayerSource(JsonElement value, boolean root) {
+        if (value == null || value.isJsonNull()) return false;
+        if (value.isJsonArray()) { for (JsonElement child : value.getAsJsonArray()) if (strongPlayerSource(child,false)) return true; return false; }
+        if (!value.isJsonObject()) return false;
+        JsonObject o=value.getAsJsonObject();
+        if(o.has("translate")) {String k=o.get("translate").getAsString();if(PLAYER_CHAT_KEYS.contains(k)||k.startsWith("commands.message.display."))return true;}
+        if(o.has("clickEvent")&&o.get("clickEvent").isJsonObject()) {JsonObject c=o.getAsJsonObject("clickEvent");if(root||c.has("value")&&CHAT_COMMAND.matcher(c.get("value").getAsString().stripLeading()).find())return true;}
+        return o.has("extra")&&strongPlayerSource(o.get("extra"),false);
+    }
+    private static boolean rewriteInstanceNotice(JsonElement value, TranslationEngine engine, Set<String> names) {
+        if(value==null)return false;
+        if(value.isJsonArray()){boolean changed=false;for(JsonElement child:value.getAsJsonArray())changed|=rewriteInstanceNotice(child,engine,names);return changed;}
+        if(!value.isJsonObject())return false;
+        JsonObject o=value.getAsJsonObject(); boolean changed=false;
+        if(o.has("text")) {
+            String raw=o.get("text").getAsString();
+            // A literal player name remains byte-for-byte intact, including its interactive node.
+            if(raw.contains("People with no instance:")) {String translated=raw.replace("People with no instance: ","没有副本进度的玩家：");if(!raw.equals(translated)){TranslationEngine.replaceTranslatedText(o,translated);changed=true;}}
+        }
+        if(o.has("extra"))for(JsonElement child:o.getAsJsonArray("extra"))changed|=rewriteInstanceNotice(child,engine,names);
+        return changed;
+    }
+    // Known standalone help headings also look like a "player:" prefix.
+    // Explicit player metadata/channels are checked first; never exempt arbitrary senders.
+    private static boolean deathHelpHeading(JsonElement component, String plain) {
+        if (!Set.of("RESPAWNING:", "PENALTIES:", "GRAVES:").contains(plain.strip())) return false;
+        return component != null && !component.isJsonNull() && aquaVisible(component, false);
     }
 
     // Only the server's aqua quest-card fields bypass the ambiguous "name: message" heuristic.
     // Explicit player metadata, channels and whispers always take precedence in classify().
     private static boolean questMetadata(JsonElement component, String plain) {
         String value = plain.replaceAll("§[0-9A-FK-ORa-fk-or]", "").replace('\u00a0', ' ');
-        if (!value.matches("(?:Length *: *(?:Short|Medium|Long|Very Short|Very Long)|Difficulty *: *(?:Easy|Medium|Hard|Very Easy|Very Hard)|Description *: *\\S[^\\r\\n]*)")) return false;
+        if (!value.matches("(?:QUEST *: *WINDS OF WAR|Length *: *(?:Short|Short-Medium|Medium|Medium-Long|Long|Very Short|Very Long)|Difficulty *: *(?:Easy|Medium|Hard|Very Easy|Very Hard)|Description *: *\\S[^\\r\\n]*)")) return false;
         return aquaVisible(component, false);
     }
 
@@ -133,6 +214,9 @@ public final class ChatMessageFilter {
 
     public static Set<String> protectedNames(String plain) {
         Set<String> names = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+        if (instanceNotice(null, plain)) {
+            for(String id:plain.substring(plain.indexOf(": ")+2).split(", and | and |, ")) names.add(id);
+        }
         for (Pattern pattern : ANNOUNCEMENT_NAMES) {
             Matcher matcher = pattern.matcher(plain);
             while (matcher.find()) names.add(matcher.group(1));
@@ -143,6 +227,8 @@ public final class ChatMessageFilter {
     /** Exact phrases/templates only: an unknown sentence is captured intact, without scattered word replacement. */
     public static boolean rewriteVisible(JsonElement value, TranslationEngine engine, Set<String> protectedNames) {
         if (value == null || value.isJsonNull()) return false;
+        if (TranslationEngine.hasHiddenText(value)) return false;
+        if (instanceNotice(value, visibleText(value)) && classify(value, visibleText(value)) == Kind.SYSTEM) return rewriteInstanceNotice(value, engine, protectedNames);
         boolean changed = rewriteQuestMetadata(value, engine, protectedNames);
         if (value.isJsonObject()) changed |= rewriteServerHover(value.getAsJsonObject(), engine, protectedNames);
         if (value.isJsonArray()) {

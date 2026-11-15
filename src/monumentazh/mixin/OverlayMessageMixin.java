@@ -2,6 +2,7 @@ package monumentazh.mixin;
 
 import monumentazh.MonumentaZh;
 import monumentazh.ArrivalTitle;
+import monumentazh.ArrivalReveal;
 import monumentazh.DiscoveryTitle;
 import monumentazh.CinematicTitle;
 import net.minecraft.class_2561;
@@ -24,6 +25,9 @@ public abstract class OverlayMessageMixin {
     @Shadow private int field_2017;
     @Shadow private int field_2036;
     @Unique private ArrivalTitle.Content monumentazh$arrival;
+    @Unique private final ArrivalReveal monumentazh$arrivalReveal = new ArrivalReveal();
+    @Unique private Object monumentazh$arrivalWorld;
+    @Unique private double monumentazh$chineseHeadingVisible;
     @Unique private DiscoveryTitle.Content monumentazh$discovery;
     @Unique private CinematicTitle.Content monumentazh$cinematic;
     @Unique private class_2561 monumentazh$lastTitle,monumentazh$lastSubtitle;
@@ -47,18 +51,28 @@ public abstract class OverlayMessageMixin {
         boolean active=MonumentaZh.active();
         if(field_2016!=monumentazh$lastTitle||field_2039!=monumentazh$lastSubtitle||titleHash!=monumentazh$titleHash||subtitleHash!=monumentazh$subtitleHash||revision!=monumentazh$revision||active!=monumentazh$wasActive) {
             monumentazh$discovery=MonumentaZh.discoveryTitle(field_2016,field_2039);
-            monumentazh$arrival=monumentazh$discovery==null?MonumentaZh.arrivalTitle(field_2016,field_2039):null;
-            monumentazh$cinematic=monumentazh$discovery==null&&monumentazh$arrival==null?MonumentaZh.cinematicTitle(field_2016,field_2039):null;
+            // A complete boss/chapter/result pair outranks a place-name prefix.
+            monumentazh$cinematic=monumentazh$discovery==null?MonumentaZh.cinematicTitle(field_2016,field_2039):null;
+            monumentazh$arrival=monumentazh$discovery==null&&monumentazh$cinematic==null?MonumentaZh.arrivalTitle(field_2016,field_2039):null;
             monumentazh$lastTitle=field_2016;monumentazh$lastSubtitle=field_2039;
             monumentazh$titleHash=titleHash;monumentazh$subtitleHash=subtitleHash;monumentazh$revision=revision;
             monumentazh$wasActive=active;
         }
         // Recheck connection/enable state without invalidating stable, expensive text measurements.
         if(!active){monumentazh$arrival=null;monumentazh$discovery=null;monumentazh$cinematic=null;}
+        Object world=net.minecraft.class_310.method_1551().field_1687;
+        if(world!=monumentazh$arrivalWorld||monumentazh$arrival==null||monumentazh$arrival.chinese()==null||field_2023<=0) {
+            monumentazh$arrivalReveal.reset();
+            monumentazh$arrivalWorld=world;
+        }
+        if(monumentazh$arrival!=null&&monumentazh$arrival.chinese()!=null&&field_2023>0) {
+            monumentazh$chineseHeadingVisible=monumentazh$arrivalReveal.updateSmooth(
+                monumentazh$arrival.english().getString(),monumentazh$arrival.headingVisible(),System.nanoTime());
+        }
     }
     @Inject(method="method_1753",at=@At("TAIL"),remap=false)
     private void monumentazh$drawArrival(net.minecraft.class_332 context,float delta,CallbackInfo ci) {
-        if(monumentazh$arrival!=null)ArrivalTitle.draw(context,net.minecraft.class_310.method_1551().field_1772,monumentazh$arrival,ArrivalTitle.alpha(field_2023,delta,field_2037,field_2017,field_2036));
+        if(monumentazh$arrival!=null)ArrivalTitle.draw(context,net.minecraft.class_310.method_1551().field_1772,monumentazh$arrival,ArrivalTitle.alpha(field_2023,delta,field_2037,field_2017,field_2036),monumentazh$chineseHeadingVisible);
         if(monumentazh$cinematic!=null)CinematicTitle.draw(context,net.minecraft.class_310.method_1551().field_1772,monumentazh$cinematic,ArrivalTitle.alpha(field_2023,delta,field_2037,field_2017,field_2036));
         if(monumentazh$discovery!=null)DiscoveryTitle.draw(context,net.minecraft.class_310.method_1551().field_1772,monumentazh$discovery,ArrivalTitle.alpha(field_2023,delta,field_2037,field_2017,field_2036));
     }

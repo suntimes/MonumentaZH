@@ -6,7 +6,7 @@ import java.util.regex.*;
 
 /** Bilingual layout for complete server quest help cards; ordinary text and saved settings are untouched. */
 public final class QuestHoverLayout {
-    private static final Pattern CARD=Pattern.compile("^([^\\n]+)\\nDifficulty[ \\t]*:[ \\t]*([^\\n]+)\\nRequirements[ \\t]*:[ \\t]*(.+?)\\nStart[ \\t]*:[ \\t]*([^\\n]+)(?:\\n(.*))?$",Pattern.DOTALL);
+    private static final Pattern CARD=Pattern.compile("^([^\\n]+)\\n(?:Difficulty[ \\t]*:[ \\t]*([^\\n]+)\\n)?(?:Requirements[ \\t]*:[ \\t]*(.+?)\\n)?Start[ \\t]*:[ \\t]*([^\\n]+)(?:\\n(.*))?$",Pattern.DOTALL);
     private static final Pattern COMPLETED=Pattern.compile("^Completed the (.+?) Dungeon(?: and speak to (.+?) afterwards\\.)?$",Pattern.CASE_INSENSITIVE);
     private static final Pattern LOBBY=Pattern.compile("^(.+?) in the (.+?) lobby$",Pattern.CASE_INSENSITIVE);
     private static final Map<String,String> COLORS=Map.ofEntries(Map.entry("white","白色"),Map.entry("orange","橙色"),Map.entry("magenta","品红"),Map.entry("light blue","淡蓝色"),Map.entry("yellow","黄色"),Map.entry("lime","黄绿色"),Map.entry("pink","粉红色"),Map.entry("gray","灰色"),Map.entry("light gray","淡灰色"),Map.entry("cyan","青色"),Map.entry("purple","紫色"),Map.entry("blue","蓝色"),Map.entry("brown","棕色"),Map.entry("green","绿色"),Map.entry("red","红色"),Map.entry("black","黑色"));
@@ -27,9 +27,9 @@ public final class QuestHoverLayout {
     private QuestHoverLayout() {}
 
     public static boolean rewrite(JsonObject hover,TranslationEngine engine,Set<String> protectedNames) {
-        if(!hover.has("contents"))return false;
+        if(!hover.has("contents")||hover.has("action")&&!hover.get("action").getAsString().equals("show_text"))return false;
         JsonElement original=hover.get("contents");
-        if(unsupported(original))return false;
+        if(unsupported(original)||hidden(original))return false;
         List<JsonObject> runs=new ArrayList<>();collect(original,new JsonObject(),runs);
         StringBuilder joined=new StringBuilder();for(JsonObject run:runs)joined.append(run.get("text").getAsString());
         String full=joined.toString().replace("\r\n","\n");Matcher card=CARD.matcher(full.stripTrailing());
@@ -38,16 +38,21 @@ public final class QuestHoverLayout {
         String footer=card.group(5)==null?"":card.group(5).strip();
         if(!footer.isEmpty()&&!FOOTERS.containsKey(footer))return false;
         String title=card.group(1),level=card.group(2),requirements=card.group(3),start=card.group(4);
-        // A card requires all three fields in order and a standalone title, never an incidental sentence.
-        if(title.isBlank()||title.length()>180||level.isBlank()||start.isBlank())return false;
-        JsonObject titleStyle=styleAt(runs,card.start(1)),levelStyle=styleAt(runs,card.start(2)),requirementStyle=styleAt(runs,card.start(3)),startStyle=styleAt(runs,card.start(4));
+        // Start is required; absent difficulty or requirements must never be invented.
+        // Reduced cards require a known translated quest title to avoid incidental prose.
+        if(title.isBlank()||title.length()>180||(level!=null&&level.isBlank())||start.isBlank())return false;
+        if((level==null||requirements==null)&&local(title,engine,protectedNames).equals(title))return false;
+        JsonObject titleStyle=styleAt(runs,card.start(1)),levelStyle=styleAt(runs,Math.max(0,card.start(2))),startStyle=styleAt(runs,card.start(4));
         JsonArray output=new JsonArray();
         String translated=local(title,engine,protectedNames);
         add(output,title+(translated.equals(title)?"":"（"+translated+"）"),titleStyle);newline(output,2);
-        label(output,"难度 / Difficulty：");
+        if(level!=null) {
+        label(output,"难度 / Difficulty:");newline(output,1);
         String chineseLevel=LEVELS.getOrDefault(level.toLowerCase(Locale.ROOT),local(level,engine,protectedNames));
         add(output,chineseLevel.equals(level)?level:chineseLevel+"（"+level+"）",levelStyle);newline(output,2);
-        label(output,"前置要求 / Requirements：");newline(output,1);
+        }
+        if(requirements!=null) {
+        label(output,"前置 / Requirements:");newline(output,1);
         String all=local(requirements,engine,protectedNames);
         String[] entries=all.equals(requirements)?splitRequirements(requirements):new String[]{requirements};
         for(int i=0;i<entries.length;i++) {
@@ -56,7 +61,9 @@ public final class QuestHoverLayout {
             pair(output,chinese,english,own);
             if(i+1<entries.length)newline(output,1);
         }
-        newline(output,2);label(output,"起始位置 / Start：");newline(output,1);
+        newline(output,2);
+        }
+        label(output,"起始位置 / Start:");newline(output,1);
         Matcher lobby=LOBBY.matcher(start);String chineseStart=start(start,engine,protectedNames);
         if(lobby.matches()) {
             String color=COLORS.get(lobby.group(2).toLowerCase(Locale.ROOT));
@@ -67,7 +74,7 @@ public final class QuestHoverLayout {
             newline(output,2);JsonObject footerStyle=styleAt(runs,card.start(5));
             pair(output,FOOTERS.get(footer),footer,footerStyle);
         }
-        JsonObject result=new JsonObject();result.addProperty("text","");result.add("extra",output);
+        JsonObject result=new JsonObject();result.addProperty("text","");result.add("extra",output);if(titleStyle.has("font"))result.add("font",titleStyle.get("font").deepCopy());
         hover.add("contents",result);return true;
     }
     private static String requirement(String english,TranslationEngine engine,Set<String> protectedNames) {
@@ -115,7 +122,7 @@ public final class QuestHoverLayout {
     }
     private static void pair(JsonArray output,String chinese,String english,JsonObject style) {
         add(output,"  "+chinese,style);
-        if(!chinese.equals(english)) {newline(output,1);JsonObject secondary=style.deepCopy();secondary.addProperty("color","gray");add(output,"  "+english,secondary);}
+        if(!chinese.equals(english)) {newline(output,1);JsonObject secondary=style.deepCopy();add(output,"  "+english,secondary);}
     }
     private static void label(JsonArray output,String text) {JsonObject style=new JsonObject();style.addProperty("color","gray");add(output,text,style);}
     private static void newline(JsonArray output,int count) {output.add("\n".repeat(count));}
@@ -131,6 +138,15 @@ public final class QuestHoverLayout {
         if(value.isJsonArray()){for(JsonElement child:value.getAsJsonArray())collect(child,inherited,runs);return;}
         JsonObject object=value.getAsJsonObject(),style=inherited.deepCopy();for(String key:STYLES)if(object.has(key))style.add(key,object.get(key).deepCopy());
         if(object.has("text"))collect(object.get("text"),style,runs);if(object.has("extra"))collect(object.get("extra"),style,runs);
+    }
+    private static boolean hidden(JsonElement value) {
+        if(value==null||value.isJsonNull())return false;
+        if(value.isJsonPrimitive())return value.getAsJsonPrimitive().isString()&&Pattern.compile("(?i)§k|&k").matcher(value.getAsString()).find();
+        if(value.isJsonArray()){for(JsonElement child:value.getAsJsonArray())if(hidden(child))return true;return false;}
+        JsonObject object=value.getAsJsonObject();
+        if(object.has("obfuscated")&&object.get("obfuscated").getAsBoolean())return true;
+        for(var entry:object.entrySet())if(hidden(entry.getValue()))return true;
+        return false;
     }
     private static boolean unsupported(JsonElement value) {
         if(value==null||value.isJsonNull())return false;

@@ -9,6 +9,17 @@ import java.util.*;
 public final class ArrivalAnimation {
     private record Rules(Map<String,String> descriptions,Set<String> candidates) {}
     private static final Rules RULES=load();
+    private static final Set<String> PLACE_PREFIXES=loadPlacePrefixes();
+    private static Set<String> loadPlacePrefixes() {
+        Set<String> names=new HashSet<>(RULES.descriptions().keySet());
+        try(InputStream input=ArrivalAnimation.class.getResourceAsStream("/monumenta_names.json")) {
+            if(input!=null) {
+                JsonObject catalog=JsonParser.parseReader(new InputStreamReader(input,StandardCharsets.UTF_8)).getAsJsonObject();
+                if(catalog.has("place_names"))names.addAll(catalog.getAsJsonObject("place_names").keySet());
+            }
+        } catch(Exception ex) {System.err.println("[MonumentaZH] Arrival place prefixes unavailable: "+ex.getMessage());}
+        return Set.copyOf(names);
+    }
     private ArrivalAnimation() {}
     private static Rules load() {
         Map<String,String> descriptions=new LinkedHashMap<>();Set<String> candidates=new LinkedHashSet<>();
@@ -27,7 +38,7 @@ public final class ArrivalAnimation {
     }
     public static boolean isArrivalPrefix(String raw) {
         if(raw==null||raw.isEmpty())return false;
-        for(String city:RULES.descriptions().keySet())if(city.startsWith(raw))return true;
+        for(String city:PLACE_PREFIXES)if(city.startsWith(raw))return true;
         return false;
     }
     public static String completeSubtitle(String cityEnglish,String raw) {

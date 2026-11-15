@@ -2,6 +2,7 @@ package monumentazh.mixin;
 
 import monumentazh.MonumentaZh;
 import monumentazh.HologramLayout;
+import monumentazh.PlayerLabelIdentity;
 import net.minecraft.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,7 +28,7 @@ public abstract class EntityLabelMixin {
     @Shadow protected abstract void method_3926(class_1297 entity,class_2561 text,class_4587 matrices,class_4597 consumers,int light);
     @Inject(method="method_3926",at=@At("HEAD"),cancellable=true,remap=false)
     private void monumentazh$label(class_1297 entity,class_2561 original,class_4587 matrices,class_4597 consumers,int light,CallbackInfo callback) {
-        if(monumentazh$drawing||entity instanceof class_1657)return;
+        if(monumentazh$drawing||PlayerLabelIdentity.preserve(entity,original))return;
         boolean stacked=HologramLayout.preferUpper(original.getString());
         boolean fixed=HologramLayout.fixed(entity)&&!stacked;
         class_2561 translated=MonumentaZh.display(original,fixed?"hologram_label":"entity_label");

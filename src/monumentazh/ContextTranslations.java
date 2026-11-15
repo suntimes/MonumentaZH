@@ -49,15 +49,16 @@ public final class ContextTranslations {
     }
 
     private static final Pattern QUEST_LITERAL=Pattern.compile(
-        "^§b§l(Shurima's Big Day Off|The Elder's Scrolls)§r§b (\\[\\d+/\\d+\\])$");
+        "^§b§l(Shurima's Big Day Off|The Elder's Scrolls|The Scout's Codex)§r§b (\\[\\d+/\\d+\\])$");
     private ContextTranslations() {}
 
-    /** Keep the native reset before progress numbers in these two captured titles. */
+    /** Keep the native reset before progress numbers in these captured titles. */
     public static class_2561 questTitle(class_2561 original,TranslationEngine global) {
         if(original==null||global==null)return null;
         String raw=original.getString();
         if(!raw.contains("§b§lShurima's Big Day Off§r§b [")
-            &&!raw.contains("§b§lThe Elder's Scrolls§r§b ["))return null;
+            &&!raw.contains("§b§lThe Elder's Scrolls§r§b [")
+            &&!raw.contains("§b§lThe Scout's Codex§r§b ["))return null;
         JsonElement copy=componentCopy(original);
         if(CapturePrivacy.playerComponent(copy))return null;
         if(rewriteQuestLiteral(copy,global)!=1)return null;
@@ -122,6 +123,8 @@ public final class ContextTranslations {
         for(class_2561 line:lines) {
             if(line==null)continue;
             String raw=line.getString();
+            if(pyromaniaLine(key(raw)))return true;
+            if(raw.equals("Drop a stack of HCS into the blade")||raw.equals("the blade to extract a stack of HCS."))return true;
             if(RULES.tooltips().containsKey(raw)
                 ||raw.indexOf('§')>=0&&RULES.tooltips().containsKey(key(raw)))return true;
         }
@@ -136,7 +139,7 @@ public final class ContextTranslations {
                                   TranslationEngine global) {
         if(global==null||original==null||displayed==null||original.size()!=displayed.size()
             ||RULES.tooltips().isEmpty())return false;
-        boolean changed=false;
+        boolean changed=inflationKeybind(original,displayed,global);
         for(int at=0;at<original.size();at++) {
             class_2561 first=original.get(at);
             if(first==null)continue;
@@ -175,7 +178,73 @@ public final class ContextTranslations {
                 changed=true;at+=count-1;break;
             }
         }
+        return pyromaniaTooltip(original,displayed)||changed;
+    }
+
+    private static boolean pyromaniaLine(String raw) {
+        return raw.equals("Carbocius needs magma samples. Retrieve one from")
+            ||raw.equals("Carbocius needs magma samples. Retrieve one from {...}")
+            ||raw.equals("Return to Carbocius once you have all three magma")
+            ||raw.equals("Return to Carbocius once you have all three magma {...}");
+    }
+    private static boolean pyromaniaTooltip(List<class_2561> original,List<class_2561> displayed) {
+        if(original.stream().noneMatch(t->t!=null&&pyromaniaLine(key(t.getString()))))return false;
+        boolean changed=false;
+        for(int i=0;i<displayed.size();i++) {
+            if(displayed.get(i)==null)continue;
+            JsonElement copy=componentCopy(displayed.get(i));
+            if(CapturePrivacy.playerComponent(copy))continue;
+            if(NameLocalizer.cleanPyromaniaReferences(copy)) {
+                class_2561 result=class_2561.class_2562.method_10872(copy);
+                if(result!=null){displayed.set(i,result);changed=true;}
+            }
+        }
         return changed;
+    }
+
+    // Two captured Inflation instructions, matched by key identity rather than its localized label.
+    private static boolean inflationKeybind(List<class_2561> original,List<class_2561> displayed,TranslationEngine global) {
+        boolean changed=false;
+        String deposit="Drop a stack of HCS into the blade",withdraw="the blade to extract a stack of HCS.";
+        for(int at=0;at+1<original.size();at++) {
+            if(original.get(at)==null||original.get(at+1)==null)continue;
+            if(!deposit.equals(original.get(at).getString())&&!withdraw.equals(original.get(at+1).getString()))continue;
+            JsonElement a=componentCopy(original.get(at)),b=componentCopy(original.get(at+1));
+            if(CapturePrivacy.playerComponent(a)||CapturePrivacy.playerComponent(b)||TranslationEngine.hasHiddenText(a)||TranslationEngine.hasHiddenText(b))continue;
+            String left=keybindTemplate(a),right=keybindTemplate(b);boolean storing=deposit.equals(left)&&"with <key.use> to store it inside.".equals(right);
+            boolean taking="With an empty cursor, <key.use> on".equals(left)&&withdraw.equals(right);
+            if(!storing&&!taking)continue;
+            String companion=storing?deposit:withdraw,translated=global.translate(companion,false);
+            Set<String> allowed=storing?Set.of(deposit,"将一组HCS存入刀刃："):Set.of(withdraw,"刀刃，即可取出一组HCS。");
+            if(!allowed.contains(translated))continue; // A user-authored companion translation wins.
+            // Every literal we replace is independently guarded, including children of keybind.
+            if(storing) {
+                if(!Set.of("with","与").contains(global.translate("with ",false).strip())
+                    ||!global.translate(" to store it inside.",false).strip().equals("to store it inside."))continue;
+            } else {
+                if(!Set.of("With an empty cursor,","鼠标未拿取物品时，").contains(global.translate("With an empty cursor, ",false).strip())
+                    ||!global.translate(" on",false).strip().equals("on"))continue;
+            }
+            JsonObject exact=new JsonObject();
+            if(storing){exact.addProperty(deposit,"将一组HCS存入刀刃：");exact.addProperty("with ","使用");exact.addProperty(" to store it inside.","即可存入。");}
+            else {exact.addProperty("With an empty cursor, ","鼠标未拿取物品时，按");exact.addProperty(" on","点击");exact.addProperty(withdraw,"刀刃，即可取出一组HCS。");}
+            JsonObject dictionary=new JsonObject();dictionary.add("exact",exact);TranslationEngine local=new TranslationEngine(dictionary);local.rewriteVisible(a,false);local.rewriteVisible(b,false);
+            class_2561 aa=class_2561.class_2562.method_10872(a),bb=class_2561.class_2562.method_10872(b);
+            if(aa==null||bb==null)continue;
+            displayed.set(at,aa);displayed.set(at+1,bb);changed=true;at++;
+        }
+        return changed;
+    }
+    private static String keybindTemplate(JsonElement value) {
+        if(value==null||value.isJsonNull())return "";
+        if(value.isJsonPrimitive())return value.getAsString();
+        if(value.isJsonArray()){StringBuilder out=new StringBuilder();for(JsonElement v:value.getAsJsonArray()){String part=keybindTemplate(v);if(part==null)return null;out.append(part);}return out.toString();}
+        if(!value.isJsonObject())return null;
+        JsonObject o=value.getAsJsonObject();
+        if(o.has("translate")||o.has("selector")||o.has("score")||o.has("clickEvent")||o.has("hoverEvent"))return null;
+        if(o.has("keybind")&&(o.has("text")||!o.get("keybind").getAsString().equals("key.use")))return null;
+        String start=o.has("keybind")?"<key.use>":o.has("text")?o.get("text").getAsString():"";
+        String tail=keybindTemplate(o.get("extra"));return tail==null?null:start+tail;
     }
 
     /**
@@ -186,6 +255,8 @@ public final class ContextTranslations {
      */
     public static JsonElement serverCopy(JsonElement displayJson,String source,TranslationEngine global) {
         if(displayJson==null||displayJson.isJsonNull()||source==null||global==null)return null;
+        JsonElement dialogue=cshuraMissingCopy(displayJson,source,global);
+        if(dialogue!=null)return dialogue;
         JsonElement enough=cshuraEnoughCopy(displayJson,source,global);
         if(enough!=null)return enough;
         JsonElement bounty=auditedBountyCopy(displayJson,source,global);
@@ -199,6 +270,37 @@ public final class ContextTranslations {
         if(!rule.local().rewriteVisible(copy,false))return null;
         class_2561 result=class_2561.class_2562.method_10872(copy);
         return result!=null&&key(result.getString()).equals(key(rule.rewrittenVisible()))?copy:null;
+    }
+
+    /** Complete audited C'Shura lines only: preserve the original coloured leaves. */
+    private static JsonElement cshuraMissingCopy(JsonElement original,String source,TranslationEngine global) {
+        if(ChatMessageFilter.classify(original,source)!=ChatMessageFilter.Kind.NPC
+            ||CapturePrivacy.playerComponent(original))return null;
+        String body,target;
+        JsonObject exact=new JsonObject();
+        switch(key(source)) {
+            case "[C'Shura] Kaul!":
+                body="Kaul!";target="考尔！";exact.addProperty(body,target);break;
+            case "[C'Shura] Please...":
+                body="Please...";target="求你了……";exact.addProperty(body,target);break;
+            case "[C'Shura] It was the Soulspeaker! He wanted to save us!":
+                body="It was the Soulspeaker! He wanted to save us!";target="是灵魂语者！他想救我们！";
+                exact.addProperty("It was the","是");
+                exact.addProperty("Soulspeaker! He wanted to save us!","灵魂语者！他想救我们！");break;
+            case "[C'Shura] I'm giving you a chance to run before I cut you down.":
+                body="I'm giving you a chance to run before I cut you down.";
+                target="我给你一个逃跑的机会，趁我还没把你砍倒。";
+                exact.addProperty("I'm giving you a chance to run","我给你一个逃跑的机会，");
+                exact.addProperty("before I cut you down.","趁我还没把你砍倒。");break;
+            default:return null;
+        }
+        if((!body.equals("Kaul!")&&!body.equals("Please...")&&!target.equals(global.exactTranslation(body)))
+            ||!("[克舒拉] "+target).equals(global.exactTranslation("[C'Shura] "+body)))return null;
+        JsonObject dictionary=new JsonObject();dictionary.add("exact",exact);
+        JsonElement copy=original.deepCopy();
+        if(!new TranslationEngine(dictionary).rewriteVisible(copy,false))return null;
+        class_2561 result=class_2561.class_2562.method_10872(copy);
+        return result!=null&&key(result.getString()).equals("[C'Shura] "+target)?copy:null;
     }
 
     /** Only the audited C'Shura sentence may reinterpret its coloured purpose leaf. */
@@ -304,6 +406,7 @@ public final class ContextTranslations {
                     throw new IOException("Invalid complete tooltip context");
                 JsonObject exact=new JsonObject();
                 for(int i=0;i<sources.size();i++)exact.addProperty(sources.get(i),targets.get(i));
+                if(row.has("exact"))for(var part:row.getAsJsonObject("exact").entrySet())exact.add(part.getKey(),part.getValue());
                 TooltipRule rule=new TooltipRule(sources,targets,source,expected,guards,local(exact));
                 tooltips.computeIfAbsent(key(sources.get(0)),unused->new ArrayList<>()).add(rule);
             }
@@ -344,6 +447,8 @@ public final class ContextTranslations {
     }
 
     private static boolean monumentNotice(String source) {
+        // Audited capture132 complete notices only; all component and override guards remain.
+        if(Set.of("King's Bounty: A bloodstained letter arrived in Nyr today. It contains a plea for help from an Axtan monk. Could the Monastery have fallen? Please investigate.","King's Bounty: A captured miner escaped from bandits and told the guards about their Camp northeast of Sierhaven. Find it and bring them to justice to earn today's Bounty.","Celsian Bounty: The cards show a strange ziggurat in the viridian isles. A Garden, with its plants zealously guarded by warrior and creeper alike.","Celsian Bounty: The winds of fate howl beneath this Floating structure. Ascend and conquer it, and fortune will be yours.","Celsian Bounty: Ah! I see tendrils and darkness, a mighty bastion Corrupted. Your fortune lies there, in that twisted place.","King's Bounty: Our sea captains have spoken of a massive fortress that pierces the Clouds! The King asks that you find and investigate it.","You currently have  levels and  xp, stored within the contract.","You currently have 22 levels and 68 xp, stored within the contract.","King's Bounty: Behind the Blackroot Jungle's tiered farm is a strange network of Tunnels, filled with broken cages and infested only with odd beasts. Today, I ask that you go check it out and see what those creatures have been guarding.").contains(source))return true;
         // Additional complete captured notices only; never match fragments or suffixes.
         if(Set.of(
             "2 Totems remain.",

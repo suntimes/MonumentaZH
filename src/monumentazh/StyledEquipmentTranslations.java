@@ -29,6 +29,36 @@ final class StyledEquipmentTranslations {
 
     static class_2561 apply(class_2561 source,TranslationEngine engine) {
         String raw=source.getString();
+        if(raw.equals("Starblood Ichor") && engine.translate(raw,false).equals("星血灵液")
+                && !interactive(class_2561.class_2562.method_10868(source))) {
+            List<class_2583> sourceStyles=styles(source);
+            if(sourceStyles.size()==raw.length()) {
+                // Sample the original gradient including both endpoints; inherit all emphasis flags.
+                int[] positions={0,5,9,14};String target="星血灵液";
+                var out=class_2561.method_43473();
+                for(int i=0;i<positions.length;i++)out.method_10852(MonumentaZh.translatedLine(
+                    class_2561.method_43470("").method_10862(sourceStyles.get(positions[i])),target.substring(i,i+1)));
+                return out;
+            }
+        }
+        if(raw.equals("Azacor Key Normal") && engine.translate(raw,false).equals("普通阿扎科尔钥匙")
+                && !interactive(class_2561.class_2562.method_10868(source))) {
+            List<class_2583> sourceStyles=styles(source);
+            if(sourceStyles.size()!=raw.length())return null;
+            // Chinese moves the difficulty ahead of the name. Keep each native run's
+            // complete effective style, rather than the aqua italic wrapper style.
+            class_2583 nameStyle=sourceStyles.get(0);
+            class_2583 difficultyStyle=sourceStyles.get(raw.indexOf("Normal"));
+            for(int i=0;i<"Azacor Key".length();i++)
+                if(!nameStyle.equals(sourceStyles.get(i)))return null;
+            for(int i=raw.indexOf("Normal");i<raw.length();i++)
+                if(!difficultyStyle.equals(sourceStyles.get(i)))return null;
+            return class_2561.method_43473()
+                .method_10852(MonumentaZh.translatedLine(
+                    class_2561.method_43470("").method_10862(difficultyStyle),"普通"))
+                .method_10852(MonumentaZh.translatedLine(
+                    class_2561.method_43470("").method_10862(nameStyle),"阿扎科尔钥匙"));
+        }
         class_2561 legacy=legacyCaption(source,engine);
         if(legacy!=null)return legacy;
         if(raw.equals(LATIN_SOURCE))return latin(source,engine);

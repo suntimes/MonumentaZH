@@ -5,7 +5,7 @@
 ## 汉化来源
 
 - 附魔与技能汉化引用：Moe_block。
-- 译者：suntime、Armorer、vuken。
+- 译者：suntime、Armorer、vk。
 - 感谢 XM、HF、QL 等玩家的翻译协助。
 
 提交及分发时请保留这些署名。本仓库没有提供未核实的第三方作者主页或授权链接。

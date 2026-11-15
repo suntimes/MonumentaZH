@@ -30,3 +30,9 @@ AGENTS.md
 # Published builds are intentionally versioned for direct download.
 !releases/**/*.jar
 
+
+# Local-only review and capture artifacts
+dev_tools/
+*.capture.json
+*.bak
+*.disabled

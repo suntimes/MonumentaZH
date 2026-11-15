@@ -10,10 +10,12 @@ public final class NameLocalizer {
     private static final Name KIM_ANNOTATION=new Name("Kim","金中士",true);
     private final List<Name> names=new ArrayList<>();
     private final Map<String,Name> npcByName=new HashMap<>();
-    
+
     private final Map<String,Pattern> englishPatterns=new HashMap<>();
     private final Set<String> labels=new HashSet<>();
     private final Set<String> guildLabels=new HashSet<>();
+    private final Set<String> cosmeticTitles=new HashSet<>();
+    private final Set<String> playerTitleLabels=new HashSet<>();
     public NameLocalizer(JsonObject catalog){add(catalog);}
     public void add(JsonObject catalog) {
         for(String section:List.of("npc_names","place_names")) {
@@ -28,12 +30,16 @@ public final class NameLocalizer {
             }
         }
         if(catalog.has("guild_labels"))for(var v:catalog.getAsJsonArray("guild_labels"))guildLabels.add(TranslationEngine.normalize(v.getAsString()));
+        if(catalog.has("player_title_labels"))for(var v:catalog.getAsJsonArray("player_title_labels"))playerTitleLabels.add(TranslationEngine.normalize(v.getAsString()));
+        if(catalog.has("player_cosmetic_titles"))for(var v:catalog.getAsJsonArray("player_cosmetic_titles"))cosmeticTitles.add(TranslationEngine.normalize(v.getAsString()));
         CapturePrivacy.catalog(catalog);
         names.sort(Comparator.comparingInt((Name n)->n.chinese().length()).reversed());
         labels.clear();for(Name n:names){labels.add(n.english());labels.add(n.chinese());}
     }
     public void observePlayer(String name){if(name!=null)CapturePrivacy.observePlayer(name);}
     public boolean guildIdentity(String value){return guildLabels.contains(TranslationEngine.normalize(value));}
+    public boolean cosmeticTitle(String value){return cosmeticTitles.contains(TranslationEngine.normalize(value));}
+    public boolean playerTitleLabel(String value){return playerTitleLabels.contains(TranslationEngine.normalize(value));}
     public boolean playerIdentity(String value){return CapturePrivacy.playerName(value);}
     public Name npc(String raw){return npcByName.get(TranslationEngine.normalize(raw));}
     /** Discovery subtitles are complete labels, not the animated prefixes used by town arrivals. */
@@ -86,15 +92,52 @@ public final class NameLocalizer {
         JsonObject dictionary=new JsonObject();dictionary.add("exact",exact);engine.add(dictionary);
     }
     public boolean rewrite(JsonElement translated,String original,boolean npcNames,boolean places,Set<String> protectedNames) {
+        return rewrite(translated,original,npcNames,places,protectedNames,false);
+    }
+    /** Chat entry point; complete item-name exceptions apply in every context. */
+    public boolean rewriteChat(JsonElement translated,String original,boolean npcNames,boolean places,Set<String> protectedNames) {
+        boolean changed=rewrite(translated,original,false,places,protectedNames,true);
+        return chineseChatNpcReferences(translated,protectedNames)||changed;
+    }
+    /** Chat-only: erase known NPC English annotations across styled text leaves, never metadata. */
+    public boolean chineseKeyReferences(JsonElement value) { return chineseReferences(value,Set.of(),true); }
+    private boolean chineseChatNpcReferences(JsonElement value,Set<String> protectedNames) { return chineseReferences(value,protectedNames,false); }
+    private boolean chineseReferences(JsonElement value,Set<String> protectedNames,boolean allKnown) {
+        if(value==null||TranslationEngine.hasHiddenText(value))return false;
+        List<JsonElement> leaves=new ArrayList<>();collectLeaves(value,leaves);
+        StringBuilder joined=new StringBuilder();
+        for(JsonElement leaf:leaves)joined.append(leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString());
+        String full=joined.toString();boolean[] erase=new boolean[full.length()];
+        int speakerEnd=full.startsWith("[")?full.indexOf("]"):-1;
+        for(Name raw:names)if(!annotationProtected(raw,protectedNames)) {
+            Name name=annotationName(raw);
+            for(String gap:List.of(""," ","　"))for(String suffix:List.of("（"+name.english()+"）","("+name.english()+")")) {
+                String pair=name.chinese()+gap+suffix;
+                for(int at=full.indexOf(pair);at>=0;at=full.indexOf(pair,at+pair.length()))
+                    if(allKnown||raw.npc()||raw.english().equals("Seasonal Pass")||at+pair.length()<=speakerEnd)Arrays.fill(erase,at+name.chinese().length(),at+pair.length(),true);
+            }
+        }
+        IdentityHashMap<JsonElement,String> replacements=new IdentityHashMap<>();int offset=0;
+        for(JsonElement leaf:leaves) {
+            String raw=leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString();StringBuilder kept=new StringBuilder();
+            for(int i=0;i<raw.length();i++)if(!erase[offset+i])kept.append(raw.charAt(i));offset+=raw.length();
+            if(!raw.contentEquals(kept))replacements.put(leaf,kept.toString());
+        }
+        return rewriteNode(value,replacements);
+    }
+    private static final Set<String> UNVEILED_INSTRUCTIONS=Set.of("Grab your Mistleaf-crafted Key from Josiah and","shield spell so Kathryn can attack!","揭露阴谋:从Josiah处拿上制作出的雾叶钥匙并攻打葱郁要塞！破坏他们的护盾魔法后通知Kathryn以展开攻击！",":从Josiah处拿上制作出的雾叶钥匙并攻打葱郁要塞！破坏他们的护盾魔法后通知Kathryn以展开攻击！");
+    private boolean rewrite(JsonElement translated,String original,boolean npcNames,boolean places,Set<String> protectedNames,boolean chat) {
+        boolean itemCleaned=cleanChineseOnlyItemReferences(translated);
         String normalized=TranslationEngine.normalize(original);
-        List<Name> referenced=names.stream().filter(n->(n.npc()?npcNames:places)&&!annotationProtected(n,protectedNames)
+        List<Name> referenced=names.stream().filter(n->!(original.toLowerCase(Locale.ROOT).contains("siege of highwatch")&&n.english().equals("Highwatch"))&&!(n.npc()&&UNVEILED_INSTRUCTIONS.contains(normalized))&&!(original.contains("completed the Monument of King's Valley")&&n.english().equals("King's Valley"))&&(n.npc()?npcNames:places)&&!annotationProtected(n,protectedNames)
             &&!(n.npc()&&n.english().equals("White")&&whiteColorReference(original))
+            &&!(n.npc()&&(n.english().equals("Hunter")||n.english().equals("Arcanist"))&&!scopedNpcReference(normalized,n.english(),n.chinese()))
             &&(containsEnglish(original,n.english())||original.contains(annotationName(n).chinese())))
             .map(NameLocalizer::annotationName).distinct()
             .sorted(Comparator.comparingInt((Name n)->n.chinese().length()).reversed()
                 .thenComparingInt(n->normalized.equals(n.english())?0:1)
                 .thenComparing(Comparator.comparingInt((Name n)->n.english().length()).reversed())).toList();
-        if(referenced.isEmpty())return false;
+        if(referenced.isEmpty())return itemCleaned;
         List<JsonElement> leaves=new ArrayList<>();collectLeaves(translated,leaves);
         IdentityHashMap<JsonElement,String> replacements=new IdentityHashMap<>();
         List<String> chunks=new ArrayList<>();List<Integer> starts=new ArrayList<>();StringBuilder joined=new StringBuilder();
@@ -114,7 +157,7 @@ public final class NameLocalizer {
                         if(protectedNames.contains(TranslationEngine.normalize(chunks.get(i))))return false;
                         StringBuilder value=new StringBuilder(chunks.get(i));value.insert(end-starts.get(i),"（"+place.english()+"）");
                         replacements.put(leaves.get(i),value.toString());
-                        return rewriteNode(translated,replacements);
+                        return rewriteNode(translated,replacements)||itemCleaned;
                     }
                 }
             }
@@ -122,6 +165,25 @@ public final class NameLocalizer {
         for(int at=0;at<full.length();) {
             Name match=null;for(Name n:referenced)if(annotationAt(n,full,at)){match=n;break;}
             if(match==null){at++;continue;}
+            if(match.npc() && match.chinese().equals("米拉格")
+                && (match.english().equals("Myrahg")||match.english().equals("Myragh"))
+                && full.startsWith("米拉格的瘟疫",at)) {
+                at+="米拉格的瘟疫".length();continue;
+            }
+            // This complete item name is Chinese-only; ordinary Viridia place labels still annotate.
+            if (!match.npc() && match.english().equals("Viridia") && match.chinese().equals("维里迪亚")
+                && (full.startsWith("维里迪亚之根",at)||full.startsWith("维里迪亚之眼",at))) {
+                at+="维里迪亚之根".length();continue;
+            }
+            if(!match.npc()&&match.english().equals("Ta'Ferna")&&full.startsWith("塔费尔纳碎片",at)) {at+="塔费尔纳碎片".length();continue;}
+            // Item-only exception: do not suppress the ordinary NPC name.
+            if (match.npc() && match.english().equals("Zanil") && match.chinese().equals("扎尼尔")
+                && full.startsWith("扎尼尔的悔恨",at)) {
+                at+="扎尼尔的悔恨".length();continue;
+            }
+            if (chineseOnlyItemAt(full,at)) {
+                at+=match.chinese().length();continue;
+            }
             int end=at+match.chinese().length();String suffix="（"+match.english()+"）";
             // An exact reference to this same name may precede its Chinese label across color runs.
             if(alreadyAnnotated(match,full,at,end)){at=end;continue;}
@@ -139,7 +201,121 @@ public final class NameLocalizer {
             for(var addition:entry.getValue().entrySet())value.insert(addition.getKey(),addition.getValue());
             replacements.put(leaves.get(entry.getKey()),value.toString());
         }
-        return rewriteNode(translated,replacements);
+        return rewriteNode(translated,replacements)||itemCleaned;
+    }
+    private static final String[][] CHINESE_ONLY_ITEMS={
+        {"The King","国王","的鹤嘴锄"},
+        {"C'Shura","克舒拉","的染疫面具"},
+        {"Highwatch","高望堡","保卫战"},
+        {"Siege of Highwatch","高望堡保卫战",""},
+        {"Ta'Ferna","塔费尔纳","碎片"},
+        {"Viridia","维里迪亚","之眼"},
+        {"King's Valley","国王谷","纪念碑"},
+        {"Treasures of Viridia","维里迪亚宝藏","战利品箱"},
+        {"Cave of Winds","风之洞穴","已开启"},
+        {"Celsian Isles","塞尔西亚群岛","纪念碑"},
+        {"Viridia","维里迪亚","之根"},
+        {"Artelus","阿特鲁斯","的祝福"},
+        {"Aesir","埃西尔","之拥"},
+        {"Myrahg","米拉格","的瘟疫"},
+        {"Myragh","米拉格","的瘟疫"},
+        {"Zanil","扎尼尔","的悔恨"}
+    };
+    private static boolean chineseOnlyItemAt(String full,int at) {
+        for(String[] item:CHINESE_ONLY_ITEMS)if(full.startsWith(item[1]+item[2],at))return true;
+        return false;
+    }
+    /** Whole item phrases only, across styled leaves and before arbitrary quantity suffixes. */
+    /** Clean only complete item phrases in visible text and show_text hover payloads. */
+    public static boolean cleanChineseOnlyItemReferences(JsonElement value) {
+        if(value==null||value.isJsonNull()||TranslationEngine.hasHiddenText(value))return false;
+        boolean changed=chineseOnlyItems(value);
+        return cleanItemTextHovers(value)||changed;
+    }
+    private static boolean cleanItemTextHovers(JsonElement value) {
+        if(value==null||value.isJsonNull())return false;
+        if(value.isJsonArray()) {
+            boolean changed=false;
+            for(JsonElement child:value.getAsJsonArray())changed|=cleanItemTextHovers(child);
+            return changed;
+        }
+        if(!value.isJsonObject())return false;
+        JsonObject object=value.getAsJsonObject();boolean changed=false;
+        if(object.has("obfuscated")&&object.get("obfuscated").getAsBoolean())return false;
+        if(object.has("hoverEvent")&&object.get("hoverEvent").isJsonObject()) {
+            JsonObject hover=object.getAsJsonObject("hoverEvent");
+            if(hover.has("action")&&hover.get("action").getAsString().equals("show_text")) {
+                for(String key:List.of("contents","value"))if(hover.has(key)) {
+                    JsonElement payload=hover.get(key);
+                    if(payload.isJsonPrimitive()&&payload.getAsJsonPrimitive().isString()) {
+                        JsonObject wrapped=new JsonObject();wrapped.add("text",payload.deepCopy());
+                        if(cleanChineseOnlyItemReferences(wrapped)){hover.add(key,wrapped);changed=true;}
+                    } else changed|=cleanChineseOnlyItemReferences(payload);
+                }
+            }
+        }
+        if(object.has("extra"))changed|=cleanItemTextHovers(object.get("extra"));
+        // Translation arguments are actual text components; click/insertion/entity/item payloads are not.
+        if(object.has("with"))changed|=cleanItemTextHovers(object.get("with"));
+        return changed;
+    }
+    public static boolean cleanPyromaniaReferences(JsonElement value) {
+        List<JsonElement> leaves=new ArrayList<>();collectLeaves(value,leaves);
+        StringBuilder joined=new StringBuilder();
+        for(JsonElement leaf:leaves)joined.append(leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString());
+        String full=joined.toString();boolean[] erase=new boolean[full.length()];
+        for(String[] item:new String[][]{{"Carbocius","卡博修斯",""},{"Blackroot Jungle","黑根丛林",""},{"Jaguar Tooth Mountains","豹牙山脉",""},{"Korbar Highlands","科巴尔高地",""},{"Highlands","科巴尔高地",""},{"Farr","远郊城",""},{"Highwatch","高望堡",""}})for(String gap:List.of(""," ","　"))for(String suffix:List.of("（"+item[0]+"）","("+item[0]+")")) {
+            String annotation=gap+suffix;String phrase=item[1]+annotation+item[2];
+            for(int at=full.indexOf(phrase);at>=0;at=full.indexOf(phrase,at+phrase.length()))
+                Arrays.fill(erase,at+item[1].length(),at+item[1].length()+annotation.length(),true);
+        }
+        Map<Integer,String> insertions=new HashMap<>();
+        for(String[] poi:new String[][]{{"熔岩裂谷","Molten Chasm"},{"火焰洞穴","Fire Cave"},{"火山","Volcano"}}) {
+            for(int at=full.indexOf(poi[0]);at>=0;at=full.indexOf(poi[0],at+poi[0].length())) {
+                int end=at+poi[0].length();String tail=full.substring(end).stripLeading();
+                if(!tail.startsWith("（"+poi[1]+"）")&&!tail.startsWith("("+poi[1]+")"))insertions.put(end,"（"+poi[1]+"）");
+            }
+        }
+        IdentityHashMap<JsonElement,String> replacements=new IdentityHashMap<>();int offset=0;
+        for(JsonElement leaf:leaves) {
+            String raw=leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString();
+            StringBuilder kept=new StringBuilder();
+            for(int i=0;i<raw.length();i++){if(!erase[offset+i])kept.append(raw.charAt(i));if(insertions.containsKey(offset+i+1))kept.append(insertions.get(offset+i+1));}
+            offset+=raw.length();if(!raw.contentEquals(kept))replacements.put(leaf,kept.toString());
+        }
+        return rewriteNode(value,replacements);
+    }
+    private static boolean chineseOnlyItems(JsonElement value) {
+        List<JsonElement> leaves=new ArrayList<>();collectLeaves(value,leaves);
+        StringBuilder joined=new StringBuilder();
+        for(JsonElement leaf:leaves)joined.append(leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString());
+        String full=joined.toString();boolean[] erase=new boolean[full.length()];
+        for(String[] item:CHINESE_ONLY_ITEMS)for(String annotation:List.of("（"+item[0]+"）","("+item[0]+")")) {
+            String phrase=item[1]+annotation+item[2];
+            for(int at=full.indexOf(phrase);at>=0;at=full.indexOf(phrase,at+phrase.length()))
+                Arrays.fill(erase,at+item[1].length(),at+item[1].length()+annotation.length(),true);
+        }
+        IdentityHashMap<JsonElement,String> replacements=new IdentityHashMap<>();int offset=0;
+        for(JsonElement leaf:leaves) {
+            String raw=leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString();
+            StringBuilder kept=new StringBuilder();
+            for(int i=0;i<raw.length();i++)if(!erase[offset+i])kept.append(raw.charAt(i));
+            offset+=raw.length();if(!raw.contentEquals(kept))replacements.put(leaf,kept.toString());
+        }
+        return rewriteNode(value,replacements);
+    }
+    /** These NPC names also identify classes and equipment; only explicit NPC labels/dialogue qualify. */
+    private static boolean scopedNpcReference(String source,String english,String chinese) {
+        return source.equals(english)||source.equals(chinese)
+            ||source.equals(chinese+"（"+english+"）")||source.equals(chinese+"("+english+")")
+            ||source.startsWith("["+english+"]")||source.startsWith("["+chinese+"]")
+            ||source.startsWith("["+chinese+"（"+english+"）]")||source.startsWith("["+chinese+"("+english+")]");
+    }
+    private static boolean scopedNpcAnnotationAt(Name name,String text,int at) {
+        int end=at+name.chinese().length();String rest=text.substring(end),english=name.english();
+        return at==0&&(rest.isEmpty()||rest.equals("（"+english+"）")||rest.equals("("+english+")"))
+            ||at==1&&text.charAt(0)=='['&&(rest.startsWith("]")
+                ||rest.startsWith("（"+english+"）]")||rest.startsWith("("+english+")]"));
     }
     private static boolean whiteColorReference(String source) {
         String plain=source.replaceAll("§[0-9A-FK-ORa-fk-or]","");
@@ -157,6 +333,8 @@ public final class NameLocalizer {
     }
     private static boolean annotationAt(Name name,String text,int at) {
         if(!text.startsWith(name.chinese(),at))return false;
+        if(name.npc()&&(name.english().equals("Hunter")||name.english().equals("Arcanist"))
+            &&!scopedNpcAnnotationAt(name,text,at))return false;
         // These are bounty/place nouns, rather than a reference to the NPC called The King.
         return !(name.npc()&&name.chinese().equals("国王")&&(text.startsWith("国王悬赏",at)
             ||text.startsWith("国王谷",at)||text.startsWith("国王峡谷",at)));
@@ -235,6 +413,34 @@ public final class NameLocalizer {
                 }
             }
         }
+        return changed;
+    }
+    /** Only the killer argument of native monster-death messages loses catalogue annotations. */
+    public boolean chineseDeathMonster(JsonElement value) {
+        if(value==null)return false;
+        if(value.isJsonArray()){boolean changed=false;for(JsonElement child:value.getAsJsonArray())changed|=chineseDeathMonster(child);return changed;}
+        if(!value.isJsonObject())return false;
+        JsonObject object=value.getAsJsonObject();boolean changed=false;
+        if(object.has("translate")&&object.has("with")&&object.get("with").isJsonArray()) {
+            String key=object.get("translate").getAsString();JsonArray args=object.getAsJsonArray("with");
+            if(key.startsWith("death.")&&!key.startsWith("death.attack.player")&&args.size()>1) {
+                JsonElement killer=args.get(1);
+                if(ChatMessageFilter.classify(killer,plain(killer))!=ChatMessageFilter.Kind.PLAYER) {
+                    List<JsonElement> leaves=new ArrayList<>();collectLeaves(killer,leaves);StringBuilder joined=new StringBuilder();
+                    for(JsonElement leaf:leaves)joined.append(leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString());
+                    String full=joined.toString();boolean[] erase=new boolean[full.length()];
+                    for(Name name:names)for(String suffix:List.of("（"+name.english()+"）","("+name.english()+")")) {
+                        String pair=name.chinese()+suffix;
+                        for(int at=full.indexOf(pair);at>=0;at=full.indexOf(pair,at+pair.length()))
+                            Arrays.fill(erase,at+name.chinese().length(),at+pair.length(),true);
+                    }
+                    IdentityHashMap<JsonElement,String> replacements=new IdentityHashMap<>();int offset=0;
+                    for(JsonElement leaf:leaves){String raw=leaf.isJsonObject()?leaf.getAsJsonObject().get("text").getAsString():leaf.getAsString();StringBuilder kept=new StringBuilder();for(int i=0;i<raw.length();i++)if(!erase[offset+i])kept.append(raw.charAt(i));offset+=raw.length();if(!raw.contentEquals(kept))replacements.put(leaf,kept.toString());}
+                    changed|=rewriteNode(killer,replacements);
+                }
+            }
+        }
+        if(object.has("extra"))changed|=chineseDeathMonster(object.get("extra"));
         return changed;
     }
     private static void collectLeaves(JsonElement value,List<JsonElement> leaves) {

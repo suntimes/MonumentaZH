@@ -96,6 +96,17 @@ public final class TranslationEngine {
     private static boolean isLatin(char c){return c>='A'&&c<='Z'||c>='a'&&c<='z';}
 
     /** Rewrite visible text only; commands, hover metadata and translation keys stay intact. */
+    /** Fail closed: hidden server content must never be revealed by localization. */
+    public static boolean hasHiddenText(JsonElement value) {
+        if(value==null || value.isJsonNull()) return false;
+        if(value.isJsonPrimitive()) return value.getAsJsonPrimitive().isString() && value.getAsString().toLowerCase(java.util.Locale.ROOT).contains("§k");
+        if(value.isJsonArray()) { for(JsonElement child:value.getAsJsonArray()) if(hasHiddenText(child)) return true; return false; }
+        JsonObject obj=value.getAsJsonObject();
+        if(obj.has("obfuscated") && obj.get("obfuscated").isJsonPrimitive() && obj.get("obfuscated").getAsBoolean()) return true;
+        for(String key:java.util.List.of("text","extra","with","separator")) if(obj.has(key) && hasHiddenText(obj.get(key))) return true;
+        return false;
+    }
+
     public boolean rewriteVisible(JsonElement value) {
         return rewriteVisible(value, true);
     }
@@ -110,6 +121,7 @@ public final class TranslationEngine {
     }
 
     private boolean rewriteVisible(JsonElement value, boolean partial, boolean book) {
+        if (hasHiddenText(value)) return false;
         if (value == null || value.isJsonNull()) return false;
         boolean changed = false;
         if (value.isJsonArray()) {
