@@ -2,7 +2,7 @@
 
 Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。
 
-下载：[最新 Release](https://github.com/suntimes/MonumentaZH/releases/latest)。建议下载完整安装包，包含 JAR 与配套词库，也提供独立 JAR 和 SHA256 校验文件。
+下载：[最新 Release](https://github.com/suntimes/MonumentaZH/releases/latest)。建议下载完整安装包，包含 JAR 与配套词库，也提供独立 JAR 和 SHA256 校验文件。（一般来说是不需要校验的）
 
 使用须知：/monumentazh welcome
 
@@ -43,7 +43,7 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。
 | `/monumentazh welcome` | 查看使用提示 |
 | `/monumentazh reload` | 重载词库 |
 译者功能（普通玩家不要用）
-！！！！！尤其是告示牌收集！！！！！
+尤其是告示牌收集！！！！！
 | `/monumentazh capture on` / `off` | 开启 / 暂停文本收集 |
 | `/monumentazh signs on` / `off` | 告示牌汉化显示 |
 | `/monumentazh signcapture on` / `off` | 告示牌文本采集 |
@@ -52,6 +52,7 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。
 **非汉化人员无需开启文本收集。** 
 切换服务器原文不会自动关闭采集。导出前会完成排队中的书页，因此大量文本可能需要等待。
 采集文件、日志与个人设置由本机生成，不属于仓库内容。提交问题时，请只附必要的英文原文、中文显示及上下文。
+**注**：在采集过程中可能会因为‘完全搞不懂的问题’导致采集失败，这是没有办法的事情。可能需要手动截图/其他方式。
 
 ## 测试与贡献
 运行不依赖游戏窗口的核心测试：
@@ -65,6 +66,7 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。
 更多内容见 [更新记录](docs/CHANGELOG.md)、[结构与验证](docs/DEVELOPMENT.md) 和 [来源说明](NOTICE.md)。
 
 ****未来可能上传至 paratranz 网页 公开全译文用于校对****
+如有大佬愿意协助，感激不尽，个人英语水平有限。
 
 ## 作者与致谢
 作者：**suntime**  
@@ -72,8 +74,7 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。
 译者：**suntime、Armorer、vk**
 感谢 **XM、HF、QL** 等玩家的翻译协助。
 
-！！！！！非官方模组，与Monumenta制作组无关。！！！！！
-！！！！！**有机翻内容**！！！！！
+！！！！！非官方模组，与Monumenta制作组无关。**有机翻内容**！！！！！
 
 程序代码采用 [MIT](LICENSE)；游戏原文和引用译文的来源及适用范围见 [NOTICE](NOTICE.md)。
 
