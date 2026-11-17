@@ -277,3 +277,4 @@ public final class CapturePrivacy {
         identities().legacyLiterals.clear();clearSession();
     }
 }
+

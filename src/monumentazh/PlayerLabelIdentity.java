@@ -14,7 +14,7 @@ public final class PlayerLabelIdentity {
         if (client == null || client.method_1562() == null || owner.method_37908() == null) return false;
         String row = TranslationEngine.normalize(label.getString());
         // Auxiliary rows require a unique online owner and a co-axial account row.
-
+        
         if (row.isBlank()) return false;
         double x=owner.method_23317(), y=owner.method_23318(), z=owner.method_23321();
         class_1657 selected=null;
@@ -62,3 +62,7 @@ public final class PlayerLabelIdentity {
         return dx*dx+dz*dz<=0.8*0.8 && dy>=1.3 && dy<=3.2;
     }
 }
+
+
+
+

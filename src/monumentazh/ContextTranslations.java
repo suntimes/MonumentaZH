@@ -255,6 +255,10 @@ public final class ContextTranslations {
      */
     public static JsonElement serverCopy(JsonElement displayJson,String source,TranslationEngine global) {
         if(displayJson==null||displayJson.isJsonNull()||source==null||global==null)return null;
+        if(ChatMessageFilter.classify(displayJson,source)==ChatMessageFilter.Kind.PLAYER
+            ||TranslationEngine.hasHiddenText(displayJson))return null;
+        JsonElement notice=auditedItemNoticeCopy(displayJson,source,global);
+        if(notice!=null)return notice;
         JsonElement dialogue=cshuraMissingCopy(displayJson,source,global);
         if(dialogue!=null)return dialogue;
         JsonElement enough=cshuraEnoughCopy(displayJson,source,global);
@@ -270,6 +274,118 @@ public final class ContextTranslations {
         if(!rule.local().rewriteVisible(copy,false))return null;
         class_2561 result=class_2561.class_2562.method_10872(copy);
         return result!=null&&key(result.getString()).equals(key(rule.rewrittenVisible()))?copy:null;
+    }
+
+
+    private static final Map<String,String> SELECTED_CORRUPTED_ITEMS=Map.of(
+        "Corrupted Jeweled Tiara","腐化宝石冠饰",
+        "Corrupted Siershen's Caster","希尔申的腐化施法器",
+        "Corrupted Tyrolean Boots","腐化的蒂罗尔靴");
+    private record ItemNotice(boolean purchase,String player,String item) {}
+
+    /** Only this audited server structure establishes its otherwise unmarked player role. */
+    public static Set<String> auditedNoticeIdentities(JsonElement original,String source) {
+        if(original==null||source==null||ChatMessageFilter.classify(original,source)==ChatMessageFilter.Kind.PLAYER
+            ||TranslationEngine.hasHiddenText(original))return Set.of();
+        ItemNotice notice=itemNotice(original,source);
+        return notice!=null&&!notice.player().isEmpty()?Set.of(notice.player()):Set.of();
+    }
+
+    /** Do not flatten identities, item hovers, commands, or source styles into a translated string. */
+    private static JsonElement auditedItemNoticeCopy(JsonElement original,String source,TranslationEngine global) {
+        ItemNotice notice=itemNotice(original,source);
+        if(notice==null)return null;
+        String expected=notice.purchase()
+            ?"恭喜！"+notice.player()+"从残留幻觉处购买了【恶性神经元】！"
+            :notice.player()+"选择了"+SELECTED_CORRUPTED_ITEMS.get(notice.item());
+        // A complete per-message override or a changed component phrase disables the local rewrite.
+        if(!guard(global,source,expected))return null;
+        if(notice.purchase()) {
+            if(!guard(global,"CONGRATULATIONS!","恭喜！")
+                ||!guard(global,"Malignant Neuron","恶性神经元")
+                ||!guard(global," has bought the [","购买了【")
+                ||!guard(global,"] from Lingering Hallucination!","]，来自残留幻觉！"))return null;
+        } else if(!guard(global,notice.item(),SELECTED_CORRUPTED_ITEMS.get(notice.item()))
+            ||!key(global.translate(" has selected ",false)).equals("has selected"))return null;
+        JsonObject copy=original.deepCopy().getAsJsonObject();
+        JsonArray extra=copy.getAsJsonArray("extra");
+        replaceNoticeLeaf(extra,1,notice.purchase()?"从残留幻觉处购买了【":"选择了");
+        if(notice.purchase())replaceNoticeLeaf(extra,3,"】！");
+        return copy;
+    }
+
+    private static void replaceNoticeLeaf(JsonArray leaves,int index,String translated) {
+        JsonElement old=leaves.get(index);
+        JsonObject leaf=old.isJsonObject()?old.getAsJsonObject():new JsonObject();
+        TranslationEngine.replaceTranslatedText(leaf,translated);
+        leaves.set(index,leaf);
+    }
+
+    private static ItemNotice itemNotice(JsonElement original,String source) {
+        if(!original.isJsonObject())return null;
+        JsonObject root=original.getAsJsonObject();
+        if(!noticeKeys(root,false,true)||!root.has("text")||!root.get("text").isJsonPrimitive()
+            ||!root.has("extra")||!root.get("extra").isJsonArray())return null;
+        JsonArray extra=root.getAsJsonArray("extra");
+        String rootText=root.get("text").getAsString();
+        boolean purchase=rootText.equals("CONGRATULATIONS! ")&&extra.size()==4;
+        if(!purchase&&(!rootText.isEmpty()||extra.size()!=3))return null;
+        String player=noticeLiteral(extra.get(0),true);
+        if(player==null||!(player.isEmpty()&&!purchase||player.equals("{player}")
+            ||player.matches("[A-Za-z0-9_]{1,16}")))return null;
+        if(!(purchase?" has bought the [":" has selected ").equals(noticeLiteral(extra.get(1),false)))return null;
+        if(purchase&&!"] from Lingering Hallucination!".equals(noticeLiteral(extra.get(3),false)))return null;
+        if(!extra.get(2).isJsonObject())return null;
+        JsonObject item=extra.get(2).getAsJsonObject();
+        if(!noticeKeys(item,true,false)||!item.has("text")||!item.get("text").isJsonPrimitive()
+            ||!item.has("hoverEvent")||!item.get("hoverEvent").isJsonObject())return null;
+        String raw=item.get("text").getAsString(),name=key(raw);
+        JsonObject hover=item.getAsJsonObject("hoverEvent");
+        if(!hover.has("action")||!hover.get("action").isJsonPrimitive()
+            ||!hover.has("contents")||!hover.get("contents").isJsonObject())return null;
+        JsonObject contents=hover.getAsJsonObject("contents");
+        if(purchase) {
+            if(!raw.equals("Malignant Neuron")||!hover.get("action").getAsString().equals("show_item")
+                ||!contents.has("id")||!contents.get("id").isJsonPrimitive()
+                ||!contents.get("id").getAsString().equals("minecraft:dead_bush")
+                ||!contents.has("tag")||!contents.get("tag").isJsonPrimitive())return null;
+        } else {
+            if(!raw.equals("§4§l"+name)||!SELECTED_CORRUPTED_ITEMS.containsKey(name)
+                ||!hover.get("action").getAsString().equals("show_entity")
+                ||!contents.has("type")||!contents.get("type").isJsonPrimitive()
+                ||!contents.get("type").getAsString().equals("minecraft:item")
+                ||!contents.has("id")||!contents.has("name")
+                ||!raw.equals(noticeLiteral(contents.get("name"),true)))return null;
+        }
+        String visible=rootText+player+(purchase?" has bought the [":" has selected ")+raw
+            +(purchase?"] from Lingering Hallucination!":"");
+        return source.equals(visible)?new ItemNotice(purchase,player,name):null;
+    }
+
+    private static boolean noticeKeys(JsonObject object,boolean hover,boolean extra) {
+        for(String name:object.keySet()) {
+            if(Set.of("text","color","font","bold","italic","underlined","strikethrough","obfuscated").contains(name))continue;
+            if(hover&&name.equals("hoverEvent")||extra&&name.equals("extra"))continue;
+            return false;
+        }
+        return true;
+    }
+
+    /** Read literal visible runs only. A player prefix's formatting remains untouched. */
+    private static String noticeLiteral(JsonElement value,boolean nested) {
+        if(value==null||value.isJsonNull())return null;
+        if(value.isJsonPrimitive())return value.getAsJsonPrimitive().isString()?value.getAsString():null;
+        if(!value.isJsonObject())return null;
+        JsonObject object=value.getAsJsonObject();
+        if(!noticeKeys(object,false,nested)||!object.has("text")||!object.get("text").isJsonPrimitive())return null;
+        StringBuilder visible=new StringBuilder(object.get("text").getAsString());
+        if(object.has("extra")) {
+            if(!nested||!object.get("extra").isJsonArray())return null;
+            for(JsonElement child:object.getAsJsonArray("extra")) {
+                String part=noticeLiteral(child,true);if(part==null)return null;visible.append(part);
+            }
+        }
+        return visible.toString();
     }
 
     /** Complete audited C'Shura lines only: preserve the original coloured leaves. */

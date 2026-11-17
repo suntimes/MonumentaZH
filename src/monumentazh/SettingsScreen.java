@@ -107,3 +107,4 @@ public final class SettingsScreen extends class_437 {
  }
  @Override public boolean method_25421(){return false;}
 }
+

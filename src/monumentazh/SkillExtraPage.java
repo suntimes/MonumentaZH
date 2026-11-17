@@ -87,7 +87,7 @@ final class SkillExtraPage {
             boolean changed=false;
             for(String[] pair:PARTS)while(replace(leaves,pair[0],pair[1]))changed=true;
             if(source.get(i).getString().strip().equals("A stronger form of Weakness."))changed|=replace(leaves,".","效果。");
-
+            
             if(source.get(i).getString().strip().equals("and 30% Weakness for 5s."))changed|=replace(leaves,".","。");
             if(changed) {
                 class_2561 result=class_2561.class_2562.method_10872(tree);
@@ -127,3 +127,7 @@ final class SkillExtraPage {
         return true;
     }
 }
+
+
+
+

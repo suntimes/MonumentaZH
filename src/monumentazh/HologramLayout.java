@@ -18,7 +18,7 @@ public final class HologramLayout {
     /** The instance-switching service is Chinese-only, unlike ordinary NPC labels. */
     public static boolean chineseOnly(String raw) {
         String label=TranslationEngine.normalize(raw);
-        return label.equals("Overworld Instance")||label.equals("主世界实例");
+        return label.equals("Overworld Instance")||label.equals("主世界实例") || Set.of("Rusty Guard","Rusty Guards","锈蚀守卫","锈蚀守卫们","锈蚀守卫（Rusty Guard）","锈蚀守卫(Rusty Guard)","锈蚀守卫 （Rusty Guard）","锈蚀守卫 (Rusty Guard)","锈蚀守卫们（Rusty Guards）","锈蚀守卫们(Rusty Guards)","锈蚀守卫们 （Rusty Guards）","锈蚀守卫们 (Rusty Guards)").contains(label) || Set.of("Royal Guard","Royal Guards","王室卫队","王室卫队（Royal Guard）","王室卫队(Royal Guard)","王室卫队 （Royal Guard）","王室卫队 (Royal Guard)","王室卫队（Royal Guards）","王室卫队(Royal Guards)","王室卫队 （Royal Guards）","王室卫队 (Royal Guards)").contains(label);
     }
 
     public static boolean preferUpper(String raw) {

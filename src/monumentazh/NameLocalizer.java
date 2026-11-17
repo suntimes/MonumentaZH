@@ -10,7 +10,7 @@ public final class NameLocalizer {
     private static final Name KIM_ANNOTATION=new Name("Kim","金中士",true);
     private final List<Name> names=new ArrayList<>();
     private final Map<String,Name> npcByName=new HashMap<>();
-
+    
     private final Map<String,Pattern> englishPatterns=new HashMap<>();
     private final Set<String> labels=new HashSet<>();
     private final Set<String> guildLabels=new HashSet<>();
@@ -208,6 +208,8 @@ public final class NameLocalizer {
         {"C'Shura","克舒拉","的染疫面具"},
         {"Highwatch","高望堡","保卫战"},
         {"Siege of Highwatch","高望堡保卫战",""},
+        {"King's Valley Overworld","国王谷野外",""},
+        {"Celsian Isles Overworld","塞尔西亚群岛野外",""},
         {"Ta'Ferna","塔费尔纳","碎片"},
         {"Viridia","维里迪亚","之眼"},
         {"King's Valley","国王谷","纪念碑"},
@@ -465,3 +467,4 @@ public final class NameLocalizer {
         JsonObject o=v.getAsJsonObject();return(o.has("text")?o.get("text").getAsString():"")+(o.has("extra")?plain(o.get("extra")):"");
     }
 }
+

@@ -17,7 +17,7 @@ public final class ChatMessageFilter {
     private static final List<Pattern> ANNOUNCEMENT_NAMES = List.of(
         Pattern.compile("^CONGRATULATIONS!\\s+([A-Za-z0-9_]{1,16})\\b"),
         Pattern.compile("^Welcome\\s+([A-Za-z0-9_]{1,16})\\s+to the server!"),
-        Pattern.compile("^([A-Za-z0-9_]{1,16})\\s+(?:has\\s+(?:bought|freed|succumbed|defeated|completed|conquered)\\b|defeated\\s|completed\\s|joined\\s|left\\s)"),
+        Pattern.compile("^([A-Za-z0-9_]{1,16})\\s+(?:has\\s+(?:bought|freed|succumbed|defeated|completed|conquered|taken\\s+down)\\b|defeated\\s|completed\\s|joined\\s|left\\s)"),
         Pattern.compile("\\bThanks\\s+([A-Za-z0-9_]{1,16})\\s+for supporting the server!")
     );
 
@@ -33,6 +33,7 @@ public final class ChatMessageFilter {
         if (CHANNEL.matcher(value).find() || PRIVATE.matcher(value).find())
             return Kind.PLAYER;
         if (instanceNotice(component, value)) return strongPlayerSource(component, true) ? Kind.PLAYER : Kind.SYSTEM;
+        if (forestVictoryNotice(component,value)) return Kind.SYSTEM;
         if (hasPlayerMarker(component)) return Kind.PLAYER;
         if (SENDER.matcher(value).find() && !questMetadata(component, value) && !deathHelpHeading(component, value) && !islesQuestWarning(component, value) && !repairAchievement(component, value)) return Kind.PLAYER;
         return NPC.matcher(value).find() ? Kind.NPC : Kind.SYSTEM;
@@ -67,7 +68,7 @@ public final class ChatMessageFilter {
 
     // Exact screenshot-confirmed quest warning, never arbitrary "WARNING:" chat.
     private static boolean islesQuestWarning(JsonElement component,String plain) {
-        return plain.replaceAll("\\s+"," ").strip().equals(WARNING_TEXT)
+        return (plain.replaceAll("\\s+"," ").strip().equals(WARNING_TEXT) || plain.replaceAll("\\s+"," ").strip().equals("WARNING: This \"fast track\" quest will unlock access to the Architect's Ring, Monumenta's third region. The mainline story will guide you there naturally, but it is HEAVILY advised to have at least completed the Celsian Isles Monument prior to beginning this quest."))
             && !TranslationEngine.hasHiddenText(component) && !strongPlayerSource(component,true)
             && redWarningText(component,false);
     }
@@ -99,15 +100,15 @@ public final class ChatMessageFilter {
     }
     private static boolean rewriteInstanceNotice(JsonElement value, TranslationEngine engine, Set<String> names) {
         if(value==null)return false;
-        if(value.isJsonArray()){boolean changed=false;for(JsonElement child:value.getAsJsonArray())changed|=rewriteInstanceNotice(child,engine,names);return changed;}
+        if(value.isJsonArray()){boolean changed=false;JsonArray array=value.getAsJsonArray();for(int i=0;i<array.size();i++){JsonElement child=array.get(i);if(child.isJsonPrimitive()&&child.getAsJsonPrimitive().isString()&&child.getAsString().contains("People with no instance:")){JsonObject node=new JsonObject();TranslationEngine.replaceTranslatedText(node,child.getAsString().replace("People with no instance:","尚未加入副本的玩家："));array.set(i,node);changed=true;}else changed|=rewriteInstanceNotice(child,engine,names);}return changed;}
         if(!value.isJsonObject())return false;
         JsonObject o=value.getAsJsonObject(); boolean changed=false;
         if(o.has("text")) {
             String raw=o.get("text").getAsString();
             // A literal player name remains byte-for-byte intact, including its interactive node.
-            if(raw.contains("People with no instance:")) {String translated=raw.replace("People with no instance: ","没有副本进度的玩家：");if(!raw.equals(translated)){TranslationEngine.replaceTranslatedText(o,translated);changed=true;}}
+            if(raw.contains("People with no instance:")) {String translated=raw.replace("People with no instance: ","尚未加入副本的玩家：");if(!raw.equals(translated)){TranslationEngine.replaceTranslatedText(o,translated);changed=true;}}
         }
-        if(o.has("extra"))for(JsonElement child:o.getAsJsonArray("extra"))changed|=rewriteInstanceNotice(child,engine,names);
+        if(o.has("extra"))changed|=rewriteInstanceNotice(o.get("extra"),engine,names);
         return changed;
     }
     // Known standalone help headings also look like a "player:" prefix.
@@ -185,6 +186,36 @@ public final class ChatMessageFilter {
         exact.addProperty(clean.substring(colon + 1).trim(), translated.substring(targetColon + 1));
         JsonObject dictionary = new JsonObject(); dictionary.add("exact", exact);
         return new TranslationEngine(dictionary).rewriteVisible(value, false);
+    }
+
+    private static final Pattern FOREST_VICTORY=Pattern.compile("^([A-Za-z0-9_]{1,16}) has taken down the Sons of the Forest within Verdant Fortress[.][.][.] again!$");
+    private static boolean forestVictoryNotice(JsonElement component,String plain) {
+        Matcher match=FOREST_VICTORY.matcher(plain);
+        return match.matches()&&!TranslationEngine.hasHiddenText(component)&&victoryIdentityOnly(component,match.group(1));
+    }
+    /** Only the announced player's visible name may carry player interaction metadata. */
+    private static boolean victoryIdentityOnly(JsonElement value,String player) {
+        if(value==null||value.isJsonNull()||value.isJsonPrimitive())return true;
+        if(value.isJsonArray()){for(JsonElement child:value.getAsJsonArray())if(!victoryIdentityOnly(child,player))return false;return true;}
+        JsonObject o=value.getAsJsonObject();
+        if(o.has("translate")||o.has("selector")||o.has("score"))return false;
+        if(o.has("hoverEvent")||o.has("clickEvent")) {
+            if(!visibleText(o).equals(player)&&!(o.has("text")&&o.get("text").isJsonPrimitive()&&o.get("text").getAsString().equals(player)&&o.has("extra")&&visibleText(o.get("extra")).equals(" has taken down the Sons of the Forest within Verdant Fortress... again!")))return false;
+            if(o.has("clickEvent")) {
+                if(!o.get("clickEvent").isJsonObject())return false;
+                JsonObject click=o.getAsJsonObject("clickEvent");
+                if(!click.has("action")||!click.has("value")||!click.get("action").getAsString().equals("suggest_command")
+                    ||!click.get("value").getAsString().matches("^/(?:tell|msg|w|whisper) "+Pattern.quote(player)+" ?$"))return false;
+            }
+            if(o.has("hoverEvent")) {
+                if(!o.get("hoverEvent").isJsonObject())return false;
+                JsonObject hover=o.getAsJsonObject("hoverEvent");
+                if(!hover.has("action")||!hover.get("action").getAsString().equals("show_entity")||!hover.has("contents")||!hover.get("contents").isJsonObject())return false;
+                JsonObject entity=hover.getAsJsonObject("contents");
+                if(!entity.has("type")||!entity.get("type").getAsString().equals("minecraft:player")||!entity.has("name")||!visibleText(entity.get("name")).equals(player))return false;
+            }
+        }
+        return (!o.has("extra")||victoryIdentityOnly(o.get("extra"),player))&&(!o.has("with")||victoryIdentityOnly(o.get("with"),player));
     }
 
     private static boolean hasPlayerMarker(JsonElement value) {
@@ -315,3 +346,10 @@ public final class ChatMessageFilter {
         return changed;
     }
 }
+
+
+
+
+
+
+

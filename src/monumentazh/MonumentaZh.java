@@ -493,7 +493,8 @@ public final class MonumentaZh implements ClientModInitializer {
             boolean monsterPlate=(kind.equals("entity_label")||kind.equals("hologram_label")||kind.equals("text_display"))
                 &&original.getString().matches("(?s)[^\n]+\n[«<]?[0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?\\s*/\\s*[0-9]+(?:,[0-9]{3})*(?:\\.[0-9]+)?[»>]?");
             boolean instanceLabel=(kind.equals("entity_label")||kind.equals("hologram_label")||kind.equals("text_display"))&&(HologramLayout.chineseOnly(original.getString())||knownPlayerTitle(original,kind));
-            if (!monsterPlate && !((kind.equals("bossbar")||kind.equals("actionbar"))&&original.getString().contains("Kaul")) && !bountyAlreadyBilingual && !centralPrefix && !serverMessage && !kind.equals("sign") && !kind.equals("item_name") && !kind.equals("class_tooltip") && !kind.equals("alchemist_tooltip") && !kind.equals("alchemist_title") && !kind.equals("shaman_title") && !kind.equals("shaman_tooltip") && !instanceLabel && !nameLocalizer.guildIdentity(original.getString())) {
+            boolean regionMetadata=kind.endsWith("tooltip") && itemRegionMetadata(original.getString());
+            if (!regionMetadata && !monsterPlate && !((kind.equals("bossbar")||kind.equals("actionbar"))&&original.getString().contains("Kaul")) && !bountyAlreadyBilingual && !centralPrefix && !serverMessage && !kind.equals("sign") && !kind.equals("item_name") && !kind.equals("class_tooltip") && !kind.equals("alchemist_tooltip") && !kind.equals("alchemist_title") && !kind.equals("shaman_title") && !kind.equals("shaman_tooltip") && !instanceLabel && !nameLocalizer.guildIdentity(original.getString())) {
                 // Only a standalone ordinary NPC gets its English on a separate row.
                 // Fixed holograms and phrases such as "Cinevra's Office" retain English inline.
                 translated = formatNames(original,translated,!kind.equals("bounty_place_title")&&(!kind.equals("entity_label")||nameLocalizer.npc(original.getString())==null),kind.equals("tooltip")?(TranslationEngine.normalize(original.getString()).equals("King's Valley items into circus tickets.")?Set.of("White","King's Valley"):original.getString().contains("in the depths of the Jaguartooth Mountains")?Set.of("White","Jaguartooth Mountains"):Set.of("White")):Set.of());
@@ -506,7 +507,7 @@ public final class MonumentaZh implements ClientModInitializer {
             // Apply exact item exceptions across display surfaces, including container summaries and hover text.
             JsonElement itemReferences=class_2561.class_2562.method_10868(translated);
             if(itemReferences.isJsonPrimitive()){JsonObject wrapper=new JsonObject();wrapper.add("text",itemReferences);itemReferences=wrapper;}
-            if(NameLocalizer.cleanChineseOnlyItemReferences(itemReferences)) {
+            if((regionMetadata && nameLocalizer.chineseKeyReferences(itemReferences)) | NameLocalizer.cleanChineseOnlyItemReferences(itemReferences)) {
                 class_2561 clean=class_2561.class_2562.method_10872(itemReferences);
                 if(clean!=null)translated=clean;
             }
@@ -527,12 +528,29 @@ public final class MonumentaZh implements ClientModInitializer {
         return enabled&&cached.changed() ? cached.translated() : original;
     }
 
+    /** Item region/quality row only: ordinary POI labels and source rows stay bilingual. */
+    private static boolean itemRegionMetadata(String text) {
+        String value=TranslationEngine.normalize(text);
+        for(String region:List.of("King's Valley","Celsian Isles","Architect's Ring","国王谷","塞尔西亚群岛","建筑师之环")) {
+            if(!value.startsWith(region))continue;
+            String tail=value.substring(region.length()).stripLeading();
+            if(tail.startsWith("（")||tail.startsWith("(")) {
+                int end=tail.indexOf(tail.startsWith("（")?"）":")");
+                if(end<0)continue;
+                tail=tail.substring(end+1).stripLeading();
+            }
+            if((tail.startsWith(":")||tail.startsWith("："))&&!tail.contains("\n"))return true;
+        }
+        return false;
+    }
+
     private static class_2561 translateServerComponent(class_2561 original) {
         JsonElement json = class_2561.class_2562.method_10868(original);
         if (json.isJsonPrimitive() && json.getAsJsonPrimitive().isString()) {
             JsonObject wrapper = new JsonObject(); wrapper.add("text", json); json = wrapper;
         }
         Set<String> protectedNames=new TreeSet<>(String.CASE_INSENSITIVE_ORDER);protectedNames.addAll(ChatMessageFilter.protectedNames(original.getString()));protectedNames.addAll(CapturePrivacy.roleNames(original.getString()));
+        protectedNames.addAll(ContextTranslations.auditedNoticeIdentities(json,original.getString()));
         boolean questProgress=QuestProgressLayout.isQuestProgress(json);
         boolean changed=rewriteUndergrowthBounty(json,original.getString());
         changed|=BountyDialogue.rewrite(json,original.getString(),engine);
@@ -552,6 +570,12 @@ public final class MonumentaZh implements ClientModInitializer {
         if(original.getString().contains("falling in on itself. Today's Bounty asks") || (original.getString().contains("豹牙山脉") && original.getString().contains("早已废弃") && original.getString().contains("悬赏"))) {
             protectedNames.add("Jaguar Tooth Mountains");protectedNames.add("Jaguartooth Mountains");
         }
+        // This screenshot-audited bounty omits the location's English annotation.
+        if (original.getString().startsWith("King's Bounty: Behind the Blackroot Jungle's tiered farm")
+                || (original.getString().startsWith("国王") && original.getString().contains("悬赏")
+                    && original.getString().contains("黑根丛林") && original.getString().contains("梯田")
+                    && original.getString().contains("隧道"))) protectedNames.add("Blackroot Jungle");
+        if(original.getString().contains("has bought the [True North]"))protectedNames.add("True North");
         changed|=nameLocalizer.rewriteChat(json,original.getString(),bilingualNames,bilingualPlaces,protectedNames);
         changed|=QuestProgressLayout.chineseIgorTitle(json,original.getString());
         changed|=nameLocalizer.chineseDeathMonster(json);
@@ -851,6 +875,13 @@ public final class MonumentaZh implements ClientModInitializer {
         var font=class_310.method_1551().field_1772;
         int margin=font.method_1727("中"),comfortableWidth=maxWidth-2*margin;
         for(boolean filtered:List.of(false,true)) {
+            // A standalone direction marker is interface text, not an NPC or place name.
+            int occupiedCount=0;String onlyLine="";
+            for(int i=0;i<4;i++) {
+                String line=TranslationEngine.normalize(original.method_49859(i,filtered).getString());
+                if(!line.isBlank()){occupiedCount++;onlyLine=line;}
+            }
+            if(occupiedCount==1&&onlyLine.matches("(?i)(?:\\(\\s*2[ -]+way\\s*\\)|\\[\\s*2[ -]+way\\s*\\])"))continue;
             net.minecraft.class_8242 teleport=singleTeleportSign(original,translated,filtered);
             if(teleport!=null){translated=teleport;continue;}
             String header=TranslationEngine.normalize(original.method_49859(0,filtered).getString()).toLowerCase(Locale.ROOT);
@@ -1237,3 +1268,4 @@ public final class MonumentaZh implements ClientModInitializer {
         return true;
     }
 }
+
