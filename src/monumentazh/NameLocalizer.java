@@ -97,8 +97,42 @@ public final class NameLocalizer {
     /** Chat entry point; complete item-name exceptions apply in every context. */
     public boolean rewriteChat(JsonElement translated,String original,boolean npcNames,boolean places,Set<String> protectedNames) {
         boolean changed=rewrite(translated,original,false,places,protectedNames,true);
-        return chineseChatNpcReferences(translated,protectedNames)||changed;
+        changed|=chineseChatNpcReferences(translated,protectedNames);
+        if(!TranslationEngine.hasHiddenText(translated))changed|=velaraHint(translated,false);
+        return changed;
     }
+
+    /** Translator guidance on visible chat runs only; preserve server hover and all click metadata. */
+    private static boolean velaraHint(JsonElement node,boolean inheritedHover) {
+        if(node==null||!node.isJsonObject())return false;
+        JsonObject o=node.getAsJsonObject();
+        if(CapturePrivacy.playerComponent(o))return false;
+        boolean blocked=inheritedHover||o.has("hoverEvent"),changed=false;
+        JsonArray old=o.has("extra")&&o.get("extra").isJsonArray()?o.getAsJsonArray("extra"):null;
+        if(old!=null)for(int i=0;i<old.size();i++) {
+            JsonElement child=old.get(i);
+            if(child.isJsonPrimitive()&&child.getAsJsonPrimitive().isString()) {
+                JsonObject wrapped=new JsonObject();wrapped.add("text",child.deepCopy());
+                if(velaraHint(wrapped,blocked)){old.set(i,wrapped);changed=true;}
+            } else changed|=velaraHint(child,blocked);
+        }
+        if(blocked||!o.has("text")||!o.get("text").isJsonPrimitive())return changed;
+        String text=o.get("text").getAsString();
+        java.util.regex.Matcher m=java.util.regex.Pattern.compile("维拉拉(?!堡垒)|第一座图腾").matcher(text);
+        JsonArray parts=new JsonArray();int end=0;
+        while(m.find()) {
+            if(m.start()>end){JsonObject p=new JsonObject();p.addProperty("text",text.substring(end,m.start()));parts.add(p);}
+            JsonObject p=new JsonObject();p.addProperty("text",m.group());
+            String hint=m.group().equals("维拉拉")?"译者提示：废墟位于远郊城下水道":"译者提示：寻找一座中央嵌有黑曜石的石质建筑，那便是任务所指的图腾。";
+            JsonObject content=new JsonObject();content.addProperty("text",hint);content.addProperty("color","gray");
+            JsonObject hover=new JsonObject();hover.addProperty("action","show_text");hover.add("contents",content);p.add("hoverEvent",hover);parts.add(p);end=m.end();
+        }
+        if(end==0)return changed;
+        if(end<text.length()){JsonObject p=new JsonObject();p.addProperty("text",text.substring(end));parts.add(p);}
+        if(old!=null)for(JsonElement child:old)parts.add(child);
+        o.addProperty("text","");o.add("extra",parts);return true;
+    }
+
     /** Chat-only: erase known NPC English annotations across styled text leaves, never metadata. */
     public boolean chineseKeyReferences(JsonElement value) { return chineseReferences(value,Set.of(),true); }
     private boolean chineseChatNpcReferences(JsonElement value,Set<String> protectedNames) { return chineseReferences(value,protectedNames,false); }

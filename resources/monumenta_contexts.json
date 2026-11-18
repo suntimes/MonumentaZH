@@ -589,6 +589,691 @@
         "but all the more we need to investigate it. Be",
         "safe."
       ]
+    },
+    {
+      "id": "export171-lore-0",
+      "source_lines": [
+        "No matter how you hold it,",
+        "it always seems to be pointing southwest."
+      ],
+      "target_lines": [
+        "无论怎样握住它，",
+        "它似乎总指向西南方。"
+      ],
+      "guard_exact_source": "No matter how you hold it, it always seems to be pointing southwest.",
+      "guard_expected": "无论怎样握住它，它似乎总指向西南方。",
+      "guard_line_translations": [
+        "No matter how you hold it,",
+        "it always seems to be pointing southwest."
+      ]
+    },
+    {
+      "id": "export171-lore-1",
+      "source_lines": [
+        "Your crewmate Levyn found",
+        "evidence of Mistport's captain, Xeno,",
+        "having some dealings with the Masked",
+        "agent that attacked you. However,",
+        "the result was a very sad pirate."
+      ],
+      "target_lines": [
+        "船员莱文找到了证据：",
+        "雾港船长杰诺与",
+        "袭击你的蒙面人",
+        "暗中有所勾结。然而，",
+        "莱文却因此变得消沉。"
+      ],
+      "guard_exact_source": "Your crewmate Levyn found evidence of Mistport's captain, Xeno, having some dealings with the Masked agent that attacked you. However, the result was a very sad pirate.",
+      "guard_expected": "船员莱文找到了证据：雾港船长杰诺与袭击你的蒙面人暗中有所勾结。然而，莱文却因此变得消沉。",
+      "guard_line_translations": [
+        "Your crewmate Levyn found",
+        "evidence of Mistport's captain, Xeno,",
+        "having some dealings with the Masked",
+        "agent that attacked you. However,",
+        "the result was a very sad pirate."
+      ]
+    },
+    {
+      "id": "export171-lore-2",
+      "source_lines": [
+        "After landing on the island of",
+        "Mistport, your crew begins to settle",
+        "in as the mission at hand begins:",
+        "Find Calder's whereabouts in",
+        "this new land."
+      ],
+      "target_lines": [
+        "抵达雾港后，",
+        "船员们逐渐安顿下来，",
+        "眼前的任务也就此展开：",
+        "在这片陌生的土地上，",
+        "寻找卡尔德的踪迹。"
+      ],
+      "guard_exact_source": "After landing on the island of Mistport, your crew begins to settle in as the mission at hand begins: Find Calder's whereabouts in this new land.",
+      "guard_expected": "抵达雾港后，船员们逐渐安顿下来，眼前的任务也就此展开：在这片陌生的土地上，寻找卡尔德的踪迹。",
+      "guard_line_translations": [
+        "After landing on the island of",
+        "Mistport, your crew begins to settle",
+        "in as the mission at hand begins:",
+        "Find Calder's whereabouts in",
+        "this new land."
+      ]
+    },
+    {
+      "id": "export171-lore-3",
+      "source_lines": [
+        "Vargos sent his apprentice, Soran,",
+        "to the Isles in order to assist you.",
+        "Unfortunately, he was assassinated",
+        "soon after his arrival, revealing the",
+        "truth behind the connections between",
+        "Xeno and Calder."
+      ],
+      "target_lines": [
+        "瓦尔戈斯派学徒索伦",
+        "前往群岛协助你。",
+        "不幸的是，他刚抵达不久",
+        "就遭到了暗杀，",
+        "杰诺与卡尔德之间的",
+        "关联也因此浮出水面。"
+      ],
+      "guard_exact_source": "Vargos sent his apprentice, Soran, to the Isles in order to assist you. Unfortunately, he was assassinated soon after his arrival, revealing the truth behind the connections between Xeno and Calder.",
+      "guard_expected": "瓦尔戈斯派学徒索伦前往群岛协助你。不幸的是，他刚抵达不久就遭到了暗杀，杰诺与卡尔德之间的关联也因此浮出水面。",
+      "guard_line_translations": [
+        "Vargos sent his apprentice, Soran,",
+        "to the Isles in order to assist you.",
+        "Unfortunately, he was assassinated",
+        "soon after his arrival, revealing the",
+        "truth behind the connections between",
+        "Xeno and Calder."
+      ]
+    },
+    {
+      "id": "export171-lore-4",
+      "source_lines": [
+        "While investigating the ruins of",
+        "the Viridian Empire, Xeno's men",
+        "corner you, forcing your",
+        "cooperation, but allowing you",
+        "access into Salazar's Folly."
+      ],
+      "target_lines": [
+        "调查维里迪亚帝国遗迹时，",
+        "你被杰诺的手下包围，",
+        "不得不与他们合作，",
+        "却也因此获准进入",
+        "萨拉扎的妄行。"
+      ],
+      "guard_exact_source": "While investigating the ruins of the Viridian Empire, Xeno's men corner you, forcing your cooperation, but allowing you access into Salazar's Folly.",
+      "guard_expected": "调查维里迪亚帝国遗迹时，你被杰诺的手下包围，不得不与他们合作，却也因此获准进入萨拉扎的妄行。",
+      "guard_line_translations": [
+        "While investigating the ruins of",
+        "the Viridian Empire, Xeno's men",
+        "corner you, forcing your",
+        "cooperation, but allowing you",
+        "access into Salazar's Folly."
+      ]
+    },
+    {
+      "id": "export171-lore-5",
+      "source_lines": [
+        "The time had come to confront",
+        "the captain of Mistport, Xeno.",
+        "After tracking him down to",
+        "an underwater bunker, you took",
+        "down the Masked agent, and saw",
+        "as Calder turned on his own ally."
+      ],
+      "target_lines": [
+        "是时候直面雾港船长",
+        "杰诺了。你一路追踪，",
+        "找到了他的水下据点，",
+        "击败了蒙面人，",
+        "并亲眼看见卡尔德",
+        "对自己的盟友痛下杀手。"
+      ],
+      "guard_exact_source": "The time had come to confront the captain of Mistport, Xeno. After tracking him down to an underwater bunker, you took down the Masked agent, and saw as Calder turned on his own ally.",
+      "guard_expected": "是时候直面雾港船长杰诺了。你一路追踪，找到了他的水下据点，击败了蒙面人，并亲眼看见卡尔德对自己的盟友痛下杀手。",
+      "guard_line_translations": [
+        "The time had come to confront",
+        "the captain of Mistport, Xeno.",
+        "After tracking him down to",
+        "an underwater bunker, you took",
+        "down the Masked agent, and saw",
+        "as Calder turned on his own ally."
+      ]
+    },
+    {
+      "id": "export171-lore-6",
+      "source_lines": [
+        "Head towards the Crystal Forest Grove in Chillwind",
+        "for a fungal sample."
+      ],
+      "target_lines": [
+        "前往寒风的水晶森林树丛，",
+        "采集一个真菌标本。"
+      ],
+      "guard_exact_source": "Head towards the Crystal Forest Grove in Chillwind for a fungal sample.",
+      "guard_expected": "前往寒风的水晶森林树丛，采集一个真菌标本。",
+      "guard_line_translations": [
+        "Head towards the Crystal Forest Grove in Chillwind",
+        "for a fungal sample."
+      ]
+    },
+    {
+      "id": "export171-lore-7",
+      "source_lines": [
+        "It refracts the light in an interesting",
+        "way for a fungus."
+      ],
+      "target_lines": [
+        "作为真菌，它折射光线的",
+        "方式倒是颇为奇特。"
+      ],
+      "guard_exact_source": "It refracts the light in an interesting way for a fungus.",
+      "guard_expected": "作为真菌，它折射光线的方式倒是颇为奇特。",
+      "guard_line_translations": [
+        "It refracts the light in an interesting",
+        "way for a fungus."
+      ]
+    },
+    {
+      "id": "export171-lore-8",
+      "source_lines": [
+        "Head towards the Sunken Tower in Ishnir and seek",
+        "out some aged alcohol."
+      ],
+      "target_lines": [
+        "前往伊什尼尔的沉没之塔，",
+        "寻找一些陈年酒。"
+      ],
+      "guard_exact_source": "Head towards the Sunken Tower in Ishnir and seek out some aged alcohol.",
+      "guard_expected": "前往伊什尼尔的沉没之塔，寻找一些陈年酒。",
+      "guard_line_translations": [
+        "Head towards the Sunken Tower in Ishnir and seek",
+        "out some aged alcohol."
+      ]
+    },
+    {
+      "id": "export171-lore-9",
+      "source_lines": [
+        "Head to the docks in front of Xeno's ship and",
+        "decide which kingdom you will be siding with."
+      ],
+      "target_lines": [
+        "前往杰诺船前的码头，",
+        "决定与哪个王国结盟。"
+      ],
+      "guard_exact_source": "Head to the docks in front of Xeno's ship and decide which kingdom you will be siding with.",
+      "guard_expected": "前往杰诺船前的码头，决定与哪个王国结盟。",
+      "guard_line_translations": [
+        "Head to the docks in front of Xeno's ship and",
+        "decide which kingdom you will be siding with."
+      ]
+    },
+    {
+      "id": "export171-lore-10",
+      "source_lines": [
+        "Talk to the one waiting for you just outside the",
+        "Harmonic Arboretum in the lobby below the Sealed",
+        "Descent."
+      ],
+      "target_lines": [
+        "穿过封印之降后，",
+        "与和谐树园入口外",
+        "前厅中等候你的人交谈。"
+      ],
+      "guard_exact_source": "Talk to the one waiting for you just outside the Harmonic Arboretum in the lobby below the Sealed Descent.",
+      "guard_expected": "穿过封印之降后，与和谐树园入口外前厅中等候你的人交谈。",
+      "guard_line_translations": [
+        "Talk to the one waiting for you just outside the",
+        "Harmonic Arboretum in the lobby below the Sealed",
+        "Descent."
+      ]
+    },
+    {
+      "id": "export171-lore-11",
+      "source_lines": [
+        "Make your way through the Sealed Descent. The",
+        "Harmonic Arboretum awaits."
+      ],
+      "target_lines": [
+        "穿过封印之降，",
+        "和谐树园就在前方。"
+      ],
+      "guard_exact_source": "Make your way through the Sealed Descent. The Harmonic Arboretum awaits.",
+      "guard_expected": "穿过封印之降，和谐树园就在前方。",
+      "guard_line_translations": [
+        "Make your way through the Sealed Descent. The",
+        "Harmonic Arboretum awaits."
+      ]
+    },
+    {
+      "id": "export171-lore-12",
+      "source_lines": [
+        "The outside of the leather sack is",
+        "adorned with foliage and flowers, yet",
+        "a peek inside shows an endless writhing maw."
+      ],
+      "target_lines": [
+        "皮袋外装点着绿叶与鲜花，",
+        "朝里面一瞧，却只见一张",
+        "无尽蠕动的巨口。"
+      ],
+      "guard_exact_source": "The outside of the leather sack is adorned with foliage and flowers, yet a peek inside shows an endless writhing maw.",
+      "guard_expected": "皮袋外装点着绿叶与鲜花，朝里面一瞧，却只见一张无尽蠕动的巨口。",
+      "guard_line_translations": [
+        "The outside of the leather sack is",
+        "adorned with foliage and flowers, yet",
+        "a peek inside shows an endless writhing maw."
+      ]
+    },
+    {
+      "id": "export171-lore-13",
+      "source_lines": [
+        "The Father sleeps.",
+        "Snow falls on the evergreens.",
+        "Balance, undisturbed."
+      ],
+      "target_lines": [
+        "圣父沉眠。",
+        "白雪落在常青树上。",
+        "平衡，未受惊扰。"
+      ],
+      "guard_exact_source": "The Father sleeps. Snow falls on the evergreens. Balance, undisturbed.",
+      "guard_expected": "圣父沉眠。白雪落在常青树上。平衡，未受惊扰。",
+      "guard_line_translations": [
+        "The Father sleeps.",
+        "Snow falls on the evergreens.",
+        "Balance, undisturbed."
+      ]
+    },
+    {
+      "id": "pink172-lore-0",
+      "source_lines": [
+        "Something is wrong. This isn't the",
+        "wool you came here for. Perhaps",
+        "part of it, once, but the other part is...",
+        "somewhere much further beyond..."
+      ],
+      "target_lines": [
+        "好像不对。这并不是",
+        "你此行要找的羊毛。也许它曾是",
+        "那块羊毛的一部分，而另一部分……",
+        "还在某个遥远得多的地方……"
+      ],
+      "guard_exact_source": "Something is wrong. This isn't the wool you came here for. Perhaps part of it, once, but the other part is... somewhere much further beyond...",
+      "guard_expected": "好像不对。这并不是你此行要找的羊毛。也许它曾是那块羊毛的一部分，而另一部分……还在某个遥远得多的地方……",
+      "guard_line_translations": [
+        "Something is wrong. This isn't the",
+        "wool you came here for. Perhaps",
+        "part of it, once, but the other part is...",
+        "somewhere much further beyond..."
+      ]
+    },
+    {
+      "id": "pink172-lore-1",
+      "source_lines": [
+        "...and in another realm, the other",
+        "part is found. You can sense that",
+        "it yearns to be reunited, to be whole",
+        "once more... to be in balance."
+      ],
+      "target_lines": [
+        "……在另一个世界，",
+        "你找到了另一部分。你能感觉到，",
+        "它渴望与另一半重聚，重新成为",
+        "一个整体……重获平衡。"
+      ],
+      "guard_exact_source": "...and in another realm, the other part is found. You can sense that it yearns to be reunited, to be whole once more... to be in balance.",
+      "guard_expected": "……在另一个世界，你找到了另一部分。你能感觉到，它渴望与另一半重聚，重新成为一个整体……重获平衡。",
+      "guard_line_translations": [
+        "...and in another realm, the other",
+        "part is found. You can sense that",
+        "it yearns to be reunited, to be whole",
+        "once more... to be in balance."
+      ]
+    },
+    {
+      "id": "pink172-lore-2",
+      "source_lines": [
+        "Opens an instance of the Pink",
+        "Wool Dungeon."
+      ],
+      "target_lines": [
+        "开启一个粉红色羊毛",
+        "地牢副本。"
+      ],
+      "guard_exact_source": "Opens an instance of the Pink Wool Dungeon.",
+      "guard_expected": "开启一个粉红色羊毛地牢副本。",
+      "guard_line_translations": [
+        "Opens an instance of the Pink",
+        "一个羊毛地牢。"
+      ]
+    },
+    {
+      "id": "pink172-lore-3",
+      "source_lines": [
+        "Strength of character,",
+        "faithfulness, and courage."
+      ],
+      "target_lines": [
+        "坚毅、忠贞，",
+        "还有勇气。"
+      ],
+      "guard_exact_source": "Strength of character, faithfulness, and courage.",
+      "guard_expected": "坚毅、忠贞，还有勇气。",
+      "guard_line_translations": [
+        "坚毅的品格，",
+        "忠诚与勇气。"
+      ]
+    },
+    {
+      "id": "gray173-lore-0",
+      "source_lines": [
+        "Enter the Dehydrated Oasis and search out clues",
+        "for Tehkma Ka's tomb. Leave no stone unpressed."
+      ],
+      "target_lines": [
+        "进入干涸绿洲，寻找特赫克玛·卡陵墓的线索。",
+        "记得把每块石头都按一按。"
+      ],
+      "guard_exact_source": "Enter the Dehydrated Oasis and search out clues for Tehkma Ka's tomb. Leave no stone unpressed.",
+      "guard_expected": "进入干涸绿洲，寻找特赫克玛·卡陵墓的线索。记得把每块石头都按一按。",
+      "guard_line_translations": [
+        "Enter the Dehydrated Oasis and search out clues",
+        "for Tehkma Ka's tomb. Leave no stone unpressed."
+      ]
+    },
+    {
+      "id": "gray173-lore-1",
+      "source_lines": [
+        "Meet Sierhaven Smith over in the Lost Sands City",
+        "ruins."
+      ],
+      "target_lines": [
+        "前往失落沙城遗迹，",
+        "与希尔海文·史密斯会合。"
+      ],
+      "guard_exact_source": "Meet Sierhaven Smith over in the Lost Sands City ruins.",
+      "guard_expected": "前往失落沙城遗迹，与希尔海文·史密斯会合。",
+      "guard_line_translations": [
+        "Meet Sierhaven Smith over in the Lost Sands City",
+        "ruins."
+      ]
+    },
+    {
+      "id": "gray173-lore-2",
+      "source_lines": [
+        "Opens an instance of the Gray",
+        "Wool Dungeon."
+      ],
+      "target_lines": [
+        "开启一个灰色羊毛",
+        "地牢副本。"
+      ],
+      "guard_exact_source": "Opens an instance of the Gray Wool Dungeon.",
+      "guard_expected": "开启一个灰色羊毛地牢副本。",
+      "guard_line_translations": [
+        "Opens an instance of the Gray",
+        "一个羊毛地牢。"
+      ]
+    },
+    {
+      "id": "gray173-lore-3",
+      "source_lines": [
+        "This should have decayed thousands",
+        "of years ago..."
+      ],
+      "target_lines": [
+        "这东西早在几千年前",
+        "就该腐烂了……"
+      ],
+      "guard_exact_source": "This should have decayed thousands of years ago...",
+      "guard_expected": "这东西早在几千年前就该腐烂了……",
+      "guard_line_translations": [
+        "This should have decayed thousands",
+        "of years ago..."
+      ]
+    },
+    {
+      "id": "gray173-lore-4",
+      "source_lines": [
+        "Drain the life of those around you,",
+        "and you shall stand alone. Isolation",
+        "breeds enlightenment if you can bear",
+        "the weight of the results."
+      ],
+      "target_lines": [
+        "汲尽身边人的生命，",
+        "最终只会剩你一人。",
+        "孤独能使人开悟，",
+        "只要你承受得起代价。"
+      ],
+      "guard_exact_source": "Drain the life of those around you, and you shall stand alone. Isolation breeds enlightenment if you can bear the weight of the results.",
+      "guard_expected": "汲尽身边人的生命，最终只会剩你一人。孤独能使人开悟，只要你承受得起代价。",
+      "guard_line_translations": [
+        "吸干身边人的生命，",
+        "你便将独自屹立。孤独",
+        "孕育启悟，只要你能承受",
+        "那后果的重量。"
+      ]
+    },
+    {
+      "id": "gray173-lore-5",
+      "source_lines": [
+        "It emanates a foul stench - hopefully",
+        "to keep the scarabs away."
+      ],
+      "target_lines": [
+        "它散发着一股恶臭。希望这味道",
+        "至少能把圣甲虫熏走。"
+      ],
+      "guard_exact_source": "It emanates a foul stench - hopefully to keep the scarabs away.",
+      "guard_expected": "它散发着一股恶臭。希望这味道至少能把圣甲虫熏走。",
+      "guard_line_translations": [
+        "It emanates a foul stench - hopefully",
+        "to keep the scarabs away."
+      ]
+    },
+    {
+      "id": "gray173-lore-6",
+      "source_lines": [
+        "For honor! For glory! For",
+        "the Gem, Al Malakut!"
+      ],
+      "target_lines": [
+        "为了荣誉！为了荣耀！",
+        "为了我们的珍宝——阿尔马拉库特！"
+      ],
+      "guard_exact_source": "For honor! For glory! For the Gem, Al Malakut!",
+      "guard_expected": "为了荣誉！为了荣耀！为了我们的珍宝——阿尔马拉库特！",
+      "guard_line_translations": [
+        "For honor! For glory! For",
+        "the Gem, Al Malakut!"
+      ]
+    },
+    {
+      "id": "gray173-lore-7",
+      "source_lines": [
+        "Necrosis is but the beginning, a soul must",
+        "be severed to attain new life."
+      ],
+      "target_lines": [
+        "肉身腐坏只是开始。唯有斩断",
+        "灵魂的羁绊，方能获得新生。"
+      ],
+      "guard_exact_source": "Necrosis is but the beginning, a soul must be severed to attain new life.",
+      "guard_expected": "肉身腐坏只是开始。唯有斩断灵魂的羁绊，方能获得新生。",
+      "guard_line_translations": [
+        "坏死只是开始，必须斩断",
+        "灵魂，方能获得新生。"
+      ]
+    },
+    {
+      "id": "gray173-lore-8",
+      "source_lines": [
+        "Behind the veil, there",
+        "is only darkness."
+      ],
+      "target_lines": [
+        "帷幕之后，",
+        "唯有黑暗。"
+      ],
+      "guard_exact_source": "Behind the veil, there is only darkness.",
+      "guard_expected": "帷幕之后，唯有黑暗。",
+      "guard_line_translations": [
+        "帷幕之后，",
+        "唯有黑暗。"
+      ]
+    },
+    {
+      "id": "gray173-lore-9",
+      "source_lines": [
+        "Sun soon rose on a day when the",
+        "desert's heart was broken."
+      ],
+      "target_lines": [
+        "那天，沙漠的心碎了。",
+        "太阳却照常升起。"
+      ],
+      "guard_exact_source": "Sun soon rose on a day when the desert's heart was broken.",
+      "guard_expected": "那天，沙漠的心碎了。太阳却照常升起。",
+      "guard_line_translations": [
+        "沙漠之心破碎的那天，",
+        "太阳很快升起。"
+      ]
+    },
+    {
+      "id": "gray173-lore-10",
+      "source_lines": [
+        "From clay, you were forged.",
+        "From the ashes, you rise anew."
+      ],
+      "target_lines": [
+        "你由黏土塑就，",
+        "又从灰烬中重生。"
+      ],
+      "guard_exact_source": "From clay, you were forged. From the ashes, you rise anew.",
+      "guard_expected": "你由黏土塑就，又从灰烬中重生。",
+      "guard_line_translations": [
+        "你自泥土铸成，",
+        "又从灰烬中重生。"
+      ]
+    },
+    {
+      "id": "gray173-lore-11",
+      "source_lines": [
+        "Let's hope you don't end up",
+        "like this poor fellow."
+      ],
+      "target_lines": [
+        "但愿你不会落得",
+        "和这可怜人一样的下场。"
+      ],
+      "guard_exact_source": "Let's hope you don't end up like this poor fellow.",
+      "guard_expected": "但愿你不会落得和这可怜人一样的下场。",
+      "guard_line_translations": [
+        "Let's hope you don't end up",
+        "like this poor fellow."
+      ]
+    },
+    {
+      "id": "gray173-lore-12",
+      "source_lines": [
+        "Woven from a few thousand locusts -",
+        "it itches quite a bit."
+      ],
+      "target_lines": [
+        "几千只蝗虫编成的凉鞋，",
+        "穿着着实有点痒。"
+      ],
+      "guard_exact_source": "Woven from a few thousand locusts - it itches quite a bit.",
+      "guard_expected": "几千只蝗虫编成的凉鞋，穿着着实有点痒。",
+      "guard_line_translations": [
+        "由数千只蝗虫编织而成——",
+        "穿起来有点痒。"
+      ]
+    },
+    {
+      "id": "gray173-lore-13",
+      "source_lines": [
+        "Skirt along the fire's rim, and you shall",
+        "know its heat. Familiarize yourself and",
+        "draw ever closer to it."
+      ],
+      "target_lines": [
+        "沿着火边走，便知火有多烫。",
+        "熟悉它的热度，",
+        "再一步步靠近。"
+      ],
+      "guard_exact_source": "Skirt along the fire's rim, and you shall know its heat. Familiarize yourself and draw ever closer to it.",
+      "guard_expected": "沿着火边走，便知火有多烫。熟悉它的热度，再一步步靠近。",
+      "guard_line_translations": [
+        "Skirt along the fire's rim, and you shall",
+        "know its heat. Familiarize yourself and",
+        "draw ever closer to it."
+      ]
+    },
+    {
+      "id": "gray173-lore-14",
+      "source_lines": [
+        "Strength lies not only with brute force,",
+        "but the ability to control it. Such is",
+        "the wisdom of the Son of Flame."
+      ],
+      "target_lines": [
+        "有力气，还要懂得驾驭它，",
+        "才算真正强大。",
+        "这便是火焰之子的智慧。"
+      ],
+      "guard_exact_source": "Strength lies not only with brute force, but the ability to control it. Such is the wisdom of the Son of Flame.",
+      "guard_expected": "有力气，还要懂得驾驭它，才算真正强大。这便是火焰之子的智慧。",
+      "guard_line_translations": [
+        "力量不只在于蛮力，",
+        "更在于掌控蛮力的能力。这便是",
+        "火焰之子的智慧。"
+      ]
+    },
+    {
+      "id": "gray173-lore-15",
+      "source_lines": [
+        "Harden thy form, and slow thy movement.",
+        "Only then shall you become one with",
+        "the tortoise."
+      ],
+      "target_lines": [
+        "让身躯变得坚硬，让脚步缓下来。",
+        "唯有如此，你才能",
+        "与陆龟合为一体。"
+      ],
+      "guard_exact_source": "Harden thy form, and slow thy movement. Only then shall you become one with the tortoise.",
+      "guard_expected": "让身躯变得坚硬，让脚步缓下来。唯有如此，你才能与陆龟合为一体。",
+      "guard_line_translations": [
+        "Harden thy form, and slow thy movement.",
+        "Only then shall you become one with",
+        "the tortoise."
+      ]
+    },
+    {
+      "id": "gray173-lore-16",
+      "source_lines": [
+        "The golden jar appears to be smashed in",
+        "frustration, but it holds your alchemical",
+        "supplies as well as any other vessel."
+      ],
+      "target_lines": [
+        "这只金罐像是有人气急之下砸裂的。",
+        "不过用来装炼金材料，",
+        "它照样好用。"
+      ],
+      "guard_exact_source": "The golden jar appears to be smashed in frustration, but it holds your alchemical supplies as well as any other vessel.",
+      "guard_expected": "这只金罐像是有人气急之下砸裂的。不过用来装炼金材料，它照样好用。",
+      "guard_line_translations": [
+        "The golden jar appears to be smashed in",
+        "frustration, but it holds your alchemical",
+        "supplies as well as any other vessel."
+      ]
     }
   ],
   "servers": [

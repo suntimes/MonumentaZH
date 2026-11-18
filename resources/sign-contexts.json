@@ -1,1 +1,2630 @@
-[{"source_lines":["press if on","stage"],"target_lines":["若在舞台上，","请按。"],"guard_line_translations":["press if on","stage"],"guard_exact_source":"press if on stage","guard_expected":"若在舞台上，请按。"},{"source_lines":["welcome to the","church of","hanzo"],"target_lines":["欢迎来到","hanzo","教堂"],"guard_line_translations":["欢迎来到","教堂","hanzo"],"guard_exact_source":"welcome to the church of hanzo","guard_expected":"欢迎来到hanzo教堂"},{"source_lines":["Beyond this gate","the Halls give way","to the Cave of","Winds. The gate"],"target_lines":["穿过此门，","殿堂便通向","风之洞穴。","要打开此门，"],"guard_line_translations":["Beyond this gate","the Halls give way","to the Cave of","Winds. The gate"],"guard_exact_source":"Beyond this gate the Halls give way to the Cave of Winds. The gate","guard_expected":"穿过此门，殿堂便通向风之洞穴。要打开此门，"},{"source_lines":["may be opened","by finding three","levers strewn","through"],"target_lines":["请找到","散落在殿堂的","三个拉杆，","然后"],"guard_line_translations":["may be opened","by finding three","levers strewn","through"],"guard_exact_source":"may be opened by finding three levers strewn through","guard_expected":"请找到散落在殿堂的三个拉杆，然后"},{"source_lines":["the Halls and","flipping them","all on."],"target_lines":["将它们","全部拨至","开启状态。"],"guard_line_translations":["the Halls and","flipping them","all on."],"guard_exact_source":"the Halls and flipping them all on.","guard_expected":"将它们全部拨至开启状态。"},{"source_lines":["If you update","these, update","them at each","lever too!"],"target_lines":["若更新这些，","也请同步更新","每个拉杆处的","对应内容！"],"guard_line_translations":["If you update","these, update","them at each","lever too!"],"guard_exact_source":"If you update these, update them at each lever too!","guard_expected":"若更新这些，也请同步更新每个拉杆处的对应内容！"},{"source_lines":["This mech checks","nearby blocks","similar to the","door trigger."],"target_lines":["此机关检测","周围方块，","方式类似","门的触发装置。"],"guard_line_translations":["This mech checks","nearby blocks","similar to the","door trigger."],"guard_exact_source":"This mech checks nearby blocks similar to the door trigger.","guard_expected":"此机关检测周围方块，方式类似门的触发装置。"},{"source_lines":["especially from","relogging, which","can make them","appear wrong."],"target_lines":["尤其是重登时，","它们可能会","显示出","错误状态。"],"guard_line_translations":["especially from","relogging, which","can make them","appear wrong."],"guard_exact_source":"especially from relogging, which can make them appear wrong.","guard_expected":"尤其是重登时，它们可能会显示出错误状态。"},{"source_lines":["Levers are too","far for markers","to be reliably","loaded"],"target_lines":["拉杆距离太远，","导致标记","无法稳定","加载。"],"guard_line_translations":["Levers are too","far for markers","to be reliably","loaded"],"guard_exact_source":"Levers are too far for markers to be reliably loaded","guard_expected":"拉杆距离太远，导致标记无法稳定加载。"},{"source_lines":["FROZEN","CATACOMBS"],"target_lines":["冰封","墓穴"],"guard_line_translations":["FROZEN","CATACOMBS"],"guard_exact_source":"FROZEN CATACOMBS","guard_expected":"冰封墓穴"},{"source_lines":["Closed by ","Order of"],"target_lines":["奉令封闭","下令者："],"guard_line_translations":["Closed by ","Order of"],"guard_exact_source":"Closed by  Order of","guard_expected":"奉令封闭下令者："},{"source_lines":["Do Not","Enter"],"target_lines":["禁止","入内"],"guard_line_translations":["Do Not","Enter"],"guard_exact_source":"Do Not Enter","guard_expected":"禁止入内"},{"source_lines":["DANGER","CAVE IN"],"target_lines":["危险","塌方"],"guard_line_translations":["DANGER","CAVE IN"],"guard_exact_source":"DANGER CAVE IN","guard_expected":"危险塌方"},{"source_lines":["The order of","mages resides in","the grand","university hidden"],"target_lines":["法师教团","居住在一所","宏伟的大学中，","它隐匿于"],"guard_line_translations":["法师教团","居住在","宏伟的","大学里，那里隐藏于"],"guard_exact_source":"The order of mages resides in the grand university hidden","guard_expected":"法师教团居住在一所宏伟的大学中，它隐匿于"},{"source_lines":["inside these","mountains. One of","their powerful","artifacts - the"],"target_lines":["这片群山深处。","他们拥有一件","强大的神器——","那块淡蓝色羊毛。"],"guard_line_translations":["在这片","群山深处。他们的一件","强大","遗物——那块"],"guard_exact_source":"inside these mountains. One of their powerful artifacts - the","guard_expected":"这片群山深处。他们拥有一件强大的神器——那块淡蓝色羊毛。"},{"source_lines":["light blue wool -","possessed great","arcane powers.","It was so"],"target_lines":["羊毛蕴含着","强大的奥术力量。","这股力量","实在过于强大，"],"guard_line_translations":["淡蓝色羊毛——","拥有强大的","奥术力量。","它的力量"],"guard_exact_source":"light blue wool - possessed great arcane powers. It was so","guard_expected":"羊毛蕴含着强大的奥术力量。这股力量实在过于强大，"},{"source_lines":["powerful that the","mages had to","contain it by","using an ancient"],"target_lines":["法师们不得不","施展一道","古老的咒语，","将其封印。"],"guard_line_translations":["过于强大，以至于","法师们不得不","将它封印，","使用了一道古老的"],"guard_exact_source":"powerful that the mages had to contain it by using an ancient","guard_expected":"法师们不得不施展一道古老的咒语，将其封印。"},{"source_lines":["spell. One day,","the order of","alchemists, who","were sworn"],"target_lines":["某天，","炼金术士教团","潜入了大学。","他们与法师教团"],"guard_line_translations":["咒语。某一天，","一个炼金术士","教团，他们","是这些"],"guard_exact_source":"spell. One day, the order of alchemists, who were sworn","guard_expected":"某天，炼金术士教团潜入了大学。他们与法师教团"},{"source_lines":["enemies of the","great mages,","snuck into the","university and"],"target_lines":["是誓不两立的宿敌。","这群炼金术士","趁机偷走了","那块羊毛。"],"guard_line_translations":["伟大法师的","死敌，","悄悄潜入了","大学，并"],"guard_exact_source":"enemies of the great mages, snuck into the university and","guard_expected":"是誓不两立的宿敌。这群炼金术士趁机偷走了那块羊毛。"},{"source_lines":["stole the wool.","Unfortunately,","they did not know","how to control"],"target_lines":["然而，他们","并不知道","该如何掌控","羊毛的力量。"],"guard_line_translations":["偷走了羊毛。","不幸的是，","他们并不知道","如何掌控"],"guard_exact_source":"stole the wool. Unfortunately, they did not know how to control","guard_expected":"然而，他们并不知道该如何掌控羊毛的力量。"},{"source_lines":["the power of the","wool. Slowly, the","wool corrupted","them and drove"],"target_lines":["渐渐地，","羊毛腐化了他们，","使他们陷入疯狂。","为了阻止"],"guard_line_translations":["那股来自","羊毛的力量。渐渐地，","羊毛腐化了","他们，使他们"],"guard_exact_source":"the power of the wool. Slowly, the wool corrupted them and drove","guard_expected":"渐渐地，羊毛腐化了他们，使他们陷入疯狂。为了阻止"},{"source_lines":["them mad. In an","attempt to stop","the corruption,","the mages sealed"],"target_lines":["腐化继续蔓延，","法师们施展魔法，","将炼金术士的","堡垒封印。"],"guard_line_translations":["陷入疯狂。为了","试图阻止","这场腐化，","法师们封印了"],"guard_exact_source":"them mad. In an attempt to stop the corruption, the mages sealed","guard_expected":"腐化继续蔓延，法师们施展魔法，将炼金术士的堡垒封印。"},{"source_lines":["the alchemists'","bastion with a","magic spell. We're","safe ... for now."],"target_lines":["我们","安全了……","至少","暂时如此。"],"guard_line_translations":["炼金术士的","堡垒，使用了","魔法咒语。我们","暂时……安全了。"],"guard_exact_source":"the alchemists' bastion with a magic spell. We're safe ... for now.","guard_expected":"我们安全了……至少暂时如此。"},{"source_lines":["The alchemists","locked up the","wool inside the","\"core\" in the"],"target_lines":["炼金术士","将羊毛锁在","堡垒中央的","“核心”内。"],"guard_line_translations":["炼金术士们","将","羊毛锁在","位于堡垒"],"guard_exact_source":"The alchemists locked up the wool inside the \"core\" in the","guard_expected":"炼金术士将羊毛锁在堡垒中央的“核心”内。"},{"source_lines":["center of their","bastion. The core","is protected by","6 power crystals"],"target_lines":["核心受到","6枚能量水晶","的保护。","这些水晶"],"guard_line_translations":["中央的","“核心”内。核心","受到以下装置保护：","6枚能量水晶"],"guard_exact_source":"center of their bastion. The core is protected by 6 power crystals","guard_expected":"核心受到6枚能量水晶的保护。这些水晶"},{"source_lines":["that are located","all over the","bastion. In order","to access the"],"target_lines":["分布在堡垒各处。","要取得羊毛，","你必须先","摧毁全部水晶。"],"guard_line_translations":["它们分布于","整座","堡垒。要想","用于开启"],"guard_exact_source":"that are located all over the bastion. In order to access the","guard_expected":"分布在堡垒各处。要取得羊毛，你必须先摧毁全部水晶。"},{"source_lines":["wool, you must","destroy all 6","power crystals","and then open"],"target_lines":["然后，","前往控制室，","找到并按下","那里的按钮，"],"guard_line_translations":["羊毛，就必须","摧毁全部6枚","能量水晶","然后打开"],"guard_exact_source":"wool, you must destroy all 6 power crystals and then open","guard_expected":"然后，前往控制室，找到并按下那里的按钮，"},{"source_lines":["the core by","using the button","in the control","room."],"target_lines":["打开核心，","就能取出","锁在里面的","羊毛了。"],"guard_line_translations":["核心，方法是","按下按钮，","按钮位于控制","室内。"],"guard_exact_source":"the core by using the button in the control room.","guard_expected":"打开核心，就能取出锁在里面的羊毛了。"},{"source_lines":["Four elements","combine to make","a key. But what","do they unlock?"],"target_lines":["四种元素汇聚，","化作一把钥匙。","可它究竟能","开启什么？"],"guard_line_translations":["四种元素","汇聚成为","一把钥匙。","它能开启什么？"],"guard_exact_source":"Four elements combine to make a key. But what do they unlock?","guard_expected":"四种元素汇聚，化作一把钥匙。可它究竟能开启什么？"},{"source_lines":["A place beyond","reality? A forest","of great trees,","far beyond the"],"target_lines":["现实之外的世界？","一片巨木参天、","远离国王谷的","广袤森林？"],"guard_line_translations":["现实之外？","一片森林，","巨木参天，","远离"],"guard_exact_source":"A place beyond reality? A forest of great trees, far beyond the","guard_expected":"现实之外的世界？一片巨木参天、远离国王谷的广袤森林？"},{"source_lines":["confines of the","King's Valley.","Where did the","portal take you?"],"target_lines":["那道传送门，","究竟将你","带到了","怎样的地方？"],"guard_line_translations":["那片疆土——","国王谷。","那道传送门","将你带往何处？"],"guard_exact_source":"confines of the King's Valley. Where did the portal take you?","guard_expected":"那道传送门，究竟将你带到了怎样的地方？"},{"source_lines":["The Black Willows","whisper promises,","but it is clear:","someone has"],"target_lines":["黑柳林低语着","种种承诺。","但可以肯定的是：","早已有人"],"guard_line_translations":["黑柳林","低语着承诺，","但有一点很清楚：","已有其他人"],"guard_exact_source":"The Black Willows whisper promises, but it is clear: someone has","guard_expected":"黑柳林低语着种种承诺。但可以肯定的是：早已有人"},{"source_lines":["walked these","winding forest","paths before.","Those who have"],"target_lines":["踏上过这些","蜿蜒的林间小径。","那些先行者，","至今仍徘徊于"],"guard_line_translations":["走过这些","蜿蜒的林间","小径。","那些先行者"],"guard_exact_source":"walked these winding forest paths before. Those who have","guard_expected":"踏上过这些蜿蜒的林间小径。那些先行者，至今仍徘徊于"},{"source_lines":["come before","still stalk the","trees, while the","elements call out"],"target_lines":["树木之间。","而四种元素，","正呼唤着一个","早已消逝的存在。"],"guard_line_translations":["至今仍","徘徊于","林木之间，","而元素正呼唤着"],"guard_exact_source":"come before still stalk the trees, while the elements call out","guard_expected":"树木之间。而四种元素，正呼唤着一个早已消逝的存在。"},{"source_lines":["to something that","is no longer","present.","What treasures"],"target_lines":["幽深的柳林中，","究竟藏着","怎样的","宝藏？"],"guard_line_translations":["某个","早已消逝的","存在。","怎样的宝藏"],"guard_exact_source":"to something that is no longer present. What treasures","guard_expected":"幽深的柳林中，究竟藏着怎样的宝藏？"},{"source_lines":["could be hidden","deep within the","willows? What","stories could"],"target_lines":["那些","早已逝去的亡者，","又能诉说","怎样的往事？"],"guard_line_translations":["可能藏在","幽深的","柳林中？亡者又","能诉说"],"guard_exact_source":"could be hidden deep within the willows? What stories could","guard_expected":"那些早已逝去的亡者，又能诉说怎样的往事？"},{"source_lines":["the dead tell?","The rings of","the trees are","the only way"],"target_lines":["唯有","树木的年轮，","能够揭示","其中的真相——"],"guard_line_translations":["怎样的故事？","唯有树木","的年轮，","能告诉你真相——"],"guard_exact_source":"the dead tell? The rings of the trees are the only way","guard_expected":"唯有树木的年轮，能够揭示其中的真相——"},{"source_lines":["to know - if you","can survive the","horrors","within."],"target_lines":["如果你","能够从此地","潜藏的恐怖中","幸存下来。"],"guard_line_translations":["前提是你","能够从此地","的恐怖中","幸存。"],"guard_exact_source":"to know - if you can survive the horrors within.","guard_expected":"如果你能够从此地潜藏的恐怖中幸存下来。"},{"source_lines":["The Viridian","Empire - a","kingdom built","with the dreams"],"target_lines":["维里迪亚帝国——","一个承载着","梦想与渴望","而建立的国度。"],"guard_line_translations":["The Viridian","Empire - a","kingdom built","with the dreams"],"guard_exact_source":"The Viridian Empire - a kingdom built with the dreams","guard_expected":"维里迪亚帝国——一个承载着梦想与渴望而建立的国度。"},{"source_lines":["and desires","to escape the","constant","warring between"],"target_lines":["人们渴望摆脱","伊什尼尔帝国","与寒风帝国之间","连年不断的战火。"],"guard_line_translations":["and desires","to escape the","constant","warring between"],"guard_exact_source":"and desires to escape the constant warring between","guard_expected":"人们渴望摆脱伊什尼尔帝国与寒风帝国之间连年不断的战火。"},{"source_lines":["the Ishnir","and Chillwind","empires. The","founder of"],"target_lines":["维里迪亚的","缔造者——","萨拉扎大帝，","凭借自己的"],"guard_line_translations":["the Ishnir","and Chillwind","empires. The","founder of"],"guard_exact_source":"the Ishnir and Chillwind empires. The founder of","guard_expected":"维里迪亚的缔造者——萨拉扎大帝，凭借自己的"},{"source_lines":["Viridia, Salazar","the Great, used","his experience","and knowledge"],"target_lines":["阅历与学识，","带领帝国","不断壮大，","最终"],"guard_line_translations":["Viridia, Salazar","the Great, used","his experience","and knowledge"],"guard_exact_source":"Viridia, Salazar the Great, used his experience and knowledge","guard_expected":"阅历与学识，带领帝国不断壮大，最终"},{"source_lines":["to bring the","empire to the","height of its","power."],"target_lines":["把维里迪亚","推向了","国力的","巅峰。"],"guard_line_translations":["to bring the","empire to the","height of its","power."],"guard_exact_source":"to bring the empire to the height of its power.","guard_expected":"把维里迪亚推向了国力的巅峰。"},{"source_lines":["However,","Salazar's lust","for knowledge","led him down a"],"target_lines":["然而，","萨拉扎对知识","的贪求，","将他引向毁灭。"],"guard_line_translations":["However,","Salazar's lust","for knowledge","led him down a"],"guard_exact_source":"However, Salazar's lust for knowledge led him down a","guard_expected":"然而，萨拉扎对知识的贪求，将他引向毁灭。"},{"source_lines":["path of ruin and","destruction, and","now his beloved","kingdom serves"],"target_lines":["如今，","他深爱的国度","已沦为","劫掠的目标，"],"guard_line_translations":["path of ruin and","destruction, and","now his beloved","kingdom serves"],"guard_exact_source":"path of ruin and destruction, and now his beloved kingdom serves","guard_expected":"如今，他深爱的国度已沦为劫掠的目标，"},{"source_lines":["only as a pillage","for pirates who","happen upon its","abandoned halls."],"target_lines":["任由那些","偶然闯入","荒废殿堂的海盗","搜刮掠夺。"],"guard_line_translations":["only as a pillage","for pirates who","happen upon its","abandoned halls."],"guard_exact_source":"only as a pillage for pirates who happen upon its abandoned halls.","guard_expected":"任由那些偶然闯入荒废殿堂的海盗搜刮掠夺。"},{"source_lines":["What lies before","you is a symbol","of the greatest","sin man can"],"target_lines":["眼前的这一切，","正象征着","人类所能犯下的","最大罪恶——"],"guard_line_translations":["What lies before","you is a symbol","of the greatest","sin man can"],"guard_exact_source":"What lies before you is a symbol of the greatest sin man can","guard_expected":"眼前的这一切，正象征着人类所能犯下的最大罪恶——"},{"source_lines":["commit: greed,","that which can","turn a great","empire to folly."],"target_lines":["贪婪。","它足以使","伟大的帝国","毁于愚妄。"],"guard_line_translations":["commit: greed,","that which can","turn a great","empire to folly."],"guard_exact_source":"commit: greed, that which can turn a great empire to folly.","guard_expected":"贪婪。它足以使伟大的帝国毁于愚妄。"},{"source_lines":["Salazar's","Folly"],"target_lines":["萨拉扎的","妄行"],"guard_line_translations":["Salazar 的","Folly"],"guard_exact_source":"Salazar's Folly","guard_expected":"萨拉扎的妄行"},{"source_lines":["Only press this if","you wish to leave.","You can still win","if your team wins!"],"target_lines":["仅在想离开时","按下此按钮。","若队伍最终获胜，","你仍算获胜！"],"guard_line_translations":["Only press this if","you wish to leave.","You can still win","if your team wins!"],"guard_exact_source":"Only press this if you wish to leave. You can still win if your team wins!","guard_expected":"仅在想离开时按下此按钮。若队伍最终获胜，你仍算获胜！"},{"source_lines":["* Start fight","first *"],"target_lines":["* 请先","开始战斗 *"],"guard_line_translations":["* Start fight","first *"],"guard_exact_source":"* Start fight first *","guard_expected":"* 请先开始战斗 *"},{"source_lines":["Button Will","Teleport Past","This Point"],"target_lines":["按下按钮","即可传送到","此处的另一侧"],"guard_line_translations":["Button Will","Teleport Past","This Point"],"guard_exact_source":"Button Will Teleport Past This Point","guard_expected":"按下按钮即可传送到此处的另一侧"},{"source_lines":["Entering","arena","teleports all","players!"],"target_lines":["进入竞技场","会将所有玩家","一并传送","到场内！"],"guard_line_translations":["Entering","arena","teleports all","players!"],"guard_exact_source":"Entering arena teleports all players!","guard_expected":"进入竞技场会将所有玩家一并传送到场内！"}]
+[
+  {
+    "source_lines": [
+      "press if on",
+      "stage"
+    ],
+    "target_lines": [
+      "若在舞台上，",
+      "请按。"
+    ],
+    "guard_line_translations": [
+      "press if on",
+      "stage"
+    ],
+    "guard_exact_source": "press if on stage",
+    "guard_expected": "若在舞台上，请按。"
+  },
+  {
+    "source_lines": [
+      "welcome to the",
+      "church of",
+      "hanzo"
+    ],
+    "target_lines": [
+      "欢迎来到",
+      "hanzo",
+      "教堂"
+    ],
+    "guard_line_translations": [
+      "欢迎来到",
+      "教堂",
+      "hanzo"
+    ],
+    "guard_exact_source": "welcome to the church of hanzo",
+    "guard_expected": "欢迎来到hanzo教堂"
+  },
+  {
+    "source_lines": [
+      "Beyond this gate",
+      "the Halls give way",
+      "to the Cave of",
+      "Winds. The gate"
+    ],
+    "target_lines": [
+      "穿过此门，",
+      "殿堂便通向",
+      "风之洞穴。",
+      "要打开此门，"
+    ],
+    "guard_line_translations": [
+      "Beyond this gate",
+      "the Halls give way",
+      "to the Cave of",
+      "Winds. The gate"
+    ],
+    "guard_exact_source": "Beyond this gate the Halls give way to the Cave of Winds. The gate",
+    "guard_expected": "穿过此门，殿堂便通向风之洞穴。要打开此门，"
+  },
+  {
+    "source_lines": [
+      "may be opened",
+      "by finding three",
+      "levers strewn",
+      "through"
+    ],
+    "target_lines": [
+      "请找到",
+      "散落在殿堂的",
+      "三个拉杆，",
+      "然后"
+    ],
+    "guard_line_translations": [
+      "may be opened",
+      "by finding three",
+      "levers strewn",
+      "through"
+    ],
+    "guard_exact_source": "may be opened by finding three levers strewn through",
+    "guard_expected": "请找到散落在殿堂的三个拉杆，然后"
+  },
+  {
+    "source_lines": [
+      "the Halls and",
+      "flipping them",
+      "all on."
+    ],
+    "target_lines": [
+      "将它们",
+      "全部拨至",
+      "开启状态。"
+    ],
+    "guard_line_translations": [
+      "the Halls and",
+      "flipping them",
+      "all on."
+    ],
+    "guard_exact_source": "the Halls and flipping them all on.",
+    "guard_expected": "将它们全部拨至开启状态。"
+  },
+  {
+    "source_lines": [
+      "If you update",
+      "these, update",
+      "them at each",
+      "lever too!"
+    ],
+    "target_lines": [
+      "若更新这些，",
+      "也请同步更新",
+      "每个拉杆处的",
+      "对应内容！"
+    ],
+    "guard_line_translations": [
+      "If you update",
+      "these, update",
+      "them at each",
+      "lever too!"
+    ],
+    "guard_exact_source": "If you update these, update them at each lever too!",
+    "guard_expected": "若更新这些，也请同步更新每个拉杆处的对应内容！"
+  },
+  {
+    "source_lines": [
+      "This mech checks",
+      "nearby blocks",
+      "similar to the",
+      "door trigger."
+    ],
+    "target_lines": [
+      "此机关检测",
+      "周围方块，",
+      "方式类似",
+      "门的触发装置。"
+    ],
+    "guard_line_translations": [
+      "This mech checks",
+      "nearby blocks",
+      "similar to the",
+      "door trigger."
+    ],
+    "guard_exact_source": "This mech checks nearby blocks similar to the door trigger.",
+    "guard_expected": "此机关检测周围方块，方式类似门的触发装置。"
+  },
+  {
+    "source_lines": [
+      "especially from",
+      "relogging, which",
+      "can make them",
+      "appear wrong."
+    ],
+    "target_lines": [
+      "尤其是重登时，",
+      "它们可能会",
+      "显示出",
+      "错误状态。"
+    ],
+    "guard_line_translations": [
+      "especially from",
+      "relogging, which",
+      "can make them",
+      "appear wrong."
+    ],
+    "guard_exact_source": "especially from relogging, which can make them appear wrong.",
+    "guard_expected": "尤其是重登时，它们可能会显示出错误状态。"
+  },
+  {
+    "source_lines": [
+      "Levers are too",
+      "far for markers",
+      "to be reliably",
+      "loaded"
+    ],
+    "target_lines": [
+      "拉杆距离太远，",
+      "导致标记",
+      "无法稳定",
+      "加载。"
+    ],
+    "guard_line_translations": [
+      "Levers are too",
+      "far for markers",
+      "to be reliably",
+      "loaded"
+    ],
+    "guard_exact_source": "Levers are too far for markers to be reliably loaded",
+    "guard_expected": "拉杆距离太远，导致标记无法稳定加载。"
+  },
+  {
+    "source_lines": [
+      "FROZEN",
+      "CATACOMBS"
+    ],
+    "target_lines": [
+      "冰封",
+      "墓穴"
+    ],
+    "guard_line_translations": [
+      "FROZEN",
+      "CATACOMBS"
+    ],
+    "guard_exact_source": "FROZEN CATACOMBS",
+    "guard_expected": "冰封墓穴"
+  },
+  {
+    "source_lines": [
+      "Closed by ",
+      "Order of"
+    ],
+    "target_lines": [
+      "奉令封闭",
+      "下令者："
+    ],
+    "guard_line_translations": [
+      "Closed by ",
+      "Order of"
+    ],
+    "guard_exact_source": "Closed by  Order of",
+    "guard_expected": "奉令封闭下令者："
+  },
+  {
+    "source_lines": [
+      "Do Not",
+      "Enter"
+    ],
+    "target_lines": [
+      "禁止",
+      "入内"
+    ],
+    "guard_line_translations": [
+      "Do Not",
+      "Enter"
+    ],
+    "guard_exact_source": "Do Not Enter",
+    "guard_expected": "禁止入内"
+  },
+  {
+    "source_lines": [
+      "DANGER",
+      "CAVE IN"
+    ],
+    "target_lines": [
+      "危险",
+      "塌方"
+    ],
+    "guard_line_translations": [
+      "DANGER",
+      "CAVE IN"
+    ],
+    "guard_exact_source": "DANGER CAVE IN",
+    "guard_expected": "危险塌方"
+  },
+  {
+    "source_lines": [
+      "The order of",
+      "mages resides in",
+      "the grand",
+      "university hidden"
+    ],
+    "target_lines": [
+      "法师教团",
+      "居住在一所",
+      "宏伟的大学中，",
+      "它隐匿于"
+    ],
+    "guard_line_translations": [
+      "法师教团",
+      "居住在",
+      "宏伟的",
+      "大学里，那里隐藏于"
+    ],
+    "guard_exact_source": "The order of mages resides in the grand university hidden",
+    "guard_expected": "法师教团居住在一所宏伟的大学中，它隐匿于"
+  },
+  {
+    "source_lines": [
+      "inside these",
+      "mountains. One of",
+      "their powerful",
+      "artifacts - the"
+    ],
+    "target_lines": [
+      "这片群山深处。",
+      "他们拥有一件",
+      "强大的神器——",
+      "那块淡蓝色羊毛。"
+    ],
+    "guard_line_translations": [
+      "在这片",
+      "群山深处。他们的一件",
+      "强大",
+      "遗物——那块"
+    ],
+    "guard_exact_source": "inside these mountains. One of their powerful artifacts - the",
+    "guard_expected": "这片群山深处。他们拥有一件强大的神器——那块淡蓝色羊毛。"
+  },
+  {
+    "source_lines": [
+      "light blue wool -",
+      "possessed great",
+      "arcane powers.",
+      "It was so"
+    ],
+    "target_lines": [
+      "羊毛蕴含着",
+      "强大的奥术力量。",
+      "这股力量",
+      "实在过于强大，"
+    ],
+    "guard_line_translations": [
+      "淡蓝色羊毛——",
+      "拥有强大的",
+      "奥术力量。",
+      "它的力量"
+    ],
+    "guard_exact_source": "light blue wool - possessed great arcane powers. It was so",
+    "guard_expected": "羊毛蕴含着强大的奥术力量。这股力量实在过于强大，"
+  },
+  {
+    "source_lines": [
+      "powerful that the",
+      "mages had to",
+      "contain it by",
+      "using an ancient"
+    ],
+    "target_lines": [
+      "法师们不得不",
+      "施展一道",
+      "古老的咒语，",
+      "将其封印。"
+    ],
+    "guard_line_translations": [
+      "过于强大，以至于",
+      "法师们不得不",
+      "将它封印，",
+      "使用了一道古老的"
+    ],
+    "guard_exact_source": "powerful that the mages had to contain it by using an ancient",
+    "guard_expected": "法师们不得不施展一道古老的咒语，将其封印。"
+  },
+  {
+    "source_lines": [
+      "spell. One day,",
+      "the order of",
+      "alchemists, who",
+      "were sworn"
+    ],
+    "target_lines": [
+      "某天，",
+      "炼金术士教团",
+      "潜入了大学。",
+      "他们与法师教团"
+    ],
+    "guard_line_translations": [
+      "咒语。某一天，",
+      "一个炼金术士",
+      "教团，他们",
+      "是这些"
+    ],
+    "guard_exact_source": "spell. One day, the order of alchemists, who were sworn",
+    "guard_expected": "某天，炼金术士教团潜入了大学。他们与法师教团"
+  },
+  {
+    "source_lines": [
+      "enemies of the",
+      "great mages,",
+      "snuck into the",
+      "university and"
+    ],
+    "target_lines": [
+      "是誓不两立的宿敌。",
+      "这群炼金术士",
+      "趁机偷走了",
+      "那块羊毛。"
+    ],
+    "guard_line_translations": [
+      "伟大法师的",
+      "死敌，",
+      "悄悄潜入了",
+      "大学，并"
+    ],
+    "guard_exact_source": "enemies of the great mages, snuck into the university and",
+    "guard_expected": "是誓不两立的宿敌。这群炼金术士趁机偷走了那块羊毛。"
+  },
+  {
+    "source_lines": [
+      "stole the wool.",
+      "Unfortunately,",
+      "they did not know",
+      "how to control"
+    ],
+    "target_lines": [
+      "然而，他们",
+      "并不知道",
+      "该如何掌控",
+      "羊毛的力量。"
+    ],
+    "guard_line_translations": [
+      "偷走了羊毛。",
+      "不幸的是，",
+      "他们并不知道",
+      "如何掌控"
+    ],
+    "guard_exact_source": "stole the wool. Unfortunately, they did not know how to control",
+    "guard_expected": "然而，他们并不知道该如何掌控羊毛的力量。"
+  },
+  {
+    "source_lines": [
+      "the power of the",
+      "wool. Slowly, the",
+      "wool corrupted",
+      "them and drove"
+    ],
+    "target_lines": [
+      "渐渐地，",
+      "羊毛腐化了他们，",
+      "使他们陷入疯狂。",
+      "为了阻止"
+    ],
+    "guard_line_translations": [
+      "那股来自",
+      "羊毛的力量。渐渐地，",
+      "羊毛腐化了",
+      "他们，使他们"
+    ],
+    "guard_exact_source": "the power of the wool. Slowly, the wool corrupted them and drove",
+    "guard_expected": "渐渐地，羊毛腐化了他们，使他们陷入疯狂。为了阻止"
+  },
+  {
+    "source_lines": [
+      "them mad. In an",
+      "attempt to stop",
+      "the corruption,",
+      "the mages sealed"
+    ],
+    "target_lines": [
+      "腐化继续蔓延，",
+      "法师们施展魔法，",
+      "将炼金术士的",
+      "堡垒封印。"
+    ],
+    "guard_line_translations": [
+      "陷入疯狂。为了",
+      "试图阻止",
+      "这场腐化，",
+      "法师们封印了"
+    ],
+    "guard_exact_source": "them mad. In an attempt to stop the corruption, the mages sealed",
+    "guard_expected": "腐化继续蔓延，法师们施展魔法，将炼金术士的堡垒封印。"
+  },
+  {
+    "source_lines": [
+      "the alchemists'",
+      "bastion with a",
+      "magic spell. We're",
+      "safe ... for now."
+    ],
+    "target_lines": [
+      "我们",
+      "安全了……",
+      "至少",
+      "暂时如此。"
+    ],
+    "guard_line_translations": [
+      "炼金术士的",
+      "堡垒，使用了",
+      "魔法咒语。我们",
+      "暂时……安全了。"
+    ],
+    "guard_exact_source": "the alchemists' bastion with a magic spell. We're safe ... for now.",
+    "guard_expected": "我们安全了……至少暂时如此。"
+  },
+  {
+    "source_lines": [
+      "The alchemists",
+      "locked up the",
+      "wool inside the",
+      "\"core\" in the"
+    ],
+    "target_lines": [
+      "炼金术士",
+      "将羊毛锁在",
+      "堡垒中央的",
+      "“核心”内。"
+    ],
+    "guard_line_translations": [
+      "炼金术士们",
+      "将",
+      "羊毛锁在",
+      "位于堡垒"
+    ],
+    "guard_exact_source": "The alchemists locked up the wool inside the \"core\" in the",
+    "guard_expected": "炼金术士将羊毛锁在堡垒中央的“核心”内。"
+  },
+  {
+    "source_lines": [
+      "center of their",
+      "bastion. The core",
+      "is protected by",
+      "6 power crystals"
+    ],
+    "target_lines": [
+      "核心受到",
+      "6枚能量水晶",
+      "的保护。",
+      "这些水晶"
+    ],
+    "guard_line_translations": [
+      "中央的",
+      "“核心”内。核心",
+      "受到以下装置保护：",
+      "6枚能量水晶"
+    ],
+    "guard_exact_source": "center of their bastion. The core is protected by 6 power crystals",
+    "guard_expected": "核心受到6枚能量水晶的保护。这些水晶"
+  },
+  {
+    "source_lines": [
+      "that are located",
+      "all over the",
+      "bastion. In order",
+      "to access the"
+    ],
+    "target_lines": [
+      "分布在堡垒各处。",
+      "要取得羊毛，",
+      "你必须先",
+      "摧毁全部水晶。"
+    ],
+    "guard_line_translations": [
+      "它们分布于",
+      "整座",
+      "堡垒。要想",
+      "用于开启"
+    ],
+    "guard_exact_source": "that are located all over the bastion. In order to access the",
+    "guard_expected": "分布在堡垒各处。要取得羊毛，你必须先摧毁全部水晶。"
+  },
+  {
+    "source_lines": [
+      "wool, you must",
+      "destroy all 6",
+      "power crystals",
+      "and then open"
+    ],
+    "target_lines": [
+      "然后，",
+      "前往控制室，",
+      "找到并按下",
+      "那里的按钮，"
+    ],
+    "guard_line_translations": [
+      "羊毛，就必须",
+      "摧毁全部6枚",
+      "能量水晶",
+      "然后打开"
+    ],
+    "guard_exact_source": "wool, you must destroy all 6 power crystals and then open",
+    "guard_expected": "然后，前往控制室，找到并按下那里的按钮，"
+  },
+  {
+    "source_lines": [
+      "the core by",
+      "using the button",
+      "in the control",
+      "room."
+    ],
+    "target_lines": [
+      "打开核心，",
+      "就能取出",
+      "锁在里面的",
+      "羊毛了。"
+    ],
+    "guard_line_translations": [
+      "核心，方法是",
+      "按下按钮，",
+      "按钮位于控制",
+      "室内。"
+    ],
+    "guard_exact_source": "the core by using the button in the control room.",
+    "guard_expected": "打开核心，就能取出锁在里面的羊毛了。"
+  },
+  {
+    "source_lines": [
+      "Four elements",
+      "combine to make",
+      "a key. But what",
+      "do they unlock?"
+    ],
+    "target_lines": [
+      "四种元素汇聚，",
+      "化作一把钥匙。",
+      "可它究竟能",
+      "开启什么？"
+    ],
+    "guard_line_translations": [
+      "四种元素",
+      "汇聚成为",
+      "一把钥匙。",
+      "它能开启什么？"
+    ],
+    "guard_exact_source": "Four elements combine to make a key. But what do they unlock?",
+    "guard_expected": "四种元素汇聚，化作一把钥匙。可它究竟能开启什么？"
+  },
+  {
+    "source_lines": [
+      "A place beyond",
+      "reality? A forest",
+      "of great trees,",
+      "far beyond the"
+    ],
+    "target_lines": [
+      "现实之外的世界？",
+      "一片巨木参天、",
+      "远离国王谷的",
+      "广袤森林？"
+    ],
+    "guard_line_translations": [
+      "现实之外？",
+      "一片森林，",
+      "巨木参天，",
+      "远离"
+    ],
+    "guard_exact_source": "A place beyond reality? A forest of great trees, far beyond the",
+    "guard_expected": "现实之外的世界？一片巨木参天、远离国王谷的广袤森林？"
+  },
+  {
+    "source_lines": [
+      "confines of the",
+      "King's Valley.",
+      "Where did the",
+      "portal take you?"
+    ],
+    "target_lines": [
+      "那道传送门，",
+      "究竟将你",
+      "带到了",
+      "怎样的地方？"
+    ],
+    "guard_line_translations": [
+      "那片疆土——",
+      "国王谷。",
+      "那道传送门",
+      "将你带往何处？"
+    ],
+    "guard_exact_source": "confines of the King's Valley. Where did the portal take you?",
+    "guard_expected": "那道传送门，究竟将你带到了怎样的地方？"
+  },
+  {
+    "source_lines": [
+      "The Black Willows",
+      "whisper promises,",
+      "but it is clear:",
+      "someone has"
+    ],
+    "target_lines": [
+      "黑柳林低语着",
+      "种种承诺。",
+      "但可以肯定的是：",
+      "早已有人"
+    ],
+    "guard_line_translations": [
+      "黑柳林",
+      "低语着承诺，",
+      "但有一点很清楚：",
+      "已有其他人"
+    ],
+    "guard_exact_source": "The Black Willows whisper promises, but it is clear: someone has",
+    "guard_expected": "黑柳林低语着种种承诺。但可以肯定的是：早已有人"
+  },
+  {
+    "source_lines": [
+      "walked these",
+      "winding forest",
+      "paths before.",
+      "Those who have"
+    ],
+    "target_lines": [
+      "踏上过这些",
+      "蜿蜒的林间小径。",
+      "那些先行者，",
+      "至今仍徘徊于"
+    ],
+    "guard_line_translations": [
+      "走过这些",
+      "蜿蜒的林间",
+      "小径。",
+      "那些先行者"
+    ],
+    "guard_exact_source": "walked these winding forest paths before. Those who have",
+    "guard_expected": "踏上过这些蜿蜒的林间小径。那些先行者，至今仍徘徊于"
+  },
+  {
+    "source_lines": [
+      "come before",
+      "still stalk the",
+      "trees, while the",
+      "elements call out"
+    ],
+    "target_lines": [
+      "树木之间。",
+      "而四种元素，",
+      "正呼唤着一个",
+      "早已消逝的存在。"
+    ],
+    "guard_line_translations": [
+      "至今仍",
+      "徘徊于",
+      "林木之间，",
+      "而元素正呼唤着"
+    ],
+    "guard_exact_source": "come before still stalk the trees, while the elements call out",
+    "guard_expected": "树木之间。而四种元素，正呼唤着一个早已消逝的存在。"
+  },
+  {
+    "source_lines": [
+      "to something that",
+      "is no longer",
+      "present.",
+      "What treasures"
+    ],
+    "target_lines": [
+      "幽深的柳林中，",
+      "究竟藏着",
+      "怎样的",
+      "宝藏？"
+    ],
+    "guard_line_translations": [
+      "某个",
+      "早已消逝的",
+      "存在。",
+      "怎样的宝藏"
+    ],
+    "guard_exact_source": "to something that is no longer present. What treasures",
+    "guard_expected": "幽深的柳林中，究竟藏着怎样的宝藏？"
+  },
+  {
+    "source_lines": [
+      "could be hidden",
+      "deep within the",
+      "willows? What",
+      "stories could"
+    ],
+    "target_lines": [
+      "那些",
+      "早已逝去的亡者，",
+      "又能诉说",
+      "怎样的往事？"
+    ],
+    "guard_line_translations": [
+      "可能藏在",
+      "幽深的",
+      "柳林中？亡者又",
+      "能诉说"
+    ],
+    "guard_exact_source": "could be hidden deep within the willows? What stories could",
+    "guard_expected": "那些早已逝去的亡者，又能诉说怎样的往事？"
+  },
+  {
+    "source_lines": [
+      "the dead tell?",
+      "The rings of",
+      "the trees are",
+      "the only way"
+    ],
+    "target_lines": [
+      "唯有",
+      "树木的年轮，",
+      "能够揭示",
+      "其中的真相——"
+    ],
+    "guard_line_translations": [
+      "怎样的故事？",
+      "唯有树木",
+      "的年轮，",
+      "能告诉你真相——"
+    ],
+    "guard_exact_source": "the dead tell? The rings of the trees are the only way",
+    "guard_expected": "唯有树木的年轮，能够揭示其中的真相——"
+  },
+  {
+    "source_lines": [
+      "to know - if you",
+      "can survive the",
+      "horrors",
+      "within."
+    ],
+    "target_lines": [
+      "如果你",
+      "能够从此地",
+      "潜藏的恐怖中",
+      "幸存下来。"
+    ],
+    "guard_line_translations": [
+      "前提是你",
+      "能够从此地",
+      "的恐怖中",
+      "幸存。"
+    ],
+    "guard_exact_source": "to know - if you can survive the horrors within.",
+    "guard_expected": "如果你能够从此地潜藏的恐怖中幸存下来。"
+  },
+  {
+    "source_lines": [
+      "The Viridian",
+      "Empire - a",
+      "kingdom built",
+      "with the dreams"
+    ],
+    "target_lines": [
+      "维里迪亚帝国——",
+      "一个承载着",
+      "梦想与渴望",
+      "而建立的国度。"
+    ],
+    "guard_line_translations": [
+      "The Viridian",
+      "Empire - a",
+      "kingdom built",
+      "with the dreams"
+    ],
+    "guard_exact_source": "The Viridian Empire - a kingdom built with the dreams",
+    "guard_expected": "维里迪亚帝国——一个承载着梦想与渴望而建立的国度。"
+  },
+  {
+    "source_lines": [
+      "and desires",
+      "to escape the",
+      "constant",
+      "warring between"
+    ],
+    "target_lines": [
+      "人们渴望摆脱",
+      "伊什尼尔帝国",
+      "与寒风帝国之间",
+      "连年不断的战火。"
+    ],
+    "guard_line_translations": [
+      "and desires",
+      "to escape the",
+      "constant",
+      "warring between"
+    ],
+    "guard_exact_source": "and desires to escape the constant warring between",
+    "guard_expected": "人们渴望摆脱伊什尼尔帝国与寒风帝国之间连年不断的战火。"
+  },
+  {
+    "source_lines": [
+      "the Ishnir",
+      "and Chillwind",
+      "empires. The",
+      "founder of"
+    ],
+    "target_lines": [
+      "维里迪亚的",
+      "缔造者——",
+      "萨拉扎大帝，",
+      "凭借自己的"
+    ],
+    "guard_line_translations": [
+      "the Ishnir",
+      "and Chillwind",
+      "empires. The",
+      "founder of"
+    ],
+    "guard_exact_source": "the Ishnir and Chillwind empires. The founder of",
+    "guard_expected": "维里迪亚的缔造者——萨拉扎大帝，凭借自己的"
+  },
+  {
+    "source_lines": [
+      "Viridia, Salazar",
+      "the Great, used",
+      "his experience",
+      "and knowledge"
+    ],
+    "target_lines": [
+      "阅历与学识，",
+      "带领帝国",
+      "不断壮大，",
+      "最终"
+    ],
+    "guard_line_translations": [
+      "Viridia, Salazar",
+      "the Great, used",
+      "his experience",
+      "and knowledge"
+    ],
+    "guard_exact_source": "Viridia, Salazar the Great, used his experience and knowledge",
+    "guard_expected": "阅历与学识，带领帝国不断壮大，最终"
+  },
+  {
+    "source_lines": [
+      "to bring the",
+      "empire to the",
+      "height of its",
+      "power."
+    ],
+    "target_lines": [
+      "把维里迪亚",
+      "推向了",
+      "国力的",
+      "巅峰。"
+    ],
+    "guard_line_translations": [
+      "to bring the",
+      "empire to the",
+      "height of its",
+      "power."
+    ],
+    "guard_exact_source": "to bring the empire to the height of its power.",
+    "guard_expected": "把维里迪亚推向了国力的巅峰。"
+  },
+  {
+    "source_lines": [
+      "However,",
+      "Salazar's lust",
+      "for knowledge",
+      "led him down a"
+    ],
+    "target_lines": [
+      "然而，",
+      "萨拉扎对知识",
+      "的贪求，",
+      "将他引向毁灭。"
+    ],
+    "guard_line_translations": [
+      "However,",
+      "Salazar's lust",
+      "for knowledge",
+      "led him down a"
+    ],
+    "guard_exact_source": "However, Salazar's lust for knowledge led him down a",
+    "guard_expected": "然而，萨拉扎对知识的贪求，将他引向毁灭。"
+  },
+  {
+    "source_lines": [
+      "path of ruin and",
+      "destruction, and",
+      "now his beloved",
+      "kingdom serves"
+    ],
+    "target_lines": [
+      "如今，",
+      "他深爱的国度",
+      "已沦为",
+      "劫掠的目标，"
+    ],
+    "guard_line_translations": [
+      "path of ruin and",
+      "destruction, and",
+      "now his beloved",
+      "kingdom serves"
+    ],
+    "guard_exact_source": "path of ruin and destruction, and now his beloved kingdom serves",
+    "guard_expected": "如今，他深爱的国度已沦为劫掠的目标，"
+  },
+  {
+    "source_lines": [
+      "only as a pillage",
+      "for pirates who",
+      "happen upon its",
+      "abandoned halls."
+    ],
+    "target_lines": [
+      "任由那些",
+      "偶然闯入",
+      "荒废殿堂的海盗",
+      "搜刮掠夺。"
+    ],
+    "guard_line_translations": [
+      "only as a pillage",
+      "for pirates who",
+      "happen upon its",
+      "abandoned halls."
+    ],
+    "guard_exact_source": "only as a pillage for pirates who happen upon its abandoned halls.",
+    "guard_expected": "任由那些偶然闯入荒废殿堂的海盗搜刮掠夺。"
+  },
+  {
+    "source_lines": [
+      "What lies before",
+      "you is a symbol",
+      "of the greatest",
+      "sin man can"
+    ],
+    "target_lines": [
+      "眼前的这一切，",
+      "正象征着",
+      "人类所能犯下的",
+      "最大罪恶——"
+    ],
+    "guard_line_translations": [
+      "What lies before",
+      "you is a symbol",
+      "of the greatest",
+      "sin man can"
+    ],
+    "guard_exact_source": "What lies before you is a symbol of the greatest sin man can",
+    "guard_expected": "眼前的这一切，正象征着人类所能犯下的最大罪恶——"
+  },
+  {
+    "source_lines": [
+      "commit: greed,",
+      "that which can",
+      "turn a great",
+      "empire to folly."
+    ],
+    "target_lines": [
+      "贪婪。",
+      "它足以使",
+      "伟大的帝国",
+      "毁于愚妄。"
+    ],
+    "guard_line_translations": [
+      "commit: greed,",
+      "that which can",
+      "turn a great",
+      "empire to folly."
+    ],
+    "guard_exact_source": "commit: greed, that which can turn a great empire to folly.",
+    "guard_expected": "贪婪。它足以使伟大的帝国毁于愚妄。"
+  },
+  {
+    "source_lines": [
+      "Salazar's",
+      "Folly"
+    ],
+    "target_lines": [
+      "萨拉扎的",
+      "妄行"
+    ],
+    "guard_line_translations": [
+      "Salazar 的",
+      "Folly"
+    ],
+    "guard_exact_source": "Salazar's Folly",
+    "guard_expected": "萨拉扎的妄行"
+  },
+  {
+    "source_lines": [
+      "Only press this if",
+      "you wish to leave.",
+      "You can still win",
+      "if your team wins!"
+    ],
+    "target_lines": [
+      "仅在想离开时",
+      "按下此按钮。",
+      "若队伍最终获胜，",
+      "你仍算获胜！"
+    ],
+    "guard_line_translations": [
+      "Only press this if",
+      "you wish to leave.",
+      "You can still win",
+      "if your team wins!"
+    ],
+    "guard_exact_source": "Only press this if you wish to leave. You can still win if your team wins!",
+    "guard_expected": "仅在想离开时按下此按钮。若队伍最终获胜，你仍算获胜！"
+  },
+  {
+    "source_lines": [
+      "* Start fight",
+      "first *"
+    ],
+    "target_lines": [
+      "* 请先",
+      "开始战斗 *"
+    ],
+    "guard_line_translations": [
+      "* Start fight",
+      "first *"
+    ],
+    "guard_exact_source": "* Start fight first *",
+    "guard_expected": "* 请先开始战斗 *"
+  },
+  {
+    "source_lines": [
+      "Button Will",
+      "Teleport Past",
+      "This Point"
+    ],
+    "target_lines": [
+      "按下按钮",
+      "即可传送到",
+      "此处的另一侧"
+    ],
+    "guard_line_translations": [
+      "Button Will",
+      "Teleport Past",
+      "This Point"
+    ],
+    "guard_exact_source": "Button Will Teleport Past This Point",
+    "guard_expected": "按下按钮即可传送到此处的另一侧"
+  },
+  {
+    "source_lines": [
+      "Entering",
+      "arena",
+      "teleports all",
+      "players!"
+    ],
+    "target_lines": [
+      "进入竞技场",
+      "会将所有玩家",
+      "一并传送",
+      "到场内！"
+    ],
+    "guard_line_translations": [
+      "Entering",
+      "arena",
+      "teleports all",
+      "players!"
+    ],
+    "guard_exact_source": "Entering arena teleports all players!",
+    "guard_expected": "进入竞技场会将所有玩家一并传送到场内！"
+  },
+  {
+    "source_lines": [
+      "This barrier is",
+      "being channeled",
+      "from another",
+      "world..."
+    ],
+    "target_lines": [
+      "这道屏障",
+      "靠另一个世界",
+      "传来的力量",
+      "维系着……"
+    ],
+    "guard_line_translations": [
+      "This barrier is",
+      "being channeled",
+      "from another",
+      "world..."
+    ],
+    "guard_exact_source": "This barrier is being channeled from another world...",
+    "guard_expected": "这道屏障靠另一个世界传来的力量维系着……"
+  },
+  {
+    "source_lines": [
+      "The folly of man",
+      "is great, and",
+      "even the wool",
+      "of balance"
+    ],
+    "target_lines": [
+      "人们的愚行",
+      "酿成大祸，",
+      "就连维系平衡的",
+      "羊毛也不堪重负，"
+    ],
+    "guard_line_translations": [
+      "The folly of man",
+      "is great, and",
+      "even the wool",
+      "of balance"
+    ],
+    "guard_exact_source": "The folly of man is great, and even the wool of balance",
+    "guard_expected": "人们的愚行酿成大祸，就连维系平衡的羊毛也不堪重负，"
+  },
+  {
+    "source_lines": [
+      "split under its",
+      "weight. Its power",
+      "was divided,",
+      "harmony and"
+    ],
+    "target_lines": [
+      "一分为二。",
+      "羊毛的力量",
+      "也随之分裂，",
+      "化作和谐与"
+    ],
+    "guard_line_translations": [
+      "split under its",
+      "weight. Its power",
+      "was divided,",
+      "harmony and"
+    ],
+    "guard_exact_source": "split under its weight. Its power was divided, harmony and",
+    "guard_expected": "一分为二。羊毛的力量也随之分裂，化作和谐与"
+  },
+  {
+    "source_lines": [
+      "dissonance,",
+      "and the",
+      "arboretum split",
+      "just the same."
+    ],
+    "target_lines": [
+      "失谐两股力量。",
+      "和谐树园",
+      "也同样",
+      "一分为二。"
+    ],
+    "guard_line_translations": [
+      "dissonance,",
+      "and the",
+      "arboretum split",
+      "just the same."
+    ],
+    "guard_exact_source": "dissonance, and the arboretum split just the same.",
+    "guard_expected": "失谐两股力量。和谐树园也同样一分为二。"
+  },
+  {
+    "source_lines": [
+      "The dimension",
+      "you are in now",
+      "remained pristine",
+      "and full of life."
+    ],
+    "target_lines": [
+      "你如今所在的",
+      "这个维度",
+      "仍保有原貌，",
+      "生机盎然。"
+    ],
+    "guard_line_translations": [
+      "The dimension",
+      "you are in now",
+      "remained pristine",
+      "and full of life."
+    ],
+    "guard_exact_source": "The dimension you are in now remained pristine and full of life.",
+    "guard_expected": "你如今所在的这个维度仍保有原貌，生机盎然。"
+  },
+  {
+    "source_lines": [
+      "The other became",
+      "twisted and vile.",
+      "The two remained",
+      "linked in specific"
+    ],
+    "target_lines": [
+      "另一个维度",
+      "却已扭曲污秽。",
+      "两界仍有几处",
+      "彼此相通，"
+    ],
+    "guard_line_translations": [
+      "The other became",
+      "twisted and vile.",
+      "The two remained",
+      "linked in specific"
+    ],
+    "guard_exact_source": "The other became twisted and vile. The two remained linked in specific",
+    "guard_expected": "另一个维度却已扭曲污秽。两界仍有几处彼此相通，"
+  },
+  {
+    "source_lines": [
+      "areas, where",
+      "portals will take",
+      "you from one",
+      "to the other."
+    ],
+    "target_lines": [
+      "在那里，",
+      "你可以",
+      "穿过传送门，",
+      "往来于两界。"
+    ],
+    "guard_line_translations": [
+      "areas, where",
+      "portals will take",
+      "you from one",
+      "to the other."
+    ],
+    "guard_exact_source": "areas, where portals will take you from one to the other.",
+    "guard_expected": "在那里，你可以穿过传送门，往来于两界。"
+  },
+  {
+    "source_lines": [
+      "Travel to a",
+      "twisted place"
+    ],
+    "target_lines": [
+      "前往",
+      "扭曲之地"
+    ],
+    "guard_line_translations": [
+      "Travel to a",
+      "twisted place"
+    ],
+    "guard_exact_source": "Travel to a twisted place",
+    "guard_expected": "前往扭曲之地"
+  },
+  {
+    "source_lines": [
+      "Without a trace",
+      "of harmony,",
+      "the power of",
+      "dissonance"
+    ],
+    "target_lines": [
+      "和谐的力量",
+      "荡然无存，",
+      "失谐的力量",
+      "则凝成了"
+    ],
+    "guard_line_translations": [
+      "Without a trace",
+      "of harmony,",
+      "the power of",
+      "dissonance"
+    ],
+    "guard_exact_source": "Without a trace of harmony, the power of dissonance",
+    "guard_expected": "和谐的力量荡然无存，失谐的力量则凝成了"
+  },
+  {
+    "source_lines": [
+      "manifested into",
+      "grotesque",
+      "growths of",
+      "mutated flesh."
+    ],
+    "target_lines": [
+      "一团团",
+      "畸形的血肉，",
+      "不断滋长，",
+      "形貌可怖。"
+    ],
+    "guard_line_translations": [
+      "manifested into",
+      "grotesque",
+      "growths of",
+      "mutated flesh."
+    ],
+    "guard_exact_source": "manifested into grotesque growths of mutated flesh.",
+    "guard_expected": "一团团畸形的血肉，不断滋长，形貌可怖。"
+  },
+  {
+    "source_lines": [
+      "The inhabitants",
+      "who were unlucky",
+      "enough to be",
+      "chosen by the"
+    ],
+    "target_lines": [
+      "当年有些居民",
+      "遭遇不幸，",
+      "被选中送来此地。",
+      "选中他们的，"
+    ],
+    "guard_line_translations": [
+      "The inhabitants",
+      "who were unlucky",
+      "enough to be",
+      "chosen by the"
+    ],
+    "guard_exact_source": "The inhabitants who were unlucky enough to be chosen by the",
+    "guard_expected": "当年有些居民遭遇不幸，被选中送来此地。选中他们的，"
+  },
+  {
+    "source_lines": [
+      "wool to be sent",
+      "here were",
+      "warped beyond",
+      "recognition."
+    ],
+    "target_lines": [
+      "正是羊毛。",
+      "如今他们",
+      "扭曲变形，",
+      "已认不出原貌。"
+    ],
+    "guard_line_translations": [
+      "wool to be sent",
+      "here were",
+      "warped beyond",
+      "recognition."
+    ],
+    "guard_exact_source": "wool to be sent here were warped beyond recognition.",
+    "guard_expected": "正是羊毛。如今他们扭曲变形，已认不出原貌。"
+  },
+  {
+    "source_lines": [
+      "And even still,",
+      "what lies further",
+      "beyond remains",
+      "unknown."
+    ],
+    "target_lines": [
+      "即便如此，",
+      "更深处",
+      "究竟藏着什么，",
+      "仍无人知晓。"
+    ],
+    "guard_line_translations": [
+      "And even still,",
+      "what lies further",
+      "beyond remains",
+      "unknown."
+    ],
+    "guard_exact_source": "And even still, what lies further beyond remains unknown.",
+    "guard_expected": "即便如此，更深处究竟藏着什么，仍无人知晓。"
+  },
+  {
+    "source_lines": [
+      "In the distance,",
+      "a faint beating",
+      "continues its",
+      "steady pace."
+    ],
+    "target_lines": [
+      "远处传来",
+      "微弱的搏动声，",
+      "一下又一下，",
+      "始终未歇。"
+    ],
+    "guard_line_translations": [
+      "In the distance,",
+      "a faint beating",
+      "continues its",
+      "steady pace."
+    ],
+    "guard_exact_source": "In the distance, a faint beating continues its steady pace.",
+    "guard_expected": "远处传来微弱的搏动声，一下又一下，始终未歇。"
+  },
+  {
+    "source_lines": [
+      "This chamber",
+      "once held the",
+      "wools in perfect",
+      "balance. When"
+    ],
+    "target_lines": [
+      "这座石室",
+      "曾存放着羊毛。",
+      "那时一切都",
+      "处于平衡之中。"
+    ],
+    "guard_line_translations": [
+      "This chamber",
+      "once held the",
+      "wools in perfect",
+      "balance. When"
+    ],
+    "guard_exact_source": "This chamber once held the wools in perfect balance. When",
+    "guard_expected": "这座石室曾存放着羊毛。那时一切都处于平衡之中。"
+  },
+  {
+    "source_lines": [
+      "the balance",
+      "became disrupted,",
+      "the Pink Wool was",
+      "torn into two."
+    ],
+    "target_lines": [
+      "后来，",
+      "平衡遭到破坏，",
+      "粉红色羊毛",
+      "也裂成了两半。"
+    ],
+    "guard_line_translations": [
+      "the balance",
+      "became disrupted,",
+      "the Pink Wool was",
+      "torn into two."
+    ],
+    "guard_exact_source": "the balance became disrupted, the Pink Wool was torn into two.",
+    "guard_expected": "后来，平衡遭到破坏，粉红色羊毛也裂成了两半。"
+  },
+  {
+    "source_lines": [
+      "Its housing was",
+      "sealed with a",
+      "powerful magic",
+      "barrier. However,"
+    ],
+    "target_lines": [
+      "存放羊毛的地方",
+      "由一道强大的",
+      "魔法屏障封住。",
+      "然而，"
+    ],
+    "guard_line_translations": [
+      "Its housing was",
+      "sealed with a",
+      "powerful magic",
+      "barrier. However,"
+    ],
+    "guard_exact_source": "Its housing was sealed with a powerful magic barrier. However,",
+    "guard_expected": "存放羊毛的地方由一道强大的魔法屏障封住。然而，"
+  },
+  {
+    "source_lines": [
+      "there was one",
+      "way in that the",
+      "priests couldn't",
+      "lock..."
+    ],
+    "target_lines": [
+      "还有一条路，",
+      "连祭司们",
+      "也没法",
+      "将它封死……"
+    ],
+    "guard_line_translations": [
+      "there was one",
+      "way in that the",
+      "priests couldn't",
+      "lock..."
+    ],
+    "guard_exact_source": "there was one way in that the priests couldn't lock...",
+    "guard_expected": "还有一条路，连祭司们也没法将它封死……"
+  },
+  {
+    "source_lines": [
+      "You can sense",
+      "the twisted realm",
+      "beckoning you to",
+      "return."
+    ],
+    "target_lines": [
+      "你能感觉到，",
+      "那个扭曲的世界",
+      "正召唤着你，",
+      "盼你归来。"
+    ],
+    "guard_line_translations": [
+      "You can sense",
+      "the twisted realm",
+      "beckoning you to",
+      "return."
+    ],
+    "guard_exact_source": "You can sense the twisted realm beckoning you to return.",
+    "guard_expected": "你能感觉到，那个扭曲的世界正召唤着你，盼你归来。"
+  },
+  {
+    "source_lines": [
+      "...and with",
+      "balance forged,",
+      "the 🐈🐈 finally",
+      "became 🐈."
+    ],
+    "target_lines": [
+      "……平衡",
+      "得以重建，",
+      "🐈🐈终于",
+      "合为🐈。"
+    ],
+    "guard_line_translations": [
+      "...and with",
+      "balance forged,",
+      "the 🐈🐈 finally",
+      "became 🐈."
+    ],
+    "guard_exact_source": "...and with balance forged, the 🐈🐈 finally became 🐈.",
+    "guard_expected": "……平衡得以重建，🐈🐈终于合为🐈。"
+  },
+  {
+    "source_lines": [
+      "the two finally",
+      "became one."
+    ],
+    "target_lines": [
+      "两者终于",
+      "合而为一。"
+    ],
+    "guard_line_translations": [
+      "the two finally",
+      "became one."
+    ],
+    "guard_exact_source": "the two finally became one.",
+    "guard_expected": "两者终于合而为一。"
+  },
+  {
+    "source_lines": [
+      "Forced to",
+      "retreat under-",
+      "ground by a",
+      "wintry calamity,"
+    ],
+    "target_lines": [
+      "一场寒冬浩劫",
+      "逼得一个部族",
+      "离开地面，",
+      "退入地下。"
+    ],
+    "guard_line_translations": [
+      "Forced to",
+      "retreat under-",
+      "ground by a",
+      "wintry calamity,"
+    ],
+    "guard_exact_source": "Forced to retreat under- ground by a wintry calamity,",
+    "guard_expected": "一场寒冬浩劫逼得一个部族离开地面，退入地下。"
+  },
+  {
+    "source_lines": [
+      "a long-forgotten",
+      "tribe constructed",
+      "four sheltered",
+      "villages in hidden"
+    ],
+    "target_lines": [
+      "这个早已被世人",
+      "遗忘的部族，",
+      "在隐蔽之地",
+      "建起四座村落。"
+    ],
+    "guard_line_translations": [
+      "a long-forgotten",
+      "tribe constructed",
+      "four sheltered",
+      "villages in hidden"
+    ],
+    "guard_exact_source": "a long-forgotten tribe constructed four sheltered villages in hidden",
+    "guard_expected": "这个早已被世人遗忘的部族，在隐蔽之地建起四座村落。"
+  },
+  {
+    "source_lines": [
+      "locations. Valuing",
+      "the harmony of",
+      "nature, they",
+      "designed a lush"
+    ],
+    "target_lines": [
+      "族人珍视",
+      "自然的和谐，",
+      "为此建起一座",
+      "草木繁茂的树园，"
+    ],
+    "guard_line_translations": [
+      "locations. Valuing",
+      "the harmony of",
+      "nature, they",
+      "designed a lush"
+    ],
+    "guard_exact_source": "locations. Valuing the harmony of nature, they designed a lush",
+    "guard_expected": "族人珍视自然的和谐，为此建起一座草木繁茂的树园，"
+  },
+  {
+    "source_lines": [
+      "arboretum to",
+      "contain and",
+      "protect their",
+      "most cherished"
+    ],
+    "target_lines": [
+      "用来安放",
+      "并守护",
+      "他们最珍爱的",
+      "宝物——"
+    ],
+    "guard_line_translations": [
+      "arboretum to",
+      "contain and",
+      "主人的灵魂。",
+      "most cherished"
+    ],
+    "guard_exact_source": "arboretum to contain and protect their most cherished",
+    "guard_expected": "用来安放并守护他们最珍爱的宝物——"
+  },
+  {
+    "source_lines": [
+      "treasure:",
+      "the powerful",
+      "Pink Wool."
+    ],
+    "target_lines": [
+      "那就是蕴藏着",
+      "强大力量的",
+      "粉红色羊毛。"
+    ],
+    "guard_line_translations": [
+      "treasure:",
+      "the powerful",
+      "Pink Wool."
+    ],
+    "guard_exact_source": "treasure: the powerful Pink Wool.",
+    "guard_expected": "那就是蕴藏着强大力量的粉红色羊毛。"
+  },
+  {
+    "source_lines": [
+      "The Harmonic",
+      "Arboretum has",
+      "now been sealed",
+      "for so long"
+    ],
+    "target_lines": [
+      "和谐树园",
+      "封闭至今，",
+      "已不知过了",
+      "多少岁月。"
+    ],
+    "guard_line_translations": [
+      "The Harmonic",
+      "Arboretum has",
+      "now been sealed",
+      "for so long"
+    ],
+    "guard_exact_source": "The Harmonic Arboretum has now been sealed for so long",
+    "guard_expected": "和谐树园封闭至今，已不知过了多少岁月。"
+  },
+  {
+    "source_lines": [
+      "that none",
+      "remember exactly",
+      "what lies inside",
+      "or what sentries"
+    ],
+    "target_lines": [
+      "如今已无人",
+      "记得清楚，",
+      "园中究竟藏着什么，",
+      "又有哪些守卫"
+    ],
+    "guard_line_translations": [
+      "that none",
+      "remember exactly",
+      "what lies inside",
+      "or what sentries"
+    ],
+    "guard_exact_source": "that none remember exactly what lies inside or what sentries",
+    "guard_expected": "如今已无人记得清楚，园中究竟藏着什么，又有哪些守卫"
+  },
+  {
+    "source_lines": [
+      "still patrol it.",
+      "Explore the",
+      "secrets of the",
+      "lost tribe and"
+    ],
+    "target_lines": [
+      "仍在园中巡逻。",
+      "去探寻那个",
+      "失落部族的秘密，",
+      "揭开他们"
+    ],
+    "guard_line_translations": [
+      "still patrol it.",
+      "Explore the",
+      "secrets of the",
+      "lost tribe and"
+    ],
+    "guard_exact_source": "still patrol it. Explore the secrets of the lost tribe and",
+    "guard_expected": "仍在园中巡逻。去探寻那个失落部族的秘密，揭开他们"
+  },
+  {
+    "source_lines": [
+      "their dark",
+      "history, and claim",
+      "their relic for",
+      "yourself if you"
+    ],
+    "target_lines": [
+      "黑暗的过往，",
+      "将他们的遗物",
+      "据为己有吧——",
+      "只要你敢"
+    ],
+    "guard_line_translations": [
+      "their dark",
+      "history, and claim",
+      "their relic for",
+      "yourself if you"
+    ],
+    "guard_exact_source": "their dark history, and claim their relic for yourself if you",
+    "guard_expected": "黑暗的过往，将他们的遗物据为己有吧——只要你敢"
+  },
+  {
+    "source_lines": [
+      "dare disrupt the",
+      "harmony..."
+    ],
+    "target_lines": [
+      "打破这里的",
+      "和谐……"
+    ],
+    "guard_line_translations": [
+      "dare disrupt the",
+      "harmony..."
+    ],
+    "guard_exact_source": "dare disrupt the harmony...",
+    "guard_expected": "打破这里的和谐……"
+  },
+  {
+    "source_lines": [
+      "Read",
+      "Carefully:"
+    ],
+    "target_lines": [
+      "请仔细",
+      "阅读："
+    ],
+    "guard_line_translations": [
+      "Read",
+      "Carefully:"
+    ],
+    "guard_exact_source": "Read Carefully:",
+    "guard_expected": "请仔细阅读："
+  },
+  {
+    "source_lines": [
+      "The path to the",
+      "Wool you seek",
+      "is locked behind",
+      "a seal of"
+    ],
+    "target_lines": [
+      "通往羊毛的道路",
+      "被一道封印挡住。",
+      "这道封印",
+      "蕴藏着"
+    ],
+    "guard_line_translations": [
+      "The path to the",
+      "Wool you seek",
+      "is locked behind",
+      "a seal of"
+    ],
+    "guard_exact_source": "The path to the Wool you seek is locked behind a seal of",
+    "guard_expected": "通往羊毛的道路被一道封印挡住。这道封印蕴藏着"
+  },
+  {
+    "source_lines": [
+      "powerful magic.",
+      "To enter, you",
+      "must find and",
+      "deactivate"
+    ],
+    "target_lines": [
+      "强大的魔力。",
+      "要进入其中，",
+      "你必须找到",
+      "并关闭"
+    ],
+    "guard_line_translations": [
+      "powerful magic.",
+      "To enter, you",
+      "must find and",
+      "deactivate"
+    ],
+    "guard_exact_source": "powerful magic. To enter, you must find and deactivate",
+    "guard_expected": "强大的魔力。要进入其中，你必须找到并关闭"
+  },
+  {
+    "source_lines": [
+      "the sanctuary in",
+      "each of the four",
+      "villages that can",
+      "be accessed"
+    ],
+    "target_lines": [
+      "四个村庄",
+      "各自的圣所。",
+      "从这座前厅",
+      "可以前往"
+    ],
+    "guard_line_translations": [
+      "the sanctuary in",
+      "each of the four",
+      "villages that can",
+      "be accessed"
+    ],
+    "guard_exact_source": "the sanctuary in each of the four villages that can be accessed",
+    "guard_expected": "四个村庄各自的圣所。从这座前厅可以前往"
+  },
+  {
+    "source_lines": [
+      "from this",
+      "antechamber.",
+      "Once you open",
+      "the path to a"
+    ],
+    "target_lines": [
+      "这些村庄。",
+      "一旦你",
+      "打开了",
+      "通往其中一个"
+    ],
+    "guard_line_translations": [
+      "from this",
+      "antechamber.",
+      "Once you open",
+      "the path to a"
+    ],
+    "guard_exact_source": "from this antechamber. Once you open the path to a",
+    "guard_expected": "这些村庄。一旦你打开了通往其中一个"
+  },
+  {
+    "source_lines": [
+      "village, the",
+      "others will remain",
+      "shut until you",
+      "clear the one"
+    ],
+    "target_lines": [
+      "村庄的路，",
+      "其他入口",
+      "就会一直关闭，",
+      "直到你通关"
+    ],
+    "guard_line_translations": [
+      "village, the",
+      "others will remain",
+      "shut until you",
+      "clear the one"
+    ],
+    "guard_exact_source": "village, the others will remain shut until you clear the one",
+    "guard_expected": "村庄的路，其他入口就会一直关闭，直到你通关"
+  },
+  {
+    "source_lines": [
+      "you opened. Your",
+      "path through this",
+      "dungeon is set",
+      "after this choice."
+    ],
+    "target_lines": [
+      "所选的村庄。",
+      "一经选择，",
+      "你在副本中的路线",
+      "便随之确定。"
+    ],
+    "guard_line_translations": [
+      "you opened. Your",
+      "path through this",
+      "dungeon is set",
+      "after this choice."
+    ],
+    "guard_exact_source": "you opened. Your path through this dungeon is set after this choice.",
+    "guard_expected": "所选的村庄。一经选择，你在副本中的路线便随之确定。"
+  },
+  {
+    "source_lines": [
+      "Open Spring",
+      "Gate"
+    ],
+    "target_lines": [
+      "开启",
+      "春之门"
+    ],
+    "guard_line_translations": [
+      "Open Spring",
+      "Gate"
+    ],
+    "guard_exact_source": "Open Spring Gate",
+    "guard_expected": "开启春之门"
+  },
+  {
+    "source_lines": [
+      "Warp to",
+      "Spring",
+      "Temple Entrance"
+    ],
+    "target_lines": [
+      "传送至",
+      "春之神殿",
+      "入口"
+    ],
+    "guard_line_translations": [
+      "Warp to",
+      "Spring",
+      "Temple Entrance"
+    ],
+    "guard_exact_source": "Warp to Spring Temple Entrance",
+    "guard_expected": "传送至春之神殿入口"
+  },
+  {
+    "source_lines": [
+      "Warp to",
+      "Spring",
+      "Sanctuary",
+      "(One-Way)"
+    ],
+    "target_lines": [
+      "单向传送",
+      "目的地：",
+      "春之",
+      "圣所"
+    ],
+    "guard_line_translations": [
+      "Warp to",
+      "Spring",
+      "Sanctuary",
+      "(One-Way)"
+    ],
+    "guard_exact_source": "Warp to Spring Sanctuary (One-Way)",
+    "guard_expected": "单向传送目的地：春之圣所"
+  },
+  {
+    "source_lines": [
+      "Open Summer",
+      "Gate"
+    ],
+    "target_lines": [
+      "开启",
+      "夏之门"
+    ],
+    "guard_line_translations": [
+      "Open Summer",
+      "Gate"
+    ],
+    "guard_exact_source": "Open Summer Gate",
+    "guard_expected": "开启夏之门"
+  },
+  {
+    "source_lines": [
+      "Warp to",
+      "Summer",
+      "Temple Entrance"
+    ],
+    "target_lines": [
+      "传送至",
+      "夏之神殿",
+      "入口"
+    ],
+    "guard_line_translations": [
+      "Warp to",
+      "Summer",
+      "Temple Entrance"
+    ],
+    "guard_exact_source": "Warp to Summer Temple Entrance",
+    "guard_expected": "传送至夏之神殿入口"
+  },
+  {
+    "source_lines": [
+      "Warp to",
+      "Summer",
+      "Sanctuary",
+      "(One-Way)"
+    ],
+    "target_lines": [
+      "单向传送",
+      "目的地：",
+      "夏之",
+      "圣所"
+    ],
+    "guard_line_translations": [
+      "Warp to",
+      "Summer",
+      "Sanctuary",
+      "(One-Way)"
+    ],
+    "guard_exact_source": "Warp to Summer Sanctuary (One-Way)",
+    "guard_expected": "单向传送目的地：夏之圣所"
+  },
+  {
+    "source_lines": [
+      "Open Autumn",
+      "Gate"
+    ],
+    "target_lines": [
+      "开启",
+      "秋之门"
+    ],
+    "guard_line_translations": [
+      "Open Autumn",
+      "Gate"
+    ],
+    "guard_exact_source": "Open Autumn Gate",
+    "guard_expected": "开启秋之门"
+  },
+  {
+    "source_lines": [
+      "Warp to",
+      "Autumn",
+      "Temple Entrance"
+    ],
+    "target_lines": [
+      "传送至",
+      "秋之神殿",
+      "入口"
+    ],
+    "guard_line_translations": [
+      "Warp to",
+      "Autumn",
+      "Temple Entrance"
+    ],
+    "guard_exact_source": "Warp to Autumn Temple Entrance",
+    "guard_expected": "传送至秋之神殿入口"
+  },
+  {
+    "source_lines": [
+      "Warp to",
+      "Autumn",
+      "Sanctuary",
+      "(One-Way)"
+    ],
+    "target_lines": [
+      "单向传送",
+      "目的地：",
+      "秋之",
+      "圣所"
+    ],
+    "guard_line_translations": [
+      "Warp to",
+      "Autumn",
+      "Sanctuary",
+      "(One-Way)"
+    ],
+    "guard_exact_source": "Warp to Autumn Sanctuary (One-Way)",
+    "guard_expected": "单向传送目的地：秋之圣所"
+  },
+  {
+    "source_lines": [
+      "Open Winter",
+      "Gate"
+    ],
+    "target_lines": [
+      "开启",
+      "冬之门"
+    ],
+    "guard_line_translations": [
+      "Open Winter",
+      "Gate"
+    ],
+    "guard_exact_source": "Open Winter Gate",
+    "guard_expected": "开启冬之门"
+  },
+  {
+    "source_lines": [
+      "Warp to",
+      "Winter",
+      "Temple Entrance"
+    ],
+    "target_lines": [
+      "传送至",
+      "冬之神殿",
+      "入口"
+    ],
+    "guard_line_translations": [
+      "Warp to",
+      "Winter",
+      "Temple Entrance"
+    ],
+    "guard_exact_source": "Warp to Winter Temple Entrance",
+    "guard_expected": "传送至冬之神殿入口"
+  },
+  {
+    "source_lines": [
+      "Warp to",
+      "Winter",
+      "Sanctuary",
+      "(One-Way)"
+    ],
+    "target_lines": [
+      "单向传送",
+      "目的地：",
+      "冬之",
+      "圣所"
+    ],
+    "guard_line_translations": [
+      "Warp to",
+      "Winter",
+      "Sanctuary",
+      "(One-Way)"
+    ],
+    "guard_exact_source": "Warp to Winter Sanctuary (One-Way)",
+    "guard_expected": "单向传送目的地：冬之圣所"
+  },
+  {
+    "source_lines": [
+      "To fragment",
+      "an item, throw",
+      "it onto the",
+      "pressure plate."
+    ],
+    "target_lines": [
+      "要把物品",
+      "分解成碎片，",
+      "请将它丢到",
+      "压力板上。"
+    ],
+    "guard_line_translations": [
+      "收件人：fragment",
+      "寄送物品时，",
+      "请将物品扔到",
+      "压力板上。"
+    ],
+    "guard_exact_source": "To fragment an item, throw it onto the pressure plate.",
+    "guard_expected": "要把物品分解成碎片，请将它丢到压力板上。"
+  },
+  {
+    "source_lines": [
+      "To fragment an",
+      "item, throw it",
+      "onto the",
+      "pressure plate."
+    ],
+    "target_lines": [
+      "要把物品",
+      "分解成碎片，",
+      "请将它丢到",
+      "压力板上。"
+    ],
+    "guard_line_translations": [
+      "如需将物品",
+      "分解成碎片，",
+      "请将其丢到",
+      "压力板上。"
+    ],
+    "guard_exact_source": "To fragment an item, throw it onto the pressure plate.",
+    "guard_expected": "要把物品分解成碎片，请将它丢到压力板上。"
+  },
+  {
+    "source_lines": [
+      "Al Malakut was",
+      "the capital of",
+      "Ishnir for many",
+      "centuries."
+    ],
+    "target_lines": [
+      "阿尔马拉库特",
+      "曾是伊什尼尔的",
+      "都城，",
+      "历经数百年。"
+    ],
+    "guard_line_translations": [
+      "Al Malakut was",
+      "the capital of",
+      "Ishnir for many",
+      "centuries."
+    ],
+    "guard_exact_source": "Al Malakut was the capital of Ishnir for many centuries.",
+    "guard_expected": "阿尔马拉库特曾是伊什尼尔的都城，历经数百年。"
+  },
+  {
+    "source_lines": [
+      "They had grown",
+      "from a small",
+      "settlement to",
+      "a large kingdom"
+    ],
+    "target_lines": [
+      "他们起初只在",
+      "一处小聚落定居，",
+      "后来却建起了",
+      "庞大的王国。"
+    ],
+    "guard_line_translations": [
+      "They had grown",
+      "from a small",
+      "settlement to",
+      "a large kingdom"
+    ],
+    "guard_exact_source": "They had grown from a small settlement to a large kingdom",
+    "guard_expected": "他们起初只在一处小聚落定居，后来却建起了庞大的王国。"
+  },
+  {
+    "source_lines": [
+      "due to their",
+      "mastery of",
+      "influencing water",
+      "through magic."
+    ],
+    "target_lines": [
+      "这一切都得益于",
+      "他们的一项本领：",
+      "用魔法",
+      "驾驭水流。"
+    ],
+    "guard_line_translations": [
+      "due to their",
+      "mastery of",
+      "influencing water",
+      "through magic."
+    ],
+    "guard_exact_source": "due to their mastery of influencing water through magic.",
+    "guard_expected": "这一切都得益于他们的一项本领：用魔法驾驭水流。"
+  },
+  {
+    "source_lines": [
+      "Their greatest",
+      "accomplishment,",
+      "however, was",
+      "the discovery of"
+    ],
+    "target_lines": [
+      "然而，",
+      "他们最了不起的",
+      "成就，却是发现了",
+      "另一种法术——"
+    ],
+    "guard_line_translations": [
+      "Their greatest",
+      "accomplishment,",
+      "however, was",
+      "the discovery of"
+    ],
+    "guard_exact_source": "Their greatest accomplishment, however, was the discovery of",
+    "guard_expected": "然而，他们最了不起的成就，却是发现了另一种法术——"
+  },
+  {
+    "source_lines": [
+      "Necromancy.",
+      "They used this",
+      "dark art to fuel",
+      "their culture."
+    ],
+    "target_lines": [
+      "死灵术。",
+      "这种黑暗法术",
+      "成了他们文明",
+      "发展的动力。"
+    ],
+    "guard_line_translations": [
+      "Necromancy.",
+      "They used this",
+      "dark art to fuel",
+      "their culture."
+    ],
+    "guard_exact_source": "Necromancy. They used this dark art to fuel their culture.",
+    "guard_expected": "死灵术。这种黑暗法术成了他们文明发展的动力。"
+  },
+  {
+    "source_lines": [
+      "Crops that could",
+      "survive the heat,",
+      "soldiers that",
+      "never fell."
+    ],
+    "target_lines": [
+      "他们培育出",
+      "耐酷热的庄稼，",
+      "也造就了",
+      "不倒的士兵。"
+    ],
+    "guard_line_translations": [
+      "Crops that could",
+      "survive the heat,",
+      "soldiers that",
+      "never fell."
+    ],
+    "guard_exact_source": "Crops that could survive the heat, soldiers that never fell.",
+    "guard_expected": "他们培育出耐酷热的庄稼，也造就了不倒的士兵。"
+  },
+  {
+    "source_lines": [
+      "This soon became",
+      "their downfall,",
+      "however. The",
+      "power they"
+    ],
+    "target_lines": [
+      "然而好景不长，",
+      "这门法术",
+      "很快就给他们",
+      "带来了灭顶之灾。"
+    ],
+    "guard_line_translations": [
+      "This soon became",
+      "their downfall,",
+      "however. The",
+      "power they"
+    ],
+    "guard_exact_source": "This soon became their downfall, however. The power they",
+    "guard_expected": "然而好景不长，这门法术很快就给他们带来了灭顶之灾。"
+  },
+  {
+    "source_lines": [
+      "wielded grew out",
+      "of their control",
+      "and they were",
+      "forced to"
+    ],
+    "target_lines": [
+      "他们曾经驾驭的",
+      "力量失去了控制。",
+      "迫于无奈，",
+      "他们只得"
+    ],
+    "guard_line_translations": [
+      "wielded grew out",
+      "of their control",
+      "and they were",
+      "forced to"
+    ],
+    "guard_exact_source": "wielded grew out of their control and they were forced to",
+    "guard_expected": "他们曾经驾驭的力量失去了控制。迫于无奈，他们只得"
+  },
+  {
+    "source_lines": [
+      "abandon the city,",
+      "locking their",
+      "mistakes inside.",
+      "And thus ended"
+    ],
+    "target_lines": [
+      "弃城而去，",
+      "将自己犯下的",
+      "过错锁在了城里。",
+      "就这样，"
+    ],
+    "guard_line_translations": [
+      "abandon the city,",
+      "locking their",
+      "mistakes inside.",
+      "And thus ended"
+    ],
+    "guard_exact_source": "abandon the city, locking their mistakes inside. And thus ended",
+    "guard_expected": "弃城而去，将自己犯下的过错锁在了城里。就这样，"
+  },
+  {
+    "source_lines": [
+      "Al Malakut,",
+      "the Heart of the",
+      "Desert - the",
+      "Gem of Ishnir."
+    ],
+    "target_lines": [
+      "阿尔马拉库特，",
+      "这颗沙漠之心、",
+      "伊什尼尔的明珠，",
+      "就此覆灭。"
+    ],
+    "guard_line_translations": [
+      "Al Malakut,",
+      "the Heart of the",
+      "Desert - the",
+      "Gem of Ishnir."
+    ],
+    "guard_exact_source": "Al Malakut, the Heart of the Desert - the Gem of Ishnir.",
+    "guard_expected": "阿尔马拉库特，这颗沙漠之心、伊什尼尔的明珠，就此覆灭。"
+  },
+  {
+    "source_lines": [
+      "These will be",
+      "useful against",
+      "otherworldly",
+      "creatures"
+    ],
+    "target_lines": [
+      "这些东西",
+      "能派上用场，",
+      "用来对付",
+      "异界生物。"
+    ],
+    "guard_line_translations": [
+      "These will be",
+      "useful against",
+      "otherworldly",
+      "creatures"
+    ],
+    "guard_exact_source": "These will be useful against otherworldly creatures",
+    "guard_expected": "这些东西能派上用场，用来对付异界生物。"
+  },
+  {
+    "source_lines": [
+      "If only there",
+      "was some way",
+      "to drain all that",
+      "water..."
+    ],
+    "target_lines": [
+      "要是有什么办法",
+      "能把这里的水",
+      "都排出去",
+      "就好了……"
+    ],
+    "guard_line_translations": [
+      "If only there",
+      "was some way",
+      "to drain all that",
+      "water..."
+    ],
+    "guard_exact_source": "If only there was some way to drain all that water...",
+    "guard_expected": "要是有什么办法能把这里的水都排出去就好了……"
+  },
+  {
+    "source_lines": [
+      "If player, unless",
+      "boss, run crypt",
+      "win function"
+    ],
+    "target_lines": [
+      "若有玩家而无首领，",
+      "则运行墓穴",
+      "胜利函数。"
+    ],
+    "guard_line_translations": [
+      "If player, unless",
+      "boss, run crypt",
+      "win function"
+    ],
+    "guard_exact_source": "If player, unless boss, run crypt win function",
+    "guard_expected": "若有玩家而无首领，则运行墓穴胜利函数。"
+  },
+  {
+    "source_lines": [
+      "commands below",
+      "are outdated"
+    ],
+    "target_lines": [
+      "下方指令",
+      "已经过时。"
+    ],
+    "guard_line_translations": [
+      "commands below",
+      "are outdated"
+    ],
+    "guard_exact_source": "commands below are outdated",
+    "guard_expected": "下方指令已经过时。"
+  },
+  {
+    "source_lines": [
+      "old summons",
+      "with schedule",
+      "just in case"
+    ],
+    "target_lines": [
+      "旧版召唤指令",
+      "带有调度设置，",
+      "留作备用。"
+    ],
+    "guard_line_translations": [
+      "old summons",
+      "with schedule",
+      "just in case"
+    ],
+    "guard_exact_source": "old summons with schedule just in case",
+    "guard_expected": "旧版召唤指令带有调度设置，留作备用。"
+  },
+  {
+    "source_lines": [
+      "If not build",
+      "server kill timer",
+      "stand"
+    ],
+    "target_lines": [
+      "若不在建造服，",
+      "则移除计时用",
+      "盔甲架。"
+    ],
+    "guard_line_translations": [
+      "If not build",
+      "server kill timer",
+      "stand"
+    ],
+    "guard_exact_source": "If not build server kill timer stand",
+    "guard_expected": "若不在建造服，则移除计时用盔甲架。"
+  },
+  {
+    "source_lines": [
+      "These mobs don't",
+      "actually exist",
+      "in spawners",
+      "otherwise"
+    ],
+    "target_lines": [
+      "除此之外，",
+      "这些怪物其实",
+      "并不在任何",
+      "刷怪笼里。"
+    ],
+    "guard_line_translations": [
+      "These mobs don't",
+      "actually exist",
+      "in spawners",
+      "otherwise"
+    ],
+    "guard_exact_source": "These mobs don't actually exist in spawners otherwise",
+    "guard_expected": "除此之外，这些怪物其实并不在任何刷怪笼里。"
+  },
+  {
+    "source_lines": [
+      "This spawner",
+      "exists so these",
+      "mobs are tagged",
+      "as \"gray\""
+    ],
+    "target_lines": [
+      "这个刷怪笼",
+      "用于给这些怪物",
+      "加上名为",
+      "“gray”的标签。"
+    ],
+    "guard_line_translations": [
+      "This spawner",
+      "exists so these",
+      "mobs are tagged",
+      "as \"gray\""
+    ],
+    "guard_exact_source": "This spawner exists so these mobs are tagged as \"gray\"",
+    "guard_expected": "这个刷怪笼用于给这些怪物加上名为“gray”的标签。"
+  },
+  {
+    "source_lines": [
+      "Pray to",
+      "the Goddess"
+    ],
+    "target_lines": [
+      "向女神",
+      "祈祷"
+    ],
+    "guard_line_translations": [
+      "Pray to",
+      "the Goddess"
+    ],
+    "guard_exact_source": "Pray to the Goddess",
+    "guard_expected": "向女神祈祷"
+  },
+  {
+    "source_lines": [
+      "Activate/Reset",
+      "Lock"
+    ],
+    "target_lines": [
+      "启动／重置",
+      "机关锁"
+    ],
+    "guard_line_translations": [
+      "Activate/Reset",
+      "Lock"
+    ],
+    "guard_exact_source": "Activate/Reset Lock",
+    "guard_expected": "启动／重置机关锁"
+  },
+  {
+    "source_lines": [
+      "If Activate/Reset",
+      "Lock doesn't work",
+      "leave and return"
+    ],
+    "target_lines": [
+      "若无法启动",
+      "或重置机关锁，",
+      "请离开后再回来。"
+    ],
+    "guard_line_translations": [
+      "If Activate/Reset",
+      "Lock doesn't work",
+      "leave and return"
+    ],
+    "guard_exact_source": "If Activate/Reset Lock doesn't work leave and return",
+    "guard_expected": "若无法启动或重置机关锁，请离开后再回来。"
+  }
+]
