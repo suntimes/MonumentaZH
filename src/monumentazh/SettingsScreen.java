@@ -4,7 +4,11 @@ import java.util.function.*;
 
 /** Native settings controls with a compact two-column layout. */
 public final class SettingsScreen extends class_437 {
- public record State(boolean enabled,boolean bilingualNames,boolean bilingualPlaces,boolean signTranslation,boolean capture,boolean signCapture,String counts) {}
+ public record State(boolean enabled,boolean bilingualNames,boolean bilingualPlaces,boolean bilingualAnnotations,boolean signTranslation,boolean capture,boolean signCapture,String counts) {
+  public State(boolean enabled,boolean bilingualNames,boolean bilingualPlaces,boolean signTranslation,boolean capture,boolean signCapture,String counts) {
+   this(enabled,bilingualNames,bilingualPlaces,bilingualPlaces,signTranslation,capture,signCapture,counts);
+  }
+ }
  private final class_437 parent; private final Supplier<State> state; private final Consumer<String> action;
  private boolean tools; private int left,top,width,headingY,toolY;
  public SettingsScreen(class_437 parent,Supplier<State> state,Consumer<String> action) {
@@ -24,7 +28,7 @@ public final class SettingsScreen extends class_437 {
   headingY=Math.max(4,field_22790/10-4);
   // Anchor the heading near 23.4% and the footer near 82% of the screen.
   // Keep the existing control sizes and spacing on both settings pages.
-  int blockHeight=tools?63:90;
+  int blockHeight=tools?63:112;
   int minimumFirst=headingY+9+35;
   int first=Math.max(minimumFirst,field_22790*234/1000+15);
   int finishY=Math.min(field_22790-24,Math.max(field_22790*82/100,first+blockHeight+8));
@@ -36,8 +40,10 @@ public final class SettingsScreen extends class_437 {
    choice("汉化显示",s.enabled(),"中文","原文","on","off",left,y,half);
    choice("NPC 原名",s.bilingualNames(),"显示","隐藏","names_on","names_off",left+half+3,y,half);
    y+=22;
-   choice("地点原名",s.bilingualPlaces(),"显示","隐藏","places_on","places_off",left,y,half);
+   choice("英文括注",s.bilingualAnnotations(),"显示","隐藏","annotations_on","annotations_off",left,y,half);
    choice("告示牌汉化",s.signTranslation(),"开启","关闭","signs_on","signs_off",left+half+3,y,half);
+   y+=22;
+   choice("书页与标题地名原文",s.bilingualPlaces(),"显示","隐藏","places_on","places_off",left,y,width);
    y+=22;
    button("使用说明",left,y,third,()->action.accept("about"));
    button("按键说明",left+third+3,y,third,()->action.accept("keys"));
@@ -52,7 +58,20 @@ public final class SettingsScreen extends class_437 {
    button("导出文本",left,y+43,width,()->action.accept("export"));
   }
   int finishW=Math.min(110,width/2);
+  if (!tools) {
+   method_37063(new GuideButton(left+width-20,Math.max(2,headingY-6),b->field_22787.method_1507(
+       new SettingsInfoScreen(this,"/co 指令手册",CoreProtectGuide.body()))));
+  }
   button(tools?"返回玩家设置":"完成",(field_22789-finishW)/2,finishY,finishW,this::method_25419);
+ }
+ private static final class GuideButton extends class_4185 {
+  private static final class_2960 BOOK=new class_2960("minecraft","textures/item/writable_book.png");
+  GuideButton(int x,int y,class_4241 press) {
+   super(x,y,20,20,class_2561.method_43470("/co 指令手册"),press,field_40754);
+  }
+  @Override public void method_48589(class_332 g,class_327 font,int color) {
+   g.method_25290(BOOK,method_46426()+2,method_46427()+2,0f,0f,16,16,16,16);
+  }
  }
  private static final class DisclosureButton extends class_4185 {
   DisclosureButton(int x,int y,int width,class_2561 text,class_4241 press) {
@@ -107,4 +126,5 @@ public final class SettingsScreen extends class_437 {
  }
  @Override public boolean method_25421(){return false;}
 }
+
 

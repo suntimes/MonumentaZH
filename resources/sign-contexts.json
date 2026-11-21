@@ -2626,5 +2626,2013 @@
     ],
     "guard_exact_source": "If Activate/Reset Lock doesn't work leave and return",
     "guard_expected": "若无法启动或重置机关锁，请离开后再回来。"
+  },
+  {
+    "source_lines": [
+      "Long ago, an",
+      "excavation was",
+      "ordered from",
+      "Molta, to find"
+    ],
+    "target_lines": [
+      "很久以前，",
+      "莫尔塔下令",
+      "开挖矿井，",
+      "寻找"
+    ],
+    "guard_line_translations": [
+      "Long ago, an",
+      "excavation was",
+      "ordered from",
+      "Molta, to find"
+    ],
+    "guard_exact_source": "Long ago, an excavation was ordered from Molta, to find",
+    "guard_expected": "很久以前，莫尔塔下令开挖矿井，寻找"
+  },
+  {
+    "source_lines": [
+      "a rare blood",
+      "stone, dubbed",
+      "Cursestone.",
+      "But little did the"
+    ],
+    "target_lines": [
+      "一种罕见的血石，",
+      "人们称它为",
+      "“咒石”。",
+      "矿工们却"
+    ],
+    "guard_line_translations": [
+      "a rare blood",
+      "stone, dubbed",
+      "Cursestone.",
+      "But little did the"
+    ],
+    "guard_exact_source": "a rare blood stone, dubbed Cursestone. But little did the",
+    "guard_expected": "一种罕见的血石，人们称它为“咒石”。矿工们却"
+  },
+  {
+    "source_lines": [
+      "miners know, the",
+      "substance was",
+      "possessed by",
+      "an ancient,"
+    ],
+    "target_lines": [
+      "浑然不知，",
+      "石中早已",
+      "潜伏着",
+      "一股古老的"
+    ],
+    "guard_line_translations": [
+      "miners know, the",
+      "substance was",
+      "possessed by",
+      "an ancient,"
+    ],
+    "guard_exact_source": "miners know, the substance was possessed by an ancient,",
+    "guard_expected": "浑然不知，石中早已潜伏着一股古老的"
+  },
+  {
+    "source_lines": [
+      "dormant evil. It",
+      "wasn't until they",
+      "dug up an",
+      "unholy temple"
+    ],
+    "target_lines": [
+      "邪恶力量。",
+      "直到有一天，",
+      "他们挖出了",
+      "一座邪庙，"
+    ],
+    "guard_line_translations": [
+      "dormant evil. It",
+      "wasn't until they",
+      "dug up an",
+      "unholy temple"
+    ],
+    "guard_exact_source": "dormant evil. It wasn't until they dug up an unholy temple",
+    "guard_expected": "邪恶力量。直到有一天，他们挖出了一座邪庙，"
+  },
+  {
+    "source_lines": [
+      "that this evil",
+      "awakened and",
+      "drove the miners",
+      "to insanity."
+    ],
+    "target_lines": [
+      "那股邪恶力量",
+      "才从沉睡中苏醒，",
+      "让矿工们",
+      "全都陷入了疯狂。"
+    ],
+    "guard_line_translations": [
+      "that this evil",
+      "awakened and",
+      "drove the miners",
+      "to insanity."
+    ],
+    "guard_exact_source": "that this evil awakened and drove the miners to insanity.",
+    "guard_expected": "那股邪恶力量才从沉睡中苏醒，让矿工们全都陷入了疯狂。"
+  },
+  {
+    "source_lines": [
+      "Now with the",
+      "miners under",
+      "their control, the",
+      "Scourge's Cult"
+    ],
+    "target_lines": [
+      "如今，",
+      "矿工们已落入",
+      "灾厄教团之手。",
+      "教团"
+    ],
+    "guard_line_translations": [
+      "Now with the",
+      "miners under",
+      "their control, the",
+      "Scourge's Cult"
+    ],
+    "guard_exact_source": "Now with the miners under their control, the Scourge's Cult",
+    "guard_expected": "如今，矿工们已落入灾厄教团之手。教团"
+  },
+  {
+    "source_lines": [
+      "is able to keep",
+      "the source of",
+      "their power safe",
+      "and sound behind"
+    ],
+    "target_lines": [
+      "得以将",
+      "自己的力量之源",
+      "严密守护在",
+      "重重"
+    ],
+    "guard_line_translations": [
+      "is able to keep",
+      "the source of",
+      "their power safe",
+      "and sound behind"
+    ],
+    "guard_exact_source": "is able to keep the source of their power safe and sound behind",
+    "guard_expected": "得以将自己的力量之源严密守护在重重"
+  },
+  {
+    "source_lines": [
+      "protected walls.",
+      "Undisturbed, the",
+      "cyan wool",
+      "remains in the"
+    ],
+    "target_lines": [
+      "防壁之后。",
+      "无人惊扰的",
+      "青色羊毛",
+      "至今仍落在"
+    ],
+    "guard_line_translations": [
+      "protected walls.",
+      "Undisturbed, the",
+      "cyan wool",
+      "remains in the"
+    ],
+    "guard_exact_source": "protected walls. Undisturbed, the cyan wool remains in the",
+    "guard_expected": "防壁之后。无人惊扰的青色羊毛至今仍落在"
+  },
+  {
+    "source_lines": [
+      "protected walls.",
+      "Undisturbed, the",
+      "Cyan Wool",
+      "remains in the"
+    ],
+    "target_lines": [
+      "防壁之后。",
+      "无人惊扰的",
+      "青色羊毛",
+      "至今仍落在"
+    ],
+    "guard_line_translations": [
+      "protected walls.",
+      "Undisturbed, the",
+      "青色羊毛",
+      "remains in the"
+    ],
+    "guard_exact_source": "protected walls. Undisturbed, the Cyan Wool remains in the",
+    "guard_expected": "防壁之后。无人惊扰的青色羊毛至今仍落在"
+  },
+  {
+    "source_lines": [
+      "possession of",
+      "evil minds."
+    ],
+    "target_lines": [
+      "那些心怀邪念",
+      "的人手里。"
+    ],
+    "guard_line_translations": [
+      "possession of",
+      "evil minds."
+    ],
+    "guard_exact_source": "possession of evil minds.",
+    "guard_expected": "那些心怀邪念的人手里。"
+  },
+  {
+    "source_lines": [
+      "this gets set",
+      "to a barrier",
+      "when the cp",
+      "is unlocked"
+    ],
+    "target_lines": [
+      "激活检查点后，",
+      "此处方块",
+      "会替换为",
+      "屏障方块。"
+    ],
+    "guard_line_translations": [
+      "this gets set",
+      "to a barrier",
+      "when the cp",
+      "is unlocked"
+    ],
+    "guard_exact_source": "this gets set to a barrier when the cp is unlocked",
+    "guard_expected": "激活检查点后，此处方块会替换为屏障方块。"
+  },
+  {
+    "source_lines": [
+      "CRANE",
+      "OPERATION"
+    ],
+    "target_lines": [
+      "起重机",
+      "操作说明"
+    ],
+    "guard_line_translations": [
+      "CRANE",
+      "OPERATION"
+    ],
+    "guard_exact_source": "CRANE OPERATION",
+    "guard_expected": "起重机操作说明"
+  },
+  {
+    "source_lines": [
+      "Mining in",
+      "progress!!"
+    ],
+    "target_lines": [
+      "正在",
+      "采矿！"
+    ],
+    "guard_line_translations": [
+      "Mining in",
+      "progress!!"
+    ],
+    "guard_exact_source": "Mining in progress!!",
+    "guard_expected": "正在采矿！"
+  },
+  {
+    "source_lines": [
+      "SAFETY",
+      "FIRST!"
+    ],
+    "target_lines": [
+      "安全",
+      "第一！"
+    ],
+    "guard_line_translations": [
+      "SAFETY",
+      "FIRST！"
+    ],
+    "guard_exact_source": "SAFETY FIRST!",
+    "guard_expected": "安全第一！"
+  },
+  {
+    "source_lines": [
+      "two barrier",
+      "crystals",
+      "elsewhere in the"
+    ],
+    "target_lines": [
+      "两颗屏障",
+      "水晶。它们",
+      "位于矿井的"
+    ],
+    "guard_line_translations": [
+      "two barrier",
+      "crystals",
+      "elsewhere in the"
+    ],
+    "guard_exact_source": "two barrier crystals elsewhere in the",
+    "guard_expected": "两颗屏障水晶。它们位于矿井的"
+  },
+  {
+    "source_lines": [
+      "mines. Only then",
+      "will the temple's",
+      "locking mechanism"
+    ],
+    "target_lines": [
+      "其他地方。",
+      "只有这样，",
+      "神庙的门锁才能"
+    ],
+    "guard_line_translations": [
+      "mines. Only then",
+      "will the temple's",
+      "locking mechanism"
+    ],
+    "guard_exact_source": "mines. Only then will the temple's locking mechanism",
+    "guard_expected": "其他地方。只有这样，神庙的门锁才能"
+  },
+  {
+    "source_lines": [
+      "This unholy",
+      "temple which the",
+      "miners once"
+    ],
+    "target_lines": [
+      "这座邪庙，",
+      "矿工们",
+      "曾经"
+    ],
+    "guard_line_translations": [
+      "This unholy",
+      "temple which the",
+      "miners once"
+    ],
+    "guard_exact_source": "This unholy temple which the miners once",
+    "guard_expected": "这座邪庙，矿工们曾经"
+  },
+  {
+    "source_lines": [
+      "function",
+      "correctly."
+    ],
+    "target_lines": [
+      "恢复",
+      "正常运转。"
+    ],
+    "guard_line_translations": [
+      "function",
+      "correctly."
+    ],
+    "guard_exact_source": "function correctly.",
+    "guard_expected": "恢复正常运转。"
+  },
+  {
+    "source_lines": [
+      "The only way to",
+      "open its door",
+      "is to destroy"
+    ],
+    "target_lines": [
+      "要打开庙门，",
+      "唯一的办法",
+      "就是摧毁"
+    ],
+    "guard_line_translations": [
+      "The only way to",
+      "open its door",
+      "is to destroy"
+    ],
+    "guard_exact_source": "The only way to open its door is to destroy",
+    "guard_expected": "要打开庙门，唯一的办法就是摧毁"
+  },
+  {
+    "source_lines": [
+      "The Lord's",
+      "blood is filled with",
+      "malice!"
+    ],
+    "target_lines": [
+      "主的血液里",
+      "满是",
+      "恶意！"
+    ],
+    "guard_line_translations": [
+      "The Lord's",
+      "blood is filled with",
+      "malice！"
+    ],
+    "guard_exact_source": "The Lord's blood is filled with malice!",
+    "guard_expected": "主的血液里满是恶意！"
+  },
+  {
+    "source_lines": [
+      "One of the two",
+      "barrier crystals.",
+      "In order to",
+      "destabilise it"
+    ],
+    "target_lines": [
+      "这是两颗屏障",
+      "水晶之一。",
+      "要让它",
+      "失去稳定，"
+    ],
+    "guard_line_translations": [
+      "One of the two",
+      "barrier crystals.",
+      "In order to",
+      "destabilise it"
+    ],
+    "guard_exact_source": "One of the two barrier crystals. In order to destabilise it",
+    "guard_expected": "这是两颗屏障水晶之一。要让它失去稳定，"
+  },
+  {
+    "source_lines": [
+      "you must",
+      "deactivate",
+      "3 power sources",
+      "in this area"
+    ],
+    "target_lines": [
+      "你必须",
+      "关闭",
+      "本区域的",
+      "三处动力源。"
+    ],
+    "guard_line_translations": [
+      "you must",
+      "deactivate",
+      "3 power sources",
+      "in this area"
+    ],
+    "guard_exact_source": "you must deactivate 3 power sources in this area",
+    "guard_expected": "你必须关闭本区域的三处动力源。"
+  },
+  {
+    "source_lines": [
+      "3 power sources",
+      "in this area"
+    ],
+    "target_lines": [
+      "本区域的",
+      "三处动力源"
+    ],
+    "guard_line_translations": [
+      "3 power sources",
+      "in this area"
+    ],
+    "guard_exact_source": "3 power sources in this area",
+    "guard_expected": "本区域的三处动力源"
+  },
+  {
+    "source_lines": [
+      "Activate strange",
+      "mechanism"
+    ],
+    "target_lines": [
+      "启动",
+      "奇异机关"
+    ],
+    "guard_line_translations": [
+      "Activate strange",
+      "mechanism"
+    ],
+    "guard_exact_source": "Activate strange mechanism",
+    "guard_expected": "启动奇异机关"
+  },
+  {
+    "source_lines": [
+      "This ancient lock",
+      "created by the",
+      "cultists seems to"
+    ],
+    "target_lines": [
+      "这道古锁",
+      "由邪教徒打造，",
+      "看起来"
+    ],
+    "guard_line_translations": [
+      "This ancient lock",
+      "created by the",
+      "cultists seems to"
+    ],
+    "guard_exact_source": "This ancient lock created by the cultists seems to",
+    "guard_expected": "这道古锁由邪教徒打造，看起来"
+  },
+  {
+    "source_lines": [
+      "be impenetrable.",
+      "There are two",
+      "locking"
+    ],
+    "target_lines": [
+      "牢不可破。",
+      "门上共有",
+      "两套闭锁"
+    ],
+    "guard_line_translations": [
+      "be impenetrable.",
+      "There are two",
+      "locking"
+    ],
+    "guard_exact_source": "be impenetrable. There are two locking",
+    "guard_expected": "牢不可破。门上共有两套闭锁"
+  },
+  {
+    "source_lines": [
+      "mechanisms which",
+      "control the door",
+      "and are"
+    ],
+    "target_lines": [
+      "机关，",
+      "控制着这扇门。",
+      "它们"
+    ],
+    "guard_line_translations": [
+      "mechanisms which",
+      "control the door",
+      "and are"
+    ],
+    "guard_exact_source": "mechanisms which control the door and are",
+    "guard_expected": "机关，控制着这扇门。它们"
+  },
+  {
+    "source_lines": [
+      "What lies behind",
+      "only insane minds",
+      "could have ever"
+    ],
+    "target_lines": [
+      "门后藏着的东西，",
+      "只有疯子",
+      "才有可能"
+    ],
+    "guard_line_translations": [
+      "What lies behind",
+      "only insane minds",
+      "could have ever"
+    ],
+    "guard_exact_source": "What lies behind only insane minds could have ever",
+    "guard_expected": "门后藏着的东西，只有疯子才有可能"
+  },
+  {
+    "source_lines": [
+      "There is no",
+      "going back."
+    ],
+    "target_lines": [
+      "前方已无",
+      "回头路。"
+    ],
+    "guard_line_translations": [
+      "There is no",
+      "going back."
+    ],
+    "guard_exact_source": "There is no going back.",
+    "guard_expected": "前方已无回头路。"
+  },
+  {
+    "source_lines": [
+      "Deep below the",
+      "island that was",
+      "considered",
+      "nothing more than"
+    ],
+    "target_lines": [
+      "据说那座岛",
+      "只存在于",
+      "传说之中。",
+      "在它的地底深处，"
+    ],
+    "guard_line_translations": [
+      "Deep below the",
+      "island that was",
+      "considered",
+      "nothing more than"
+    ],
+    "guard_exact_source": "Deep below the island that was considered nothing more than",
+    "guard_expected": "据说那座岛只存在于传说之中。在它的地底深处，"
+  },
+  {
+    "source_lines": [
+      "myth, the sins",
+      "of those who",
+      "seek only the",
+      "treasures of the"
+    ],
+    "target_lines": [
+      "埋藏着那些",
+      "一心搜罗",
+      "世间财宝之人",
+      "犯下的罪孽。"
+    ],
+    "guard_line_translations": [
+      "myth, the sins",
+      "of those who",
+      "seek only the",
+      "treasures of the"
+    ],
+    "guard_exact_source": "myth, the sins of those who seek only the treasures of the",
+    "guard_expected": "埋藏着那些一心搜罗世间财宝之人犯下的罪孽。"
+  },
+  {
+    "source_lines": [
+      "world lie. Here,",
+      "in these shoals",
+      "of tragedy, the",
+      "greed of pirates"
+    ],
+    "target_lines": [
+      "就在这片",
+      "饱经劫难的",
+      "浅滩上，",
+      "海盗的贪欲"
+    ],
+    "guard_line_translations": [
+      "world lie. Here,",
+      "in these shoals",
+      "of tragedy, the",
+      "greed of pirates"
+    ],
+    "guard_exact_source": "world lie. Here, in these shoals of tragedy, the greed of pirates",
+    "guard_expected": "就在这片饱经劫难的浅滩上，海盗的贪欲"
+  },
+  {
+    "source_lines": [
+      "rage on many",
+      "centuries after",
+      "their death.",
+      "Consumed by"
+    ],
+    "target_lines": [
+      "并未随他们死去。",
+      "几百年过去，",
+      "那贪欲",
+      "仍在肆虐。"
+    ],
+    "guard_line_translations": [
+      "rage on many",
+      "centuries after",
+      "their death.",
+      "Consumed by"
+    ],
+    "guard_exact_source": "rage on many centuries after their death. Consumed by",
+    "guard_expected": "并未随他们死去。几百年过去，那贪欲仍在肆虐。"
+  },
+  {
+    "source_lines": [
+      "their lust for",
+      "the greatest",
+      "treasure, they",
+      "lose themselves"
+    ],
+    "target_lines": [
+      "他们一心想要",
+      "最珍贵的宝藏，",
+      "却在渴求之中",
+      "迷失了自己，"
+    ],
+    "guard_line_translations": [
+      "their lust for",
+      "the greatest",
+      "treasure, they",
+      "lose themselves"
+    ],
+    "guard_exact_source": "their lust for the greatest treasure, they lose themselves",
+    "guard_expected": "他们一心想要最珍贵的宝藏，却在渴求之中迷失了自己，"
+  },
+  {
+    "source_lines": [
+      "to its power.",
+      "In this place,",
+      "only it has true",
+      "control, as it"
+    ],
+    "target_lines": [
+      "任凭宝藏摆布。",
+      "在这里，",
+      "真正掌权的只有它。",
+      "它赖以为生的，"
+    ],
+    "guard_line_translations": [
+      "to its power.",
+      "In this place,",
+      "only it has true",
+      "control, as it"
+    ],
+    "guard_exact_source": "to its power. In this place, only it has true control, as it",
+    "guard_expected": "任凭宝藏摆布。在这里，真正掌权的只有它。它赖以为生的，"
+  },
+  {
+    "source_lines": [
+      "feeds on the",
+      "emotions of those",
+      "it has ensnared.",
+      "But, what here is"
+    ],
+    "target_lines": [
+      "正是落入",
+      "它圈套之人的",
+      "种种情绪。",
+      "可这里的一切，"
+    ],
+    "guard_line_translations": [
+      "feeds on the",
+      "emotions of those",
+      "it has ensnared.",
+      "But, what here is"
+    ],
+    "guard_exact_source": "feeds on the emotions of those it has ensnared. But, what here is",
+    "guard_expected": "正是落入它圈套之人的种种情绪。可这里的一切，"
+  },
+  {
+    "source_lines": [
+      "truly real?",
+      "Are your senses",
+      "able to be",
+      "trusted? Or will"
+    ],
+    "target_lines": [
+      "究竟什么是真的？",
+      "你所感知的一切",
+      "当真可信吗？",
+      "还是说，"
+    ],
+    "guard_line_translations": [
+      "truly real?",
+      "Are your senses",
+      "able to be",
+      "trusted? Or will"
+    ],
+    "guard_exact_source": "truly real? Are your senses able to be trusted? Or will",
+    "guard_expected": "究竟什么是真的？你所感知的一切当真可信吗？还是说，"
+  },
+  {
+    "source_lines": [
+      "you become",
+      "lost as your",
+      "mind manifests",
+      "before you?"
+    ],
+    "target_lines": [
+      "当你心中所想",
+      "一一呈现眼前，",
+      "你也会",
+      "迷失其中？"
+    ],
+    "guard_line_translations": [
+      "you become",
+      "lost as your",
+      "mind manifests",
+      "before you?"
+    ],
+    "guard_exact_source": "you become lost as your mind manifests before you?",
+    "guard_expected": "当你心中所想一一呈现眼前，你也会迷失其中？"
+  },
+  {
+    "source_lines": [
+      "Overcome it,",
+      "or you will be",
+      "a victim to your",
+      "own Emotions."
+    ],
+    "target_lines": [
+      "战胜它，",
+      "否则，",
+      "你终将沦为",
+      "自身情绪的牺牲品。"
+    ],
+    "guard_line_translations": [
+      "Overcome it,",
+      "or you will be",
+      "a victim to your",
+      "own Emotions."
+    ],
+    "guard_exact_source": "Overcome it, or you will be a victim to your own Emotions.",
+    "guard_expected": "战胜它，否则，你终将沦为自身情绪的牺牲品。"
+  },
+  {
+    "source_lines": [
+      "Me treasure be",
+      "locked behind",
+      "me hate."
+    ],
+    "target_lines": [
+      "俺的宝藏",
+      "就锁在俺的",
+      "仇恨背后。"
+    ],
+    "guard_line_translations": [
+      "Me treasure be",
+      "locked behind",
+      "me hate."
+    ],
+    "guard_exact_source": "Me treasure be locked behind me hate.",
+    "guard_expected": "俺的宝藏就锁在俺的仇恨背后。"
+  },
+  {
+    "source_lines": [
+      "There be mer'",
+      "than gold below",
+      "the sands."
+    ],
+    "target_lines": [
+      "沙子底下",
+      "可不只埋着",
+      "金子。"
+    ],
+    "guard_line_translations": [
+      "There be mer'",
+      "than gold below",
+      "the sands."
+    ],
+    "guard_exact_source": "There be mer' than gold below the sands.",
+    "guard_expected": "沙子底下可不只埋着金子。"
+  },
+  {
+    "source_lines": [
+      "You deserved a",
+      "cake, after all?"
+    ],
+    "target_lines": [
+      "说到底，你也该",
+      "分块蛋糕吧？"
+    ],
+    "guard_line_translations": [
+      "You deserved a",
+      "cake, after all?"
+    ],
+    "guard_exact_source": "You deserved a cake, after all?",
+    "guard_expected": "说到底，你也该分块蛋糕吧？"
+  },
+  {
+    "source_lines": [
+      "wet",
+      "indeed"
+    ],
+    "target_lines": [
+      "还真是",
+      "湿透了。"
+    ],
+    "guard_line_translations": [
+      "wet",
+      "indeed"
+    ],
+    "guard_exact_source": "wet indeed",
+    "guard_expected": "还真是湿透了。"
+  },
+  {
+    "source_lines": [
+      "I can't believe...",
+      "Are you really",
+      "gonna check",
+      "every waterfall?"
+    ],
+    "target_lines": [
+      "真没想到……",
+      "你还真打算",
+      "把每一道瀑布",
+      "都查一遍？"
+    ],
+    "guard_line_translations": [
+      "I can't believe...",
+      "Are you really",
+      "gonna check",
+      "every waterfall?"
+    ],
+    "guard_exact_source": "I can't believe... Are you really gonna check every waterfall?",
+    "guard_expected": "真没想到……你还真打算把每一道瀑布都查一遍？"
+  },
+  {
+    "source_lines": [
+      "It will",
+      "be mine,",
+      "that holy",
+      "fleece"
+    ],
+    "target_lines": [
+      "那神圣的",
+      "羊毛，",
+      "终将归我",
+      "所有。"
+    ],
+    "guard_line_translations": [
+      "It will",
+      "be mine,",
+      "that holy",
+      "fleece"
+    ],
+    "guard_exact_source": "It will be mine, that holy fleece",
+    "guard_expected": "那神圣的羊毛，终将归我所有。"
+  },
+  {
+    "source_lines": [
+      "In temple",
+      "made o'",
+      "mind."
+    ],
+    "target_lines": [
+      "在那座",
+      "由心念筑成的",
+      "神殿里。"
+    ],
+    "guard_line_translations": [
+      "In temple",
+      "made o'",
+      "mind."
+    ],
+    "guard_exact_source": "In temple made o' mind.",
+    "guard_expected": "在那座由心念筑成的神殿里。"
+  },
+  {
+    "source_lines": [
+      "Me pride",
+      "be on the",
+      "line."
+    ],
+    "target_lines": [
+      "我可把",
+      "自己的颜面",
+      "也押上了。"
+    ],
+    "guard_line_translations": [
+      "Me pride",
+      "be on the",
+      "line."
+    ],
+    "guard_exact_source": "Me pride be on the line.",
+    "guard_expected": "我可把自己的颜面也押上了。"
+  },
+  {
+    "source_lines": [
+      "Me greed",
+      "be vast,",
+      "ye scurvy",
+      "dogs"
+    ],
+    "target_lines": [
+      "我的贪心",
+      "可没个底，",
+      "你们这群",
+      "狗东西！"
+    ],
+    "guard_line_translations": [
+      "Me greed",
+      "be vast,",
+      "ye scurvy",
+      "dogs"
+    ],
+    "guard_exact_source": "Me greed be vast, ye scurvy dogs",
+    "guard_expected": "我的贪心可没个底，你们这群狗东西！"
+  },
+  {
+    "source_lines": [
+      "Fer' what",
+      "a captain",
+      "er' his",
+      "crew"
+    ],
+    "target_lines": [
+      "船长",
+      "和他的船员",
+      "又算得上",
+      "什么，"
+    ],
+    "guard_line_translations": [
+      "Fer' what",
+      "a captain",
+      "er' his",
+      "crew"
+    ],
+    "guard_exact_source": "Fer' what a captain er' his crew",
+    "guard_expected": "船长和他的船员又算得上什么，"
+  },
+  {
+    "source_lines": [
+      "Come after",
+      "me, if",
+      "ye now",
+      "dare"
+    ],
+    "target_lines": [
+      "有胆量，",
+      "就到",
+      "这儿来",
+      "追我！"
+    ],
+    "guard_line_translations": [
+      "Come after",
+      "me, if",
+      "ye now",
+      "dare"
+    ],
+    "guard_exact_source": "Come after me, if ye now dare",
+    "guard_expected": "有胆量，就到这儿来追我！"
+  },
+  {
+    "source_lines": [
+      "If treasure",
+      "does not",
+      "shine?"
+    ],
+    "target_lines": [
+      "若是财宝",
+      "不再",
+      "闪亮？"
+    ],
+    "guard_line_translations": [
+      "If treasure",
+      "does not",
+      "shine?"
+    ],
+    "guard_exact_source": "If treasure does not shine?",
+    "guard_expected": "若是财宝不再闪亮？"
+  },
+  {
+    "source_lines": [
+      "Pieces o'",
+      "hate ye'll",
+      "find."
+    ],
+    "target_lines": [
+      "你找到的，",
+      "会是满地",
+      "仇恨的碎片。"
+    ],
+    "guard_line_translations": [
+      "Pieces o'",
+      "hate ye'll",
+      "find."
+    ],
+    "guard_exact_source": "Pieces o' hate ye'll find.",
+    "guard_expected": "你找到的，会是满地仇恨的碎片。"
+  },
+  {
+    "source_lines": [
+      "Hey.",
+      "Nothing to loot",
+      "I'm sorry"
+    ],
+    "target_lines": [
+      "嘿。",
+      "这里没东西可拿。",
+      "抱歉啦。"
+    ],
+    "guard_line_translations": [
+      "Hey.",
+      "Nothing to loot",
+      "I'm sorry"
+    ],
+    "guard_exact_source": "Hey. Nothing to loot I'm sorry",
+    "guard_expected": "嘿。这里没东西可拿。抱歉啦。"
+  },
+  {
+    "source_lines": [
+      "Open Path",
+      "of Confusion"
+    ],
+    "target_lines": [
+      "开启",
+      "迷惑之路"
+    ],
+    "guard_line_translations": [
+      "Open Path",
+      "of Confusion"
+    ],
+    "guard_exact_source": "Open Path of Confusion",
+    "guard_expected": "开启迷惑之路"
+  },
+  {
+    "source_lines": [
+      "Open Path",
+      "of Wonder"
+    ],
+    "target_lines": [
+      "开启",
+      "奇妙之路"
+    ],
+    "guard_line_translations": [
+      "Open Path",
+      "of Wonder"
+    ],
+    "guard_exact_source": "Open Path of Wonder",
+    "guard_expected": "开启奇妙之路"
+  },
+  {
+    "source_lines": [
+      "Unlock",
+      "Path Downward"
+    ],
+    "target_lines": [
+      "解锁",
+      "下行通道"
+    ],
+    "guard_line_translations": [
+      "Unlock",
+      "Path Downward"
+    ],
+    "guard_exact_source": "Unlock Path Downward",
+    "guard_expected": "解锁下行通道"
+  },
+  {
+    "source_lines": [
+      "\"Birthed",
+      "From Flames\""
+    ],
+    "target_lines": [
+      "《诞生于",
+      "烈焰之中》"
+    ],
+    "guard_line_translations": [
+      "\"Birthed",
+      "From Flames\""
+    ],
+    "guard_exact_source": "\"Birthed From Flames\"",
+    "guard_expected": "《诞生于烈焰之中》"
+  },
+  {
+    "source_lines": [
+      "\"The",
+      "Pointer\""
+    ],
+    "target_lines": [
+      "《指引",
+      "者》"
+    ],
+    "guard_line_translations": [
+      "\"The",
+      "Pointer\""
+    ],
+    "guard_exact_source": "\"The Pointer\"",
+    "guard_expected": "《指引者》"
+  },
+  {
+    "source_lines": [
+      "\"A Homage",
+      "To Death\""
+    ],
+    "target_lines": [
+      "《向死亡",
+      "致敬》"
+    ],
+    "guard_line_translations": [
+      "\"A Homage",
+      "To Death\""
+    ],
+    "guard_exact_source": "\"A Homage To Death\"",
+    "guard_expected": "《向死亡致敬》"
+  },
+  {
+    "source_lines": [
+      "\"Large Ape",
+      "Throws Tantrum\""
+    ],
+    "target_lines": [
+      "《巨猿",
+      "发怒》"
+    ],
+    "guard_line_translations": [
+      "\"Large Ape",
+      "Throws Tantrum\""
+    ],
+    "guard_exact_source": "\"Large Ape Throws Tantrum\"",
+    "guard_expected": "《巨猿发怒》"
+  },
+  {
+    "source_lines": [
+      "Hunger of the",
+      "Waves"
+    ],
+    "target_lines": [
+      "浪涛中的",
+      "饥渴"
+    ],
+    "guard_line_translations": [
+      "Hunger of the",
+      "Waves"
+    ],
+    "guard_exact_source": "Hunger of the Waves",
+    "guard_expected": "浪涛中的饥渴"
+  },
+  {
+    "source_lines": [
+      "Ganelon,",
+      "Forsworn Rider"
+    ],
+    "target_lines": [
+      "加内隆，",
+      "背誓骑士"
+    ],
+    "guard_line_translations": [
+      "Ganelon,",
+      "Forsworn Rider"
+    ],
+    "guard_exact_source": "Ganelon, Forsworn Rider",
+    "guard_expected": "加内隆，背誓骑士"
+  },
+  {
+    "source_lines": [
+      "Beast of the",
+      "Sea"
+    ],
+    "target_lines": [
+      "海中",
+      "巨兽"
+    ],
+    "guard_line_translations": [
+      "Beast of the",
+      "海洋"
+    ],
+    "guard_exact_source": "Beast of the Sea",
+    "guard_expected": "海中巨兽"
+  },
+  {
+    "source_lines": [
+      "Dreaded",
+      "Skeleton"
+    ],
+    "target_lines": [
+      "可怖的",
+      "骷髅"
+    ],
+    "guard_line_translations": [
+      "Dreaded",
+      "Skeleton"
+    ],
+    "guard_exact_source": "Dreaded Skeleton",
+    "guard_expected": "可怖的骷髅"
+  },
+  {
+    "source_lines": [
+      "yer soul ter its",
+      "final abode"
+    ],
+    "target_lines": [
+      "你的灵魂",
+      "抵达最终归宿。"
+    ],
+    "guard_line_translations": [
+      "yer soul ter its",
+      "final abode"
+    ],
+    "guard_exact_source": "yer soul ter its final abode",
+    "guard_expected": "你的灵魂抵达最终归宿。"
+  },
+  {
+    "source_lines": [
+      "Me ship",
+      "shall carry"
+    ],
+    "target_lines": [
+      "我的船",
+      "将载着"
+    ],
+    "guard_line_translations": [
+      "Me ship",
+      "shall carry"
+    ],
+    "guard_exact_source": "Me ship shall carry",
+    "guard_expected": "我的船将载着"
+  },
+  {
+    "source_lines": [
+      "FIRE",
+      "CORAL"
+    ],
+    "target_lines": [
+      "火",
+      "珊瑚"
+    ],
+    "guard_line_translations": [
+      "FIRE",
+      "CORAL"
+    ],
+    "guard_exact_source": "FIRE CORAL",
+    "guard_expected": "火珊瑚"
+  },
+  {
+    "source_lines": [
+      "BUBBLE",
+      "CORAL"
+    ],
+    "target_lines": [
+      "气泡",
+      "珊瑚"
+    ],
+    "guard_line_translations": [
+      "BUBBLE",
+      "CORAL"
+    ],
+    "guard_exact_source": "BUBBLE CORAL",
+    "guard_expected": "气泡珊瑚"
+  },
+  {
+    "source_lines": [
+      "TUBE",
+      "CORAL"
+    ],
+    "target_lines": [
+      "管",
+      "珊瑚"
+    ],
+    "guard_line_translations": [
+      "TUBE",
+      "CORAL"
+    ],
+    "guard_exact_source": "TUBE CORAL",
+    "guard_expected": "管珊瑚"
+  },
+  {
+    "source_lines": [
+      "HORN",
+      "CORAL"
+    ],
+    "target_lines": [
+      "鹿角",
+      "珊瑚"
+    ],
+    "guard_line_translations": [
+      "HORN",
+      "CORAL"
+    ],
+    "guard_exact_source": "HORN CORAL",
+    "guard_expected": "鹿角珊瑚"
+  },
+  {
+    "source_lines": [
+      "They ventured",
+      "forth into",
+      "greed's maw"
+    ],
+    "target_lines": [
+      "他们闯入了",
+      "贪婪的",
+      "巨口。"
+    ],
+    "guard_line_translations": [
+      "They ventured",
+      "forth into",
+      "greed's maw"
+    ],
+    "guard_exact_source": "They ventured forth into greed's maw",
+    "guard_expected": "他们闯入了贪婪的巨口。"
+  },
+  {
+    "source_lines": [
+      "Emotions rage",
+      "and writhe",
+      "with pain"
+    ],
+    "target_lines": [
+      "情绪翻腾，",
+      "在痛苦中",
+      "扭曲。"
+    ],
+    "guard_line_translations": [
+      "Emotions rage",
+      "and writhe",
+      "with pain"
+    ],
+    "guard_exact_source": "Emotions rage and writhe with pain",
+    "guard_expected": "情绪翻腾，在痛苦中扭曲。"
+  },
+  {
+    "source_lines": [
+      "Your fears",
+      "collect,",
+      "amalgamate"
+    ],
+    "target_lines": [
+      "你的恐惧",
+      "渐渐汇聚，",
+      "融为一体。"
+    ],
+    "guard_line_translations": [
+      "Your fears",
+      "collect,",
+      "amalgamate"
+    ],
+    "guard_exact_source": "Your fears collect, amalgamate",
+    "guard_expected": "你的恐惧渐渐汇聚，融为一体。"
+  },
+  {
+    "source_lines": [
+      "Its hunger",
+      "drives to",
+      "satiate"
+    ],
+    "target_lines": [
+      "它饥饿难耐，",
+      "只求",
+      "饱餐一顿。"
+    ],
+    "guard_line_translations": [
+      "Its hunger",
+      "drives to",
+      "satiate"
+    ],
+    "guard_exact_source": "Its hunger drives to satiate",
+    "guard_expected": "它饥饿难耐，只求饱餐一顿。"
+  },
+  {
+    "source_lines": [
+      "A pirate's",
+      "sin in",
+      "Corsair's Claw"
+    ],
+    "target_lines": [
+      "海盗的罪，",
+      "就犯在",
+      "海盗之爪。"
+    ],
+    "guard_line_translations": [
+      "A pirate's",
+      "sin in",
+      "海盗之爪"
+    ],
+    "guard_exact_source": "A pirate's sin in Corsair's Claw",
+    "guard_expected": "海盗的罪，就犯在海盗之爪。"
+  },
+  {
+    "source_lines": [
+      "There seems",
+      "to be a crack",
+      "in the mural?"
+    ],
+    "target_lines": [
+      "这幅壁画上",
+      "似乎有道",
+      "裂缝？"
+    ],
+    "guard_line_translations": [
+      "There seems",
+      "to be a crack",
+      "in the mural?"
+    ],
+    "guard_exact_source": "There seems to be a crack in the mural?",
+    "guard_expected": "这幅壁画上似乎有道裂缝？"
+  },
+  {
+    "source_lines": [
+      "Upon the ancient",
+      "powers chain"
+    ],
+    "guard_line_translations": [
+      "Upon the ancient",
+      "powers chain"
+    ],
+    "guard_exact_source": "Upon the ancient powers chain",
+    "target_lines": [
+      "古老力量的",
+      "锁链上，"
+    ],
+    "guard_expected": "古老力量的锁链上，"
+  },
+  {
+    "source_lines": [
+      "Deep below",
+      "Steelmeld lies",
+      "a vast network",
+      "of caverns."
+    ],
+    "target_lines": [
+      "钢融城的",
+      "地底深处，",
+      "洞窟纵横交错，",
+      "绵延不绝。"
+    ],
+    "guard_line_translations": [
+      "Deep below",
+      "Steelmeld lies",
+      "a vast network",
+      "of caverns."
+    ],
+    "guard_exact_source": "Deep below Steelmeld lies a vast network of caverns.",
+    "guard_expected": "钢融城的地底深处，洞窟纵横交错，绵延不绝。"
+  },
+  {
+    "source_lines": [
+      "A city long since",
+      "forgotten to time",
+      "lies within, but",
+      "something is"
+    ],
+    "target_lines": [
+      "其中藏着一座",
+      "早已被世人遗忘的",
+      "古城。可这里",
+      "总有些不对劲。"
+    ],
+    "guard_line_translations": [
+      "A city long since",
+      "forgotten to time",
+      "lies within, but",
+      "something is"
+    ],
+    "guard_exact_source": "A city long since forgotten to time lies within, but something is",
+    "guard_expected": "其中藏着一座早已被世人遗忘的古城。可这里总有些不对劲。"
+  },
+  {
+    "source_lines": [
+      "strange here.",
+      "The caverns",
+      "twist and contort,",
+      "constantly"
+    ],
+    "target_lines": [
+      "洞窟不断地",
+      "扭曲变形，",
+      "原本相通的地方",
+      "转眼就可能断开，"
+    ],
+    "guard_line_translations": [
+      "strange here.",
+      "The caverns",
+      "twist and contort,",
+      "constantly"
+    ],
+    "guard_exact_source": "strange here. The caverns twist and contort, constantly",
+    "guard_expected": "洞窟不断地扭曲变形，原本相通的地方转眼就可能断开，"
+  },
+  {
+    "source_lines": [
+      "changing the",
+      "way they connect.",
+      "Those who have",
+      "found their way"
+    ],
+    "target_lines": [
+      "新的通路",
+      "又悄然相连。",
+      "凡是踏进这些",
+      "隧道的人，"
+    ],
+    "guard_line_translations": [
+      "changing the",
+      "way they connect.",
+      "那些先行者",
+      "found their way"
+    ],
+    "guard_exact_source": "changing the way they connect. Those who have found their way",
+    "guard_expected": "新的通路又悄然相连。凡是踏进这些隧道的人，"
+  },
+  {
+    "source_lines": [
+      "into these",
+      "tunnels are",
+      "doomed to become",
+      "lost as the city"
+    ],
+    "target_lines": [
+      "都注定要",
+      "迷失方向。",
+      "因为就在",
+      "他们身边，"
+    ],
+    "guard_line_translations": [
+      "into these",
+      "tunnels are",
+      "doomed to become",
+      "lost as the city"
+    ],
+    "guard_exact_source": "into these tunnels are doomed to become lost as the city",
+    "guard_expected": "都注定要迷失方向。因为就在他们身边，"
+  },
+  {
+    "source_lines": [
+      "changes around",
+      "them. But what",
+      "caused this city",
+      "to become"
+    ],
+    "target_lines": [
+      "整座城",
+      "仍在变幻。",
+      "可究竟是什么，",
+      "让这里成了"
+    ],
+    "guard_line_translations": [
+      "changes around",
+      "them. But what",
+      "caused this city",
+      "to become"
+    ],
+    "guard_exact_source": "changes around them. But what caused this city to become",
+    "guard_expected": "整座城仍在变幻。可究竟是什么，让这里成了"
+  },
+  {
+    "source_lines": [
+      "like this, this",
+      "protean venezia?",
+      "What could have",
+      "its former"
+    ],
+    "target_lines": [
+      "这样一座",
+      "变幻莫测的水城？",
+      "曾经住在",
+      "这里的人"
+    ],
+    "guard_line_translations": [
+      "like this, this",
+      "protean venezia?",
+      "What could have",
+      "its former"
+    ],
+    "guard_exact_source": "like this, this protean venezia? What could have its former",
+    "guard_expected": "这样一座变幻莫测的水城？曾经住在这里的人"
+  },
+  {
+    "source_lines": [
+      "inhabitants have",
+      "done to cause",
+      "such an odd",
+      "circumstance?"
+    ],
+    "target_lines": [
+      "究竟做过",
+      "什么事，",
+      "才会造成",
+      "这般异象？"
+    ],
+    "guard_line_translations": [
+      "inhabitants have",
+      "done to cause",
+      "such an odd",
+      "circumstance?"
+    ],
+    "guard_exact_source": "inhabitants have done to cause such an odd circumstance?",
+    "guard_expected": "究竟做过什么事，才会造成这般异象？"
+  },
+  {
+    "source_lines": [
+      "Travel with",
+      "caution, as you",
+      "never know what",
+      "might lie ahead."
+    ],
+    "target_lines": [
+      "前行时务必小心。",
+      "谁也说不准",
+      "前方有什么",
+      "在等着你。"
+    ],
+    "guard_line_translations": [
+      "Travel with",
+      "caution, as you",
+      "never know what",
+      "might lie ahead."
+    ],
+    "guard_exact_source": "Travel with caution, as you never know what might lie ahead.",
+    "guard_expected": "前行时务必小心。谁也说不准前方有什么在等着你。"
+  },
+  {
+    "source_lines": [
+      "Secrets often do",
+      "not die. They only",
+      "fester, and twist",
+      "your reality."
+    ],
+    "target_lines": [
+      "秘密往往不会消亡。",
+      "它们只会暗中腐烂，",
+      "一点点扭曲",
+      "你眼中的现实。"
+    ],
+    "guard_line_translations": [
+      "Secrets often do",
+      "not die. They only",
+      "fester, and twist",
+      "your reality."
+    ],
+    "guard_exact_source": "Secrets often do not die. They only fester, and twist your reality.",
+    "guard_expected": "秘密往往不会消亡。它们只会暗中腐烂，一点点扭曲你眼中的现实。"
+  },
+  {
+    "source_lines": [
+      "The light is weak",
+      "when applied, but",
+      "amplifies through",
+      "each pass of a"
+    ],
+    "target_lines": [
+      "光束发出时",
+      "十分微弱。",
+      "每穿过一根",
+      "与光束同色的柱子，"
+    ],
+    "guard_line_translations": [
+      "The light is weak",
+      "when applied, but",
+      "amplifies through",
+      "each pass of a"
+    ],
+    "guard_exact_source": "The light is weak when applied, but amplifies through each pass of a",
+    "guard_expected": "光束发出时十分微弱。每穿过一根与光束同色的柱子，"
+  },
+  {
+    "source_lines": [
+      "corresponding",
+      "column color, and",
+      "must pass",
+      "through 4 to"
+    ],
+    "target_lines": [
+      "光就会增强。",
+      "每束光都要",
+      "穿过四根同色柱，",
+      "才能过关。"
+    ],
+    "guard_line_translations": [
+      "corresponding",
+      "column color, and",
+      "must pass",
+      "through 4 to"
+    ],
+    "guard_exact_source": "corresponding column color, and must pass through 4 to",
+    "guard_expected": "光就会增强。每束光都要穿过四根同色柱，才能过关。"
+  },
+  {
+    "source_lines": [
+      "clear the room.",
+      "Two of each",
+      "light color must",
+      "be present in the"
+    ],
+    "target_lines": [
+      "房间里",
+      "每种颜色的光束",
+      "都必须",
+      "恰好有两束。"
+    ],
+    "guard_line_translations": [
+      "clear the room.",
+      "Two of each",
+      "light color must",
+      "be present in the"
+    ],
+    "guard_exact_source": "clear the room. Two of each light color must be present in the",
+    "guard_expected": "房间里每种颜色的光束都必须恰好有两束。"
+  },
+  {
+    "source_lines": [
+      "room, and two",
+      "lights must be",
+      "aligned to each",
+      "height level."
+    ],
+    "target_lines": [
+      "每个高度上",
+      "也都必须",
+      "恰好对齐",
+      "两束光。"
+    ],
+    "guard_line_translations": [
+      "room, and two",
+      "lights must be",
+      "aligned to each",
+      "height level."
+    ],
+    "guard_exact_source": "room, and two lights must be aligned to each height level.",
+    "guard_expected": "每个高度上也都必须恰好对齐两束光。"
+  },
+  {
+    "source_lines": [
+      "On this board,",
+      "zombies must be",
+      "placed. As",
+      "zombies are"
+    ],
+    "target_lines": [
+      "把僵尸摆上棋盘。",
+      "摆放时要小心：",
+      "僵尸以肉为食，",
+      "连同类也吃。"
+    ],
+    "guard_line_translations": [
+      "On this board,",
+      "zombies must be",
+      "placed. As",
+      "zombies are"
+    ],
+    "guard_exact_source": "On this board, zombies must be placed. As zombies are",
+    "guard_expected": "把僵尸摆上棋盘。摆放时要小心：僵尸以肉为食，连同类也吃。"
+  },
+  {
+    "source_lines": [
+      "carnivorous,",
+      "they will try",
+      "to eat eachother",
+      "if they are"
+    ],
+    "target_lines": [
+      "只要两只僵尸",
+      "在同一条直线上，",
+      "它们就会",
+      "试图吃掉对方。"
+    ],
+    "guard_line_translations": [
+      "carnivorous,",
+      "they will try",
+      "to eat eachother",
+      "if they are"
+    ],
+    "guard_exact_source": "carnivorous, they will try to eat eachother if they are",
+    "guard_expected": "只要两只僵尸在同一条直线上，它们就会试图吃掉对方。"
+  },
+  {
+    "source_lines": [
+      "placed any",
+      "distance directly",
+      "horizontal,",
+      "vertical, or"
+    ],
+    "target_lines": [
+      "无论相隔多远，",
+      "只要在同一行、",
+      "同一列，",
+      "就有危险。"
+    ],
+    "guard_line_translations": [
+      "placed any",
+      "distance directly",
+      "horizontal,",
+      "vertical, or"
+    ],
+    "guard_exact_source": "placed any distance directly horizontal, vertical, or",
+    "guard_expected": "无论相隔多远，只要在同一行、同一列，就有危险。"
+  },
+  {
+    "source_lines": [
+      "diagonal from",
+      "eachother. To",
+      "procure balance,",
+      "all zombies must"
+    ],
+    "target_lines": [
+      "同一条斜线上",
+      "也一样。",
+      "要让棋盘",
+      "保持平衡，"
+    ],
+    "guard_line_translations": [
+      "diagonal from",
+      "eachother. To",
+      "procure balance,",
+      "all zombies must"
+    ],
+    "guard_exact_source": "diagonal from eachother. To procure balance, all zombies must",
+    "guard_expected": "同一条斜线上也一样。要让棋盘保持平衡，"
+  },
+  {
+    "source_lines": [
+      "be placed in",
+      "a location where",
+      "no two can eat",
+      "eachother."
+    ],
+    "target_lines": [
+      "就要让",
+      "每一只僵尸",
+      "都吃不到",
+      "另一只。"
+    ],
+    "guard_line_translations": [
+      "be placed in",
+      "a location where",
+      "no two can eat",
+      "eachother."
+    ],
+    "guard_exact_source": "be placed in a location where no two can eat eachother.",
+    "guard_expected": "就要让每一只僵尸都吃不到另一只。"
+  },
+  {
+    "source_lines": [
+      "In one chest lies",
+      "the power to",
+      "attune a vessel",
+      "to Knowledge."
+    ],
+    "target_lines": [
+      "有一个箱子",
+      "藏着一股力量，",
+      "能让容器",
+      "与知识共鸣。"
+    ],
+    "guard_line_translations": [
+      "In one chest lies",
+      "the power to",
+      "attune a vessel",
+      "to Knowledge."
+    ],
+    "guard_exact_source": "In one chest lies the power to attune a vessel to Knowledge.",
+    "guard_expected": "有一个箱子藏着一股力量，能让容器与知识共鸣。"
+  },
+  {
+    "source_lines": [
+      "Diseases always",
+      "null before",
+      "they are nulled",
+      "themselves."
+    ],
+    "target_lines": [
+      "每种疾病都会",
+      "先消除它克制的病，",
+      "随后自己才会",
+      "被别的病消除。"
+    ],
+    "guard_line_translations": [
+      "疾病总是先",
+      "消除其他疾病，",
+      "再被其他疾病消除。",
+      "themselves."
+    ],
+    "guard_exact_source": "Diseases always null before they are nulled themselves.",
+    "guard_expected": "每种疾病都会先消除它克制的病，随后自己才会被别的病消除。"
+  },
+  {
+    "source_lines": [
+      "Enderpox nulls",
+      "Fangilium"
+    ],
+    "target_lines": [
+      "末影痘可消除",
+      "獠牙病"
+    ],
+    "guard_line_translations": [
+      "末影痘 消除",
+      "獠牙病"
+    ],
+    "guard_exact_source": "Enderpox nulls Fangilium",
+    "guard_expected": "末影痘可消除獠牙病"
+  },
+  {
+    "source_lines": [
+      "Creepititus nulls",
+      "Blazoids"
+    ],
+    "target_lines": [
+      "苦力怕炎可消除",
+      "烈焰疹"
+    ],
+    "guard_line_translations": [
+      "苦力怕炎 消除",
+      "烈焰疹"
+    ],
+    "guard_exact_source": "Creepititus nulls Blazoids",
+    "guard_expected": "苦力怕炎可消除烈焰疹"
+  },
+  {
+    "source_lines": [
+      "Blazoids nulls",
+      "Enderpox"
+    ],
+    "target_lines": [
+      "烈焰疹可消除",
+      "末影痘"
+    ],
+    "guard_line_translations": [
+      "烈焰疹 消除",
+      "末影痘"
+    ],
+    "guard_exact_source": "Blazoids nulls Enderpox",
+    "guard_expected": "烈焰疹可消除末影痘"
+  },
+  {
+    "source_lines": [
+      "Fangilium nulls",
+      "Creepititus"
+    ],
+    "target_lines": [
+      "獠牙病可消除",
+      "苦力怕炎"
+    ],
+    "guard_line_translations": [
+      "獠牙病 消除",
+      "苦力怕炎"
+    ],
+    "guard_exact_source": "Fangilium nulls Creepititus",
+    "guard_expected": "獠牙病可消除苦力怕炎"
+  },
+  {
+    "source_lines": [
+      "Diseases always",
+      "null before",
+      "they are nulled",
+      "themselves"
+    ],
+    "target_lines": [
+      "每种疾病都会",
+      "先消除它克制的病，",
+      "随后自己才会",
+      "被别的病消除。"
+    ],
+    "guard_line_translations": [
+      "疾病总是先",
+      "消除其他疾病，",
+      "再被其他疾病消除。",
+      "themselves"
+    ],
+    "guard_exact_source": "Diseases always null before they are nulled themselves",
+    "guard_expected": "每种疾病都会先消除它克制的病，随后自己才会被别的病消除。"
   }
 ]

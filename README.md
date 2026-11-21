@@ -24,7 +24,7 @@ Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。
 ./build.ps1 -GameDirectory 'X:/Minecraft/versions/1.20.4' -LibrariesDirectory 'X:/Minecraft/libraries'
 ```
 
-1. 退出 Minecraft，将 `dist/Monumenta-ZH-Supplement-1.20.4-0.2.146-help-cleanup.jar` 放入该实例的 `mods` 文件夹。
+1. 退出 Minecraft，将 `dist/Monumenta-ZH-Supplement-1.20.4-<version>.jar` 放入该实例的 `mods` 文件夹。
 2. 同时移出旧版同名 MOD，避免重复加载。
 3. 将本仓库 `config/monumenta_zh/` 中的 **overrides.json、names.json** 放入游戏实例相应配置目录。
 4. 启动游戏，用 `/monumentazh on` 开启汉化；快捷键可在游戏控制设置中自行绑定。

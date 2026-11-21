@@ -47,12 +47,12 @@ public final class QuestHoverLayout {
         String translated=local(title,engine,protectedNames);
         add(output,title+(translated.equals(title)?"":"（"+translated+"）"),titleStyle);newline(output,2);
         if(level!=null) {
-        label(output,"难度 / Difficulty:");newline(output,1);
+        label(output,"难度");newline(output,1);
         String chineseLevel=LEVELS.getOrDefault(level.toLowerCase(Locale.ROOT),local(level,engine,protectedNames));
-        add(output,chineseLevel.equals(level)?level:chineseLevel+"（"+level+"）",levelStyle);newline(output,2);
+        add(output,chineseLevel,levelStyle);newline(output,2);
         }
         if(requirements!=null) {
-        label(output,"前置 / Requirements:");newline(output,1);
+        label(output,"前置");newline(output,1);
         String all=local(requirements,engine,protectedNames);
         String[] entries=all.equals(requirements)?splitRequirements(requirements):new String[]{requirements};
         for(int i=0;i<entries.length;i++) {
@@ -63,7 +63,7 @@ public final class QuestHoverLayout {
         }
         newline(output,2);
         }
-        label(output,"起始位置 / Start:");newline(output,1);
+        label(output,"起始位置");newline(output,1);
         Matcher lobby=LOBBY.matcher(start);String chineseStart=start(start,engine,protectedNames);
         if(lobby.matches()) {
             String color=COLORS.get(lobby.group(2).toLowerCase(Locale.ROOT));
@@ -72,7 +72,9 @@ public final class QuestHoverLayout {
         pair(output,chineseStart,start,startStyle);
         if(!footer.isEmpty()) {
             newline(output,2);JsonObject footerStyle=styleAt(runs,card.start(5));
-            pair(output,FOOTERS.get(footer),footer,footerStyle);
+            if(footer.startsWith("* Requirements not yet met *"))
+                add(output,"  * 前置条件尚未满足 *",footerStyle);
+            else pair(output,FOOTERS.get(footer),footer,footerStyle);
         }
         JsonObject result=new JsonObject();result.addProperty("text","");result.add("extra",output);if(titleStyle.has("font"))result.add("font",titleStyle.get("font").deepCopy());
         hover.add("contents",result);return true;

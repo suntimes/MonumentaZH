@@ -1274,6 +1274,98 @@
         "frustration, but it holds your alchemical",
         "supplies as well as any other vessel."
       ]
+    },
+    {
+      "id": "verdant-lore-0",
+      "source_lines": [
+        "A simple touch of the wood unleashes",
+        "a pain stretching across the whole of",
+        "the Blackroot. This wood has been stripped",
+        "from Kaul's own heart."
+      ],
+      "target_lines": [
+        "只需轻触这截木头，",
+        "剧痛便会传遍整个黑根丛林。",
+        "这根魔杖的木料",
+        "就剥自考尔的心脏。"
+      ],
+      "guard_exact_source": "A simple touch of the wood unleashes a pain stretching across the whole of the Blackroot. This wood has been stripped from Kaul's own heart.",
+      "guard_expected": "只需轻触这截木头，剧痛便会传遍整个黑根丛林。这根魔杖的木料就剥自考尔的心脏。",
+      "guard_line_translations": [
+        "只需轻触这块木头，便会释放出",
+        "一股遍及整个黑根的",
+        "痛楚。这块木头剥离自",
+        "考尔自己的心脏。"
+      ]
+    },
+    {
+      "id": "verdant-lore-1",
+      "source_lines": [
+        "Something about this Tlaxan weapon",
+        "causes the hair on the back of your",
+        "neck to stand up. It is no longer",
+        "of this world."
+      ],
+      "target_lines": [
+        "这件特拉克桑族的兵器",
+        "透着一股说不出的诡异，",
+        "让你后颈的寒毛直竖。",
+        "它已不属于这个世界。"
+      ],
+      "guard_exact_source": "Something about this Tlaxan weapon causes the hair on the back of your neck to stand up. It is no longer of this world.",
+      "guard_expected": "这件特拉克桑族的兵器透着一股说不出的诡异，让你后颈的寒毛直竖。它已不属于这个世界。",
+      "guard_line_translations": [
+        "这件特拉克桑兵器散发着诡异的气息，",
+        "令你后颈",
+        "寒毛直竖。它已不再",
+        "属于这个世界。"
+      ]
+    },
+    {
+      "id": "verdant-lore-2",
+      "source_lines": [
+        "Carved from stone at the heart of the",
+        "Jaguar Tooth mountains, this dagger is",
+        "to pierce the heart of any Elder who falls",
+        "to the whisper of Gods."
+      ],
+      "target_lines": [
+        "这柄匕首由岩石雕成，",
+        "石料取自豹牙山脉腹地。",
+        "若有长老屈从于诸神的低语，",
+        "这柄匕首便是为刺穿其心脏而造的。"
+      ],
+      "guard_exact_source": "Carved from stone at the heart of the Jaguar Tooth mountains, this dagger is to pierce the heart of any Elder who falls to the whisper of Gods.",
+      "guard_expected": "这柄匕首由岩石雕成，石料取自豹牙山脉腹地。若有长老屈从于诸神的低语，这柄匕首便是为刺穿其心脏而造的。",
+      "guard_line_translations": [
+        "这柄匕首以豹牙山脉腹地的",
+        "岩石雕成，用于",
+        "刺穿任何屈从于诸神低语的",
+        "长老的心脏。"
+      ]
+    },
+    {
+      "id": "verdant-lore-3",
+      "source_lines": [
+        "Attuning to a potion allows for instant",
+        "drinking if the potion is present in",
+        "your inventory (non-hotbar) or stored",
+        "within the Potion Injector."
+      ],
+      "target_lines": [
+        "先用注射器选定一种药水。",
+        "将这种药水放在背包里（快捷栏除外），",
+        "或存入注射器，",
+        "即可立即饮用。"
+      ],
+      "guard_exact_source": "Attuning to a potion allows for instant drinking if the potion is present in your inventory (non-hotbar) or stored within the Potion Injector.",
+      "guard_expected": "先用注射器选定一种药水。将这种药水放在背包里（快捷栏除外），或存入注射器，即可立即饮用。",
+      "guard_line_translations": [
+        "调谐药水后，只要药水位于",
+        "物品栏的非快捷栏格子中，",
+        "或储存在药水注射器内，",
+        "就能立即饮用。"
+      ]
     }
   ],
   "servers": [
