@@ -1,8 +1,12 @@
-# Monumenta 中文补充 · MonumentaZH
+# Monumenta 中文MOD
+
+**近期更新会逐渐减缓，可能持续到明年1月份，精力、时间有限。**
 
 Minecraft **1.20.4 / Fabric** 客户端汉化补充 MOD。
 
-下载：[最新 Release](https://github.com/suntimes/MonumentaZH/releases/latest)。建议下载完整安装包，包含 JAR 与配套词库，也提供独立 JAR 和 SHA256 校验文件。（一般来说是不需要校验的）
+下载：[最新 Release](https://github.com/suntimes/MonumentaZH/releases/latest)。建议下载完整安装包，包含 JAR 与配套词库，也提供独立 JAR 和 SHA256 校验文件。
+
+（一般来说是不需要校验的）
 
 使用须知：/monumentazh welcome
 
